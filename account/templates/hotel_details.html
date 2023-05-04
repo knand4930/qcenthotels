@@ -1,0 +1,233 @@
+
+
+{% extends 'frontmaster.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="breadcrumb-area breadcrumb-padding">
+    <div class="container custom-container-one">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-contents">
+                    <h4 class="breadcrumb-contents-title"> Hotel Details </h4>
+                    <ul class="breadcrumb-contents-list list-style-none">
+                        <li class="breadcrumb-contents-list-item"> <a href="/" class="breadcrumb-contents-list-item-link"> Home </a> </li>
+                        <li class="breadcrumb-contents-list-item">  Hotels  </li>
+                        <li class="breadcrumb-contents-list-item"> Hotel Details </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="hotel-details-area section-bg-2 pat-100 pab-100">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-xl-8 col-lg-7">
+                <div class="details-left-wrapper">
+                    <div class="details-contents bg-white radius-10">
+                        <div class="details-contents-header">
+
+                            {% include 'slidegallery.html' %}
+                        </div>
+                        <div class="hotel-view-contents">
+                            <div class="hotel-view-contents-header">
+                                <span class="hotel-view-contents-review"> <i class="las la-star"></i> 4.5 <span class="hotel-view-contents-review-count"> (380) </span> </span>
+                                <h3 class="hotel-view-contents-title"> {{ ht.name }} </h3>
+                                <div class="hotel-view-contents-location mt-2">
+                                    <span class="hotel-view-contents-location-icon"> <i class="las la-map-marker-alt"></i> </span>
+                                    <span class="hotel-view-contents-location-para"> {{ ht.address }}, {{ ht.city.name }}, {{ ht.state.name }} </span>
+                                </div>
+                            </div>
+                            <div class="hotel-view-contents-middle">
+                                <div class="hotel-view-contents-flex">
+                                    <div class="hotel-view-contents-icon d-flex gap-1">
+                                        {% if ht.parking %}
+                                        <span> <i class="las la-parking"></i> </span>
+                                        <p class="hotel-view-contents-icon-title flex-fill"> Parking </p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="hotel-view-contents-icon d-flex gap-1">
+                                        {% if ht.wifi %}
+                                        <span> <i class="las la-wifi"></i> </span>
+                                        <p class="hotel-view-contents-icon-title flex-fill"> Wifi </p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="hotel-view-contents-icon d-flex gap-1">
+                                        {% if ht.breakfast %}
+                                        <span> <i class="las la-coffee"></i> </span>
+                                        <p class="hotel-view-contents-icon-title flex-fill"> Breakfast </p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="hotel-view-contents-icon d-flex gap-1">
+                                        <span> <i class="las la-quidditch"></i> </span>
+                                        <p class="hotel-view-contents-icon-title flex-fill"> Room Service </p>
+                                    </div>
+                                    <div class="hotel-view-contents-icon d-flex gap-1">
+                                        {% if ht.pool %}
+                                        <span> <i class="las la-swimming-pool"></i> </span>
+                                        <p class="hotel-view-contents-icon-title flex-fill"> Pool </p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="hotel-view-contents-icon d-flex gap-1">
+                                        {% if ht.reception %}
+                                        <span> <i class="las la-receipt"></i> </span>
+                                        <p class="hotel-view-contents-icon-title flex-fill"> Reception </p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="hotel-view-contents-icon d-flex gap-1">
+                                        {% if ht.gym %}
+                                        <span> <i class="las la-dumbbell"></i> </span>
+                                        <p class="hotel-view-contents-icon-title flex-fill"> Gym </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% if user.is_authenticated %}
+                            {% if request.user.is_agent %}
+                            <div class="hotel-view-contents-bottom">
+                                <div class="hotel-view-contents-bottom-flex">
+                                    <div class="hotel-view-contents-bottom-contents">
+                                        <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ ht.agent_price }} /- Per Room Per Night</h4>
+                                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ ht.budget }} | Tax  {{ ht.price_increase }}%  | Agent Discount {{ ht.agent }} % </p>
+                                    </div>
+                                    <div class="btn-wrapper">
+<!--                                        <a href="javascript:void(0)" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>-->
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="hotel-view-contents-bottom">
+                                <div class="hotel-view-contents-bottom-flex">
+                                    <div class="hotel-view-contents-bottom-contents">
+                                        <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ ht.total_budget }} /- Per Room Per Night</h4>
+                                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ ht.budget }} | Tax  {{ ht.price_increase }} % </p>
+                                    </div>
+                                    <div class="btn-wrapper">
+<!--                                        <a href="javascript:void(0)" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>-->
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% else %}
+
+                            <div class="hotel-view-contents-bottom">
+                                <div class="hotel-view-contents-bottom-flex">
+                                    <div class="hotel-view-contents-bottom-contents">
+                                        <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ ht.total_budget }} /- Per Room Per Night</h4>
+                                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ ht.budget }} | Tax  {{ ht.price_increase }} % </p>
+                                    </div>
+                                    <div class="btn-wrapper">
+<!--                                        <a href="javascript:void(0)" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>-->
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+
+
+
+
+                        </div>
+                        <div class="details-contents-tab">
+                            <ul class="tabs details-tab details-tab-border">
+                                <li class="active" data-tab="about"> About </li>
+
+                            </ul>
+                            <div id="about" class="tab-content-item active">
+                                <div class="about-tab-contents">
+                                    <p>{{ ht.summary | safe }} </p>
+                                </div>
+                            </div>
+                            <div id="reviews" class="tab-content-item">
+                                <div class="review-tab-contents">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5">
+                <div class="sticky-top">
+                    <div class="hotel-details-widget hotel-details-widget-padding widget bg-white radius-10">
+                        <div class="details-sidebar">
+
+                            <form action="" method="post">
+                                {% csrf_token %}
+                            <div class="details-sidebar-dropdown custom-form">
+                                    <div class="single-input">
+                                        <label class="details-sidebar-dropdown-title"> Check In </label>
+                                        <input class="form--control" name="check_in" type="date" placeholder="Check in" required>
+                                    </div>
+                                    <div class="single-input mt-3">
+                                        <label class="details-sidebar-dropdown-title"> Check Out </label>
+                                        <input class="form--control" name="check_out" type="date" placeholder="Check out" required>
+                                    </div>
+                            </div>
+                            <div class="details-sidebar-quantity pt-4">
+                                <div class="details-sidebar-quantity-flex">
+                                    <div class="details-sidebar-quantity-item">
+                                        <h6 class="details-sidebar-quantity-title"> Guest </h6>
+                                        <div class="details-sidebar-quantity-field">
+                                            <span class="minus"><i class="las la-minus"></i></span>
+                                            <input name="guest" class="quantity-input" type="number" value="5">
+                                            <span class="plus"><i class="las la-plus"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="details-sidebar-quantity-item">
+                                        <h6 class="details-sidebar-quantity-title"> Children </h6>
+                                        <div class="details-sidebar-quantity-field">
+                                            <span class="minus"><i class="las la-minus"></i></span>
+                                            <input name="children" class="quantity-input" type="number" value="3">
+                                            <span class="plus"><i class="las la-plus"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="details-sidebar-quantity-item">
+                                        <h6 class="details-sidebar-quantity-title"> Room </h6>
+                                        <div class="details-sidebar-quantity-field">
+                                            <span class="minus"><i class="las la-minus"></i></span>
+                                            <input name="room" class="quantity-input" type="number" value="2">
+                                            <span class="plus"><i class="las la-plus"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-wrapper mt-4">
+                                <input type="submit" class="cmn-btn btn-bg-1 btn-small" value="Check Out">
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="hotel-details-widget widget bg-white radius-10">
+                        <div class="hotel-view">
+                            <div class="hotel-view-thumb hotel-view-grid-thumb bg-image" style="background-image: url(assets/img/single-page/hotel-grid1.jpg);">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hotel-details-widget hotel-details-widget-padding widget bg-white radius-10">
+                        <div class="details-sidebar">
+                            <div class="details-sidebar-offer center-text radius-10">
+                                <div class="details-sidebar-offer-shapes">
+                                    <img src="{% static 'assets/img/single-page/offer_shapes.png' %}" alt="shapes">
+                                </div>
+                                <div class="details-sidebar-offer-thumb">
+                                    <img src="assets/img/single-page/offer.png" alt="">
+                                </div>
+
+
+                                <div class="btn-wrapper mt-5">
+                                    <a href="javascript:void(0)" class="cmn-btn btn-bg-white"> Book Now </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

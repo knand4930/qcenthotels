@@ -1,0 +1,83 @@
+{% extends 'master.html' %}
+
+{% block content %}
+        <div class="col-md-10 fixwidth">
+            <div class="row justify-content-center">
+                <h3>Occasion Category</h3>
+                {{ msg }}
+                <div class="col-md-11 shadow-sm mt-3">
+                   <div class="text-end">
+                   <a href="categorylist.php"><button class="btn btn-secondary">Category Lsit</button></a>
+                   </div>
+                    <div class="row p-3">
+                        <div class="mb-3 col-md-6">
+                            <label for="">Select Type</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Select Type</option>
+                                <option value="1">Category</option>
+                                <option value="2">Cat Location Wise</option>
+                            </select>
+
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">Enter Name</label>
+                            <input type="text" class="form-control" id="exampleInput" placeholder="Enter Occasion name">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">Slug Url</label>
+                            <input type="text" class="form-control" id="exampleInput" placeholder="Enter Slug Url">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">canonical URL</label>
+                            <input type="text" class="form-control" id="exampleInput" placeholder="Enter canonical URL">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">Meta Title</label>
+                            <input type="text" class="form-control" id="exampleInput" placeholder="Enter Meta Title ">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">Enter Metakeyword</label>
+                            <input type="text" class="form-control" id="exampleInput" placeholder="Enter Metakeyword">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">Enter Meta Description</label>
+                            <input type="text" class="form-control" id="exampleInput" placeholder="Enter Meta Description">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">Sorting</label>
+                            <input type="text" class="form-control" id="exampleInput" placeholder="Sorting">
+                        </div>
+                        <!--  -->
+                        <div class="mb-3 col-md-12">
+                            <label for="">Intro content</label>
+                            <textarea name="editor1"></textarea>
+
+                        </div>
+                        <!--  -->
+                        <div class="mb-3 col-md-12">
+                            <label for="">Footer content</label>
+                            <textarea name="editor2"></textarea>
+
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label for="">Facebook Featured Image</label>
+                            <input type="file" class="form-control" id="exampleInput">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">Header Image</label>
+                            <input type="file" class="form-control" id="exampleInput">
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btnstyle">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<script>
+    CKEDITOR.replace('editor1');
+    CKEDITOR.replace('editor2');
+</script>
+
+{% endblock %}

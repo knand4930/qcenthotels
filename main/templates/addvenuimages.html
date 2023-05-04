@@ -1,0 +1,126 @@
+{% extends 'master.html' %}
+{% block content %}
+        <div class="col-md-10 fixwidth">
+            <div class="row justify-content-center">
+                <h3>Gallery</h3>
+                <div class="col-md-11 shadow-sm mt-3">
+                    {{ msg }}
+                    <form method="post" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row p-3">
+                        <div class="mb-3 col-md-6">
+                            <label for="">Select Gallery Catgeory</label>
+                            <select class="form-select" name="cat" aria-label="Default select example">
+                                {% for i in gc %}
+                                <option value="{{ i.id }}">{{ i.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">Enter a Title</label>
+                            <input type="text" name="title" class="form-control" id="exampleInput">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">Image</label>
+                            <input type="file" name="img" class="form-control" id="exampleInput">
+                        </div>
+                        <div class="col-md-6 mt-4">
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="col-md-11 mt-3">
+                    <div class="d-flex justify-content-end">
+                        <div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="exampleInput" placeholder="Seacrch">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-11 col-12">
+                    <div class="tableresposive">
+                        <table class="table border">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Venu</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Show Front</th>
+                                    <th scope="col">Status Action</th>
+                                    <th scope="col">Option</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for i in page_obj.object_list %}
+
+                                <tr>
+                                    <th scope="row">{{ i.id }}</th>
+                                    <td>{{ i.venu.name }}</td>
+                                    <td><img src="{{ i.img.url }}" style="width:50px; height:50px;" alt="image"></td>
+                                    <td class="table-success">{{ i.name }}</td>
+                                    <td class="text-danger text-center"><i class="bi bi-eye"></i></td>
+                                    <td class="text-danger text-center table-danger"><i class="bi bi-eye"></i></td>
+                                    <td class="d-flex justify-content-evenly">
+                                        <i class="bi bi-pencil-square text-warning"></i>
+                                        <i class="bi bi-archive text-danger"></i>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-11 mt-3">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p>Showing 5 of 5</p>
+                        </div>
+                        <div>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        {%if page_obj.has_previous %}
+                                        <a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+                                                {% endif %}
+                                    </li>
+                                    {% for n in page_obj.paginator.page_range %}
+                                        {% if page_obj.number == n %}
+                                            <li class="page-item active">
+                                            <span class="page-link">{{ n }}<span class="sr-only"></span></span>
+                                            </li>
+                                    {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ n }}">{{ n }}</a>
+                                    </li>
+
+                                      {% endif %}
+                                    {% endfor %}
+<!--                                    <li class="page-item">-->
+<!--                                        <a class="page-link" href="?page={{page_obj.number}}">{{page_obj.number}}</a>-->
+<!--                                    </li>-->
+
+
+                                    <li class="page-item">
+                                        {%if page_obj.has_next %}
+                                        <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+                                        {% endif %}
+                                    </li>
+
+                                </ul>
+
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+{% endblock%}

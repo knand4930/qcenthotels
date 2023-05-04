@@ -1,0 +1,66 @@
+{% extends 'master.html' %}
+{% block content %}
+
+        <div class="col-lg-10 bg-light border fixwidth">
+
+            <div class="row px-5 py-2">
+                <div class="col-md-12 mb-2 d-flex justify-content-between">
+                    <div>
+                        <h2>Dashboard</h2>
+                        <p>Welcome to our Dashboard</p>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <section class="shadow-sm bg-white mt-2 p-3 rounded-4 d-flex justify-content-between">
+                        <div>
+                            <h2>{{ total_hotel }}<span class="color">+</span></h2>
+                            <h6>Total Hotel</h6>
+                            <p class="text-success"><span class="bi bi-arrow-up">0.5%</span>
+                                <span class="color">last month</span>
+                            </p>
+                        </div>
+                        <div>
+                        <i class="bi bi-house-fill color fs-2"></i>
+                        </div>
+                    </section>
+                </div>
+                <!--  -->
+                <div class="col-md-4">
+                    <section class="shadow-sm mt-2 bg-white p-3 rounded-4 d-flex justify-content-between">
+                        <div>
+                            <h2>{{ total_booking }}<span class="color">+</span></h2>
+                            <h6>Total Booking</h6>
+                            <p class="text-success"><span class="bi bi-arrow-up">0.5%</span>
+                                <span class="color">last month</span>
+                            </p>
+                        </div>
+                        <div>
+                        <i class="bi bi-house-fill color fs-2"></i>
+                        </div>
+                    </section>
+                </div>
+                <!--  -->
+
+                <!--  -->
+                <div class="col-md-4 mt-2">
+                    <section class="shadow-sm bg-white p-3 rounded-4 d-flex justify-content-between">
+                        <div>
+                            <h2>{{ total_blog }}<span class="color">+</span></h2>
+                            <h6>Total Posted Blog</h6>
+                            <p class="text-success"><span class="bi bi-arrow-up">0.5%</span>
+                                <span class="color">last month</span>
+                            </p>
+                        </div>
+                        <div>
+                           <i class="bi bi-house-fill fs-2 color"></i>
+                        </div>
+                    </section>
+                </div>
+                <!--  -->
+
+            </div>
+        </div>
+
+
+{% endblock %}

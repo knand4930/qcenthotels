@@ -1,0 +1,114 @@
+{% extends 'frontmaster.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<!-- <div class="breadcrumb-area breadcrumb-padding">
+    <div class="container-fluid custom-container-one">
+        <div class="row"> -->
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="https://www.pacificinnhotels.com/images/uploads/50/1617345148Standard_Room_Hotel_Pacific_Inn_HUDA_City_Centre_Gurgaon_fsaxq8.png" class="d-block w-100" height="500px" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWmUOvofdKUdxOfLjwXsJiJYHt-yU0XFifxQ&usqp=CAU" class="d-block w-100" alt="..." height="500px">
+                  </div>
+                  
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        <!-- </div>
+    </div>
+</div> -->
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-12 shadow rounded p-4">
+              <h3>Event Description</h3>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Id quasi perspiciatis accusamus maxime ratione esse nulla, inventore facere consectetur ea illum molestiae! Facilis excepturi quae mollitia fugiat rerum, minima qui quos id nihil hic corrupti optio consequuntur veniam voluptas sunt natus eveniet ut? Iste a sapiente aspernatur eius voluptatum veritatis?
+        </div>
+    </div>
+</div>
+
+
+<section class="contact-area pab-100">
+    <div class="container">
+        <!-- <div class="contact-map">
+            <iframe src="https://www.openstreetmap.org/export/embed.php?bbox=90.35842895507812%2C23.53377298325595%2C91.505126953125%2C24.090350357613616&amp;layer=mapnik"></iframe>
+        </div> -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10 mt-5">
+                <div class="contact-wrapper contact-padding bg-white radius-20">
+                    <div class="contact-contents">
+                        <h4 class="contact-contents-title"> Book Your Memorable With Us </h4>
+                        <!-- <p class="contact-contents-para mt-2"> Our friendly team would love to hear from you. </p> -->
+                         <h1>{{ msg }}</h1> 
+                        <div class="contact-contents-form custom-form">
+                            <form action="{% url 'bookevent' %}" method="post">
+                                {% csrf_token %}
+                                <div class="single-input mt-4">
+                                    <input type="text" name="bride_groom" class="form--control radius-5" placeholder="Bride/Groom Name">
+                                </div>
+                                <div class="single-input mt-4">
+                                    <input type="text" name="function" class="form--control radius-5" placeholder="function Type">
+                                </div>
+                                <div class="single-input mt-4">
+                                    <input type="date" name="date" class="form--control radius-5" placeholder="event Date">
+                                </div>
+                                <div class="single-input mt-4">
+                                    <input type="time" name="time" class="form--control radius-5" placeholder="Event Time">
+                                </div>
+                                <div class="single-input mt-4">
+                                    <input type="number" name="number_of_room" class="form--control radius-5" placeholder="Number Of Room">
+                                </div>
+
+                               
+                                <div class="single-input mt-4">
+                                    <input type="text" name="location" class="form--control radius-5" placeholder="Bride/Groom Name">
+                                </div>
+
+                                <div class="single-input mt-4">
+                                    <input type="text" name="location" class="form--control radius-5" placeholder="location">
+                                </div>
+                                <div class="single-input mt-4">
+                                    <input type="number" name="guest_capacity" class="form--control radius-5" placeholder="guest Capacity">
+                                </div>
+                                <div class="single-input mt-4">
+                                    <input type="number" name="number_of_night" class="form--control radius-5" placeholder="number of night">
+                                </div>
+                                <div class="single-input mt-4">
+                                    <input type="number" name="contact_number" class="form--control radius-5" placeholder="contact number">
+                                </div>
+                                <div class="single-input mt-4">
+                                    <input type="email" name="email_address" class="form--control radius-5" placeholder="email">
+                                </div>
+                               
+                                <div class="single-input mt-4">
+                                    <textarea name="msg" class="form--control form-message radius-5"></textarea>
+                                </div>
+                                <button type="submit" class="submit-btn radius-5"> Submit </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+
+
+
+{% endblock %}
+

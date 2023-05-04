@@ -1,0 +1,224 @@
+{% extends 'frontmaster.html' %}
+{% block content %}
+
+
+
+<div class="breadcrumb-area breadcrumb-padding">
+<div class="container custom-container-one">
+<div class="row">
+<div class="col-lg-12">
+<div class="breadcrumb-contents">
+<h4 class="breadcrumb-contents-title"> Blog Details </h4>
+<ul class="breadcrumb-contents-list list-style-none">
+<li class="breadcrumb-contents-list-item"> <a href="index.php" class="breadcrumb-contents-list-item-link"> Home </a> </li>
+<li class="breadcrumb-contents-list-item"> <a href="blog.php" class="breadcrumb-contents-list-item-link"> Blog </a> </li>
+<li class="breadcrumb-contents-list-item"> Blog Details </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<section class="blog-details-area pat-100 pab-100">
+<div class="container">
+<div class="shop-contents-wrapper">
+<div class="row gy-5">
+<div class="col-xl-8 col-lg-8">
+<div class="blog-details-wrapper">
+<div class="single-blog-details">
+<div class="single-blog-details-content pt-0">
+<h2 class="single-blog-details-content-title fw-500"> {{ blg.title }}</h2>
+<div class="single-blog-details-content-tags mt-3">
+<span class="single-blog-details-content-tags-item"> <a href="javascript:void(0)"> {{ blg.cat.name }} </a> </span>
+<span class="single-blog-details-content-tags-item"> {{ blg.create_at | date }} </span>
+</div>
+<div class="single-blog-details-thumb mt-4">
+<img class="radius-5" style="width:700px; height: 500px;" src="{{ blg.img.url }}" alt="{{ blg.title }}">
+</div>
+<p class="single-blog-details-content-para mt-4">{{ blg.txt | safe }} </p>
+</div>
+</div>
+
+<div class="details-tag-area color-two pat-25 pab-50">
+<div class="row align-items-center">
+<div class="col-lg-6 mt-4">
+<div class="blog-details-share-content">
+<h4 class="blog-details-share-content-title"> Share: </h4>
+<ul class="blog-details-share-social list-style-none">
+<li class="blog-details-share-social-list">
+<a class="blog-details-share-social-list-icon" href="javascript:void(0)"> <i class="lab la-facebook-f"></i> </a>
+</li>
+<li class="blog-details-share-social-list">
+<a class="blog-details-share-social-list-icon" href="javascript:void(0)"> <i class="lab la-twitter"></i> </a>
+</li>
+<li class="blog-details-share-social-list">
+<a class="blog-details-share-social-list-icon" href="javascript:void(0)"> <i class="lab la-pinterest-p"></i> </a>
+</li>
+<li class="blog-details-share-social-list">
+<a class="blog-details-share-social-list-icon" href="javascript:void(0)"> <i class="lab la-youtube"></i> </a>
+</li>
+<li class="blog-details-share-social-list">
+<a class="blog-details-share-social-list-icon" href="javascript:void(0)"> <i class="lab la-instagram"></i> </a>
+</li>
+</ul>
+</div>
+</div>
+<div class="col-lg-6 mt-4">
+<div class="blog-details-share-content right-align">
+<h4 class="blog-details-share-content-title"> Tags: </h4>
+<ul class="blog-details-tag list-style-none">
+<li class="blog-details-tag-list"><a class="blog-details-tag-list-item" href="javascript:void(0)"> New </a></li>
+<li class="blog-details-tag-list"><a class="blog-details-tag-list-item" href="javascript:void(0)"> Luxurious </a></li>
+<li class="blog-details-tag-list"><a class="blog-details-tag-list-item" href="javascript:void(0)"> Simple </a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="comment-area color-two pat-50 pab-50">
+<h3 class="details-section-title"> Comments(03) </h3>
+<div class="row">
+<div class="col-lg-12 mt-2">
+<div class="comment-show-contents">
+<ul class="comment-list list-style-none wow fadeInLeft" data-wow-delay=".1s">
+<li>
+    {% for c in comment %}
+<div class="blog-details-flex-content">
+<div class="blog-details-thumb radius-10">
+<img src="assets/img/blog/details-comment1.jpg" alt="">
+</div>
+<div class="blog-details-content">
+<div class="blog-details-content-flex">
+<div class="blog-details-content-item">
+<h5 class="blog-details-content-title"> <a href="javascript:void(0)"> {{ c.user.first_name }} {{ c.user.last_name }}  </a> </h5>
+<span class="blog-details-content-date"> {{ c.create_at | date }} </span>
+</div>
+<!--<a href="javascript:void(0)" class="btn-replay"> <i class="las la-reply-all"></i> Reply </a>-->
+</div>
+<p class="blog-details-content-para"> {{ c.content }}</p>
+</div>
+</div>
+
+    {% endfor %}
+
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="comment-area color-two pat-50">
+<h3 class="details-section-title"> Post Your Comment </h3>
+<div class="row">
+<div class="col-lg-12 pat-20">
+  <form method="post" action="">
+{% csrf_token %}
+<div class="details-comment-content">
+<div class="comments-flex-item">
+
+</div>
+<div class="single-commetns">
+<label class="comment-label"> Comment </label>
+<textarea name="message" class="form--control radius-5 form--message" placeholder="Post Comments"></textarea>
+</div>
+<button type="submit" class="submit-btn radius-5 mt-4"> Post Comment </button>
+</div>
+  </form>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+<div class="col-xl-4 col-lg-4">
+<div class="blog-details-side">
+<div class="blog-details-side-item radius-10">
+<div class="blog-details-side-title open">
+<h5 class="title"> Recent Post </h5>
+<div class="blog-details-side-inner">
+<ul class="recent-list list-style-none">
+<li class="recent-list-item">
+ <div class="recent-list-thumb">
+<a href="#0"> <img class="lazyloads radius-5" src="assets/img/blog/recent-post1.jpg" alt=""> </a>
+</div>
+<div class="recent-list-contents">
+<h6 class="recent-list-title fs-16"> <a href="#0"> Choose From a Wide Range of Properties </a> </h6>
+<span class="recent-list-dates light-color fs-14 mt-2"> 21 Jun 2022 </span>
+</div>
+</li>
+<li class="recent-list-item">
+<div class="recent-list-thumb">
+<a href="#0"> <img class="lazyloads radius-5" src="assets/img/blog/recent-post2.jpg" alt=""> </a>
+</div>
+<div class="recent-list-contents">
+<h6 class="recent-list-title fs-16"> <a href="#0"> Choose From a Wide Range of Properties </a> </h6>
+<span class="recent-list-dates light-color fs-14 mt-2"> 22 Jun 2022 </span>
+</div>
+</li>
+<li class="recent-list-item">
+<div class="recent-list-thumb">
+<a href="#0"> <img class="lazyloads radius-5" src="assets/img/blog/recent-post3.jpg" alt=""> </a>
+</div>
+<div class="recent-list-contents">
+<h6 class="recent-list-title fs-16"> <a href="#0"> Choose From a Wide Range of Properties </a> </h6>
+<span class="recent-list-dates light-color fs-14 mt-2"> 24 Jun 2022 </span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="blog-details-side-item radius-10">
+<div class="blog-details-side-title open">
+<h5 class="title"> Tags </h5>
+<div class="blog-details-side-inner">
+<ul class="tag-list list-style-none active-list">
+<li class="tag-list-item">
+<a class="tag-list-link" href="#0"> Low Price </a>
+</li>
+<li class="tag-list-item active">
+<a class="tag-list-link" href="#0"> High Price </a>
+</li>
+<li class="tag-list-item">
+<a class="tag-list-link" href="#0"> Big Room </a>
+</li>
+<li class="tag-list-item">
+<a class="tag-list-link" href="#0"> Small Room </a>
+</li>
+<li class="tag-list-item">
+<a class="tag-list-link" href="#0"> New </a>
+</li>
+<li class="tag-list-item">
+<a class="tag-list-link" href="#0"> Discount </a>
+</li>
+<li class="tag-list-item">
+<a class="tag-list-link" href="#0"> Luxurious </a>
+</li>
+<li class="tag-list-item">
+<a class="tag-list-link" href="#0"> Normal </a>
+</li>
+<li class="tag-list-item">
+<a class="tag-list-link" href="#0"> Sale </a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+
+{% endblock %}

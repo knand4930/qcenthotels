@@ -1,0 +1,68 @@
+{% extends 'master.html' %}
+
+{% block content %}
+
+        <div class="col-md-10 fixwidth">
+            <div class="row justify-content-center">
+                <h3>Blog</h3>
+                <div class="col-md-11 shadow-sm mt-3">
+                        {{ msg }}
+                    <form method="post" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    <div class="row p-3">
+                        <div class="mb-3 col-md-6">
+                            <label for="">Select Category</label>
+                            <select class="form-select" name="cat" aria-label="Default select example">
+                                {% for i in abm %}
+                                <option value="{{ i.id }}">{{ i.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">Enter a Title</label>
+                            <input type="text" class="form-control" name="title" id="exampleInput" placeholder="Enter a Title">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">Enter a caption</label>
+                            <input type="text" class="form-control" name="caption" id="exampleInput" placeholder="Enter a caption">
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label for="">Meta Title</label>
+                            <input type="text" class="form-control" name="meta_title" id="exampleInput" placeholder="Enter Meta Title ">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">Enter Metakeyword</label>
+                            <input type="text" class="form-control" name="meta_keyword" id="exampleInput" placeholder="Enter Metakeyword">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">Enter Meta Description</label>
+                            <input type="text" class="form-control" name="meta_description" id="exampleInput" placeholder="Enter Meta Description">
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label for="">Image</label>
+                            <input type="file" class="form-control" name="img" id="exampleInput">
+                        </div>
+
+
+                        <!--  -->
+                        <div class="mb-3 col-md-12">
+                            <label for="">Discription</label>
+                            <textarea id="editor1" name="txt"></textarea>
+
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+<script>
+    CKEDITOR.replace('editor1');
+</script>
+{% endblock %}

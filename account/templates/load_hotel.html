@@ -1,0 +1,4 @@
+<option value="">---select Hotel---</option>
+{% for h in hotel %}
+<option value="{{ h.pk }}">{{ h.name }}</option>
+{% endfor %}

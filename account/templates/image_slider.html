@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>image slider</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+      .slider-container {
+        position: absolute;
+        width: 100%;
+      }
+      .slide img {
+        width: 100%;
+      }
+      .arrow {
+        border-radius: 40%;
+        cursor: pointer;
+        position: absolute;
+        top: 45%;
+        color: rgba(255, 255, 255, 0.644);
+        padding: 5px;
+        font-size: 33px;
+      }
+      .prev {
+        left: 20px;
+      }
+      .next {
+        right: 20px;
+      }
+      .caption {
+        font-size: 25px;
+        font-weight: bold;
+        position: absolute;
+        bottom: 50px;
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+      }
+      .caption1 {
+        font-size: 25px;
+        font-weight: 100px;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+      }
+      .slide {
+        display: none;
+      }
+
+      @medi;
+    </style>
+  </head>
+  <body>
+    <div class="slider-container">
+      {% for s in slider %}
+      <div class="slide">
+        <img src="{{ s.img.url }}" alt="" width="100%" class="fluid" />
+        <div class="caption">Hello World</div>
+        <p class="caption1">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </p>
+      </div>
+      {% endfor %}
+      <span class="arrow prev" onclick="controller(-1)">&#10094;</span>
+      <span class="arrow next" onclick="controller(1)">&#10095;</span>
+      <div class="form-overlay">
+        <div>
+          <h2
+            class="banner-single-content-title text-center fw-700"
+            style="color: #91c61f"
+          >
+            Book our
+            <span class="banner-single-content-title-shape"> Hotels, Stays </span>
+            for your next
+            <span class="banner-single-content-title-shape star-shape"> tour </span>
+          </h2>
+          <form
+            method="post"
+            id="indexForm"
+            data-hotel-url="{% url 'searchfilter' %}"
+          >
+            {% csrf_token %}
+            <div class="input-group mb-1 justify-content-center py-3">
+              <select
+                name="state"
+                id="states"
+                class="form-select form--control radius-5"
+                onchange="gethotels()"
+                aria-label="Default select example"
+              >
+                <option selected>Select Your State</option>
+                {% for i in state %}
+                <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
+              </select>
+    
+              <select
+                class="form-select"
+                id="hotel_result"
+                name="hotel"
+                class="form-select form--control radius-5"
+                aria-label="Default select example"
+              ></select>
+    
+              <div class="btn-wrapper">
+                <input
+                  type="submit"
+                  value="Submit"
+                  class="cmn-btn btn-bg-1 radius-10"
+                />
+              </div>
+            </div>
+          </form>
+          <form method="post" action="{% url 'search_filter' %}">
+            {% csrf_token %}
+            <div class="input-group my-1 justify-content-center">
+              <div>
+                <label for="" class="text-white">Check In</label>
+                <input type="date" name="check_in" class="form-control inputBox" />
+              </div>
+              <div>
+                <label for="" class="text-white">Check Out</label>
+                <input type="date" name="check_out" class="form-control inputBox" />
+              </div>
+    
+              <div>
+                <label for="" class="text-white">Promo Code</label>
+                <input type="text" class="form-control inputBox" />
+              </div>
+              <div class="btn-wrapper py-2" style="margin-top: 18px">
+                <input
+                  type="submit"
+                  class="cmn-btn btn-bg-1 radius-10"
+                  value="Book Now"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+          
+      </div>
+    </div>
+  </body>
+</html>
+<style>
+    .carousel-item {
+      height: 500px;
+    }
+  
+    .carousel-item img {
+      height: 500px;
+      object-fit: cover;
+    }
+  
+    .form-overlay {
+      position: absolute;
+      top: 110px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* background-color: rgba(255, 255, 255, 0.7); */
+      z-index: 1;
+    }
+    .inputBox {
+      height: 50px;
+    }
+    @media only screen and (max-width: 600px) {
+      .form-overlay {
+        top: 10px;
+      }
+    }
+  </style>
+<script>
+  let flag = 0;
+
+  function controller(x) {
+    flag = flag + x;
+    slideshow(flag);
+  }
+
+  slideshow(flag);
+
+  setInterval(pop, 3000);
+  function pop() {
+    flag++;
+    if (flag == 3) {
+      flag = 0;
+    }
+    slideshow(flag);
+  }
+
+  function slideshow(num) {
+    let slides = document.getElementsByClassName("slide");
+    if (num == slides.length) {
+      flag = 0;
+      num = 0;
+    }
+    if (num < 0) {
+      flag = slides.length - 1;
+      num = slides.length - 1;
+    }
+
+    for (let y of slides) {
+      y.style.display = "none";
+    }
+    slides[num].style.display = "block";
+  }
+</script>

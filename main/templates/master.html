@@ -1,0 +1,577 @@
+{% load static %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Pacific</title>
+  <!-- style -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+  <!-- bootstrap main css -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+  <!-- bootstrap icon link -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
+  />
+  <!-- owl slider -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+    integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <!-- goole icon link -->
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+
+  <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+  <!--  -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    .offcanvas-end {
+      width: 250px !important;
+      height: 350px !important;
+    }
+  </style>
+</head>
+
+
+
+<div
+  class="offcanvas offcanvas-start"
+  tabindex="-1"
+  id="offcanvasExample"
+  aria-labelledby="offcanvasExampleLabel"
+>
+  <div class="offcanvas-header">
+    <button
+      type="button"
+      class="btn-close text-reset"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="col-md-2 bg-white shadow-sm rounded p-2 fixwidth">
+      <h5 class=""><a href="admindashboard.php">Admin</a></h5>
+      <hr />
+      <div class="mb-1">
+        <a href="index.php"
+          ><button class="btn btnwed">
+            <i class="bi bi-grid color"></i> Dashboard
+          </button></a
+        >
+      </div>
+      <div class="mb-1">
+        <a href="alllead.php"
+          ><button class="btn btnwed">
+            <i class="bi bi-gem color"></i> All Leads
+          </button></a
+        >
+      </div>
+      <div class="mb-1">
+        <a href="slidersection.php"
+          ><button class="btn btnwed">
+            <i class="bi bi-camera-fill color"></i>Slider Section
+          </button></a
+        >
+      </div>
+      <div class="mb-1">
+        <a href="offerslider.php"
+          ><button class="btn btnwed">
+            <i class="bi bi-emoji-smile-fill color"></i>Offer Slider
+          </button></a
+        >
+      </div>
+      <div class="dropdown btnwed mb-3">
+        <div
+          class="dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-journal-album color"></i> Category Section
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" href="aboutcategory.php">About Category</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="eventcategory.php">Event Category</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="blogcategory.php">Blog Category</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="venusecatrgory.php"
+              >Venue Category</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" href="vendorcategory.php"
+              >Vendor Category</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" href="gallerycategory.php"
+              >Gallery Category</a
+            >
+          </li>
+        </ul>
+      </div>
+      <!--Vendor Section  -->
+      <div class="dropdown mb-3 btnwed">
+        <div
+          class="dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-award-fill color"></i> Vendor Section
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="addvendor.php">Add Vendor</a></li>
+          <li>
+            <a class="dropdown-item" href="viewvendor.php">View Vendor</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="vendorcategory.php"
+              >Add Vendor Category</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" href="locationwisevendor.php"
+              >Location wise vedor Mapping</a
+            >
+          </li>
+        </ul>
+      </div>
+      <!-- Venue Section  -->
+      <div class="dropdown mb-3 btnwed">
+        <div
+          class="dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-house-fill color"></i> Venue Section
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" href="addvenueslisting.php"
+              >Add Venues Listing</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" href="viewvenueslisting.php"
+              >View Venues Listing</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- gallery -->
+      <div class="dropdown mb-3 btnwed">
+        <div
+          class="dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-camera-reels-fill color"></i> Gallery Section
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" href="gallerylist.php">Gallery Image</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="videoist.php">Gallery Video</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Blog -->
+      <div class="dropdown mb-3 btnwed">
+        <div
+          class="dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-pen-fill color"></i> Blog Section
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">Add Blog</a></li>
+          <li><a class="dropdown-item" href="#">View Blog</a></li>
+        </ul>
+      </div>
+
+      <!--Event section  -->
+      <div class="dropdown mb-2 btnwed">
+        <div
+          class="dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-calendar-event-fill color"></i> Event Section
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">Add Event</a></li>
+          <li><a class="dropdown-item" href="#">View Event</a></li>
+        </ul>
+      </div>
+      <!-- Testimonial  -->
+      <div class="mb-2">
+        <a href="addtestimonials.php"
+          ><button class="btn btnwed">
+            <i class="bi bi-people-fill color"></i> Testimonial
+          </button></a
+        >
+      </div>
+      <!-- Faq  -->
+      <div class="mb-2">
+        <a href="faq.php"
+          ><button class="btn btnwed">
+            <i class="bi bi-question-octagon-fill color"></i> FAQ
+          </button></a
+        >
+      </div>
+      <!-- other section -->
+      <div class="dropdown mb-3 btnwed">
+        <div
+          class="dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-bookmark-plus-fill color"></i> Other Section
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="roles.php">Roles</a></li>
+          <li><a class="dropdown-item" href="user.php">Users</a></li>
+          <li><a class="dropdown-item" href="city.php">City</a></li>
+          <li><a class="dropdown-item" href="location.php">Location</a></li>
+          <li><a class="dropdown-item" href="bugde.php">Budgets</a></li>
+          <li><a class="dropdown-item" href="facility.php">Facility</a></li>
+          <li><a class="dropdown-item" href="Meal.php">Meal</a></li>
+        </ul>
+      </div>
+      <!-- Venue Section -->
+      <div class="dropdown mb-3 btnwed">
+        <div
+          class="dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-house-door-fill color"></i> Venue Section
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" href="venusecatrgory.php"
+              >Venue Category</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" href="categorylist.php"
+              >Venue Category List</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" href="addvenueslisting.php"
+              >Add Venue Listing</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" href="viewvenueslisting.php"
+              >View Venue Listing</a
+            >
+          </li>
+        </ul>
+      </div>
+      <!-- footer blog -->
+      <div class="dropdown mb-3 btnwed">
+        <div
+          class="dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-bar-chart-steps color"></i> Footer Top Blogs
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="blog.php">Featured Blogs </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- include header here -->
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <!-- include navbar  here -->
+
+
+<!--        End Navbar -->
+
+
+
+        <!-- include sidebar  here -->
+
+        <div class="col-md-2 bg-white shadow-sm rounded p-2 fixwidth">
+    <h5 class=""><a href="/">Home</a></h5>
+    <hr>
+    <div class="mb-1">
+        <a href="{% url 'adminpanel' %}"><button class="btn btnwed"> <i class="bi bi-grid color"></i> Dashboard</button></a>
+    </div>
+    <div class="mb-1">
+        <a href="{% url 'alllead' %}"><button class="btn btnwed"> <i class="bi bi-gem color"></i> All Leads</button></a>
+    </div>
+    <div class="mb-1">
+        <a href="{% url 'slidersection' %}"><button class="btn btnwed"> <i class="bi bi-camera-fill color"></i>Slider Section</button></a>
+    </div>
+    <div class="mb-1">
+        <a href="{% url 'offerslider' %}"><button class="btn btnwed"> <i class="bi bi-emoji-smile-fill color"></i>Offer Slider</button></a>
+    </div>
+
+<!--    <div class="dropdown btnwed mb-3">-->
+<!--        <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            <i class="bi bi-box color"></i> Menu-->
+<!--        </div>-->
+<!--        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
+<!--            <li><a class="dropdown-item" href="#">Add Menu</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Add SubMenu</a></li>-->
+
+<!--        </ul>-->
+<!--    </div>-->
+
+    <div class="dropdown btnwed mb-3">
+        <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-journal-album color"></i> Category Section
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+<!--            <li><a class="dropdown-item" href="#">About Category</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Event Category</a></li>-->
+            <li><a class="dropdown-item" href="{% url 'blogcategory' %}">Blog Category</a></li>
+            <li><a class="dropdown-item" href="{% url 'venucategory' %}">Venue Category</a></li>
+            <!-- <li><a class="dropdown-item" href="vendorcategory.php">Vendor Category</a></li> -->
+            <li><a class="dropdown-item" href="{% url 'gallerycategory' %}">Gallery Category</a></li>
+
+        </ul>
+    </div>
+
+    <div class="dropdown btnwed mb-3">
+        <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-journal-album color"></i> Location
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="{% url 'addstate' %}">Add State<a></li>
+            <li><a class="dropdown-item" href="{% url 'addcity' %}">Add City</a></li>
+<!--            <li><a class="dropdown-item" href="#">Add Location</a></li>-->
+            <!-- <li><a class="dropdown-item" href="vendorcategory.php">Vendor Category</a></li> -->
+
+        </ul>
+    </div>
+
+<!--    <div class="dropdown btnwed mb-3">-->
+<!--        <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            <i class="bi bi-journal-album color"></i> Other Section-->
+<!--        </div>-->
+<!--        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
+<!--            <li><a class="dropdown-item" href="#">Add Budget<a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Add Facility</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Similar Category</a></li>-->
+<!--            &lt;!&ndash; <li><a class="dropdown-item" href="#">Vendor Category</a></li> &ndash;&gt;-->
+
+<!--        </ul>-->
+<!--    </div>-->
+    <!--Vendor Section  -->
+    <!-- <div class="dropdown mb-3 btnwed">
+                <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-award-fill color"></i> Vendor Section
+                </div>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="addvendor.php">Add Vendor</a></li>
+                    <li><a class="dropdown-item" href="viewvendor.php">View Vendor</a></li>
+                    <li><a class="dropdown-item" href="vendorcategory.php">Add Vendor Category</a></li>
+                    <li><a class="dropdown-item" href="locationwisevendor.php">Location wise vedor Mapping</a></li>
+                </ul>
+            </div> -->
+    <!-- Venue Section  -->
+    <div class="dropdown mb-3 btnwed">
+        <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-house-fill color"></i> Venue Section
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="{% url 'hotel' %}">Add Hotels</a></li>
+            <li><a class="dropdown-item" href="{% url 'addvenueslisting' %}">Add Venues Listing</a></li>
+            <li><a class="dropdown-item" href="{% url 'viewvenueslisting' %}">View Venues Listing</a></li>
+            <li><a class="dropdown-item" href="{% url 'addvenuimages' %}">Add Venu Images</a></li>
+
+        </ul>
+    </div>
+
+    <!-- gallery -->
+    <div class="dropdown mb-3 btnwed">
+        <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-camera-reels-fill color"></i> Gallery Section
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="{% url 'gallerylist' %}">Gallery Image</a></li>
+            <li><a class="dropdown-item" href="{% url 'videoist' %}">Gallery Video</a></li>
+
+        </ul>
+    </div>
+
+    <!-- Blog -->
+    <div class="dropdown mb-3 btnwed">
+        <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-pen-fill color"></i> Blog Section
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="{% url 'addblog' %}">Add Blog</a></li>
+            <li><a class="dropdown-item" href="{% url 'viewblog' %}">View Blog</a></li>
+
+        </ul>
+    </div>
+
+    <!--Event section  -->
+<!--    <div class="dropdown mb-2 btnwed">-->
+<!--        <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            <i class="bi bi-calendar-event-fill color"></i> Event Section-->
+<!--        </div>-->
+<!--        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
+<!--            <li><a class="dropdown-item" href="#">Add Event</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">View Event</a></li>-->
+
+<!--        </ul>-->
+<!--    </div>-->
+    <!-- Testimonial  -->
+<!--    <div class="mb-2">-->
+<!--        <a href="#"><button class="btn btnwed"> <i class="bi bi-people-fill color"></i> Testimonial</button></a>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Faq  &ndash;&gt;-->
+<!--    <div class="mb-2">-->
+<!--        <a href="faq.php"><button class="btn btnwed"><i class="bi bi-question-octagon-fill color"></i> FAQ</button></a>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; other section &ndash;&gt;-->
+<!--    <div class="dropdown mb-3 btnwed">-->
+<!--        <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            <i class="bi bi-bookmark-plus-fill color"></i> Other Section-->
+<!--        </div>-->
+<!--        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
+<!--            <li><a class="dropdown-item" href="roles.php">Roles</a></li>-->
+<!--            <li><a class="dropdown-item" href="user.php">Users</a></li>-->
+<!--            <li><a class="dropdown-item" href="city.php">City</a></li>-->
+<!--            <li><a class="dropdown-item" href="location.php">Location</a></li>-->
+<!--            <li><a class="dropdown-item" href="bugde.php">Budgets</a></li>-->
+<!--            <li><a class="dropdown-item" href="facility.php">Facility</a></li>-->
+<!--            <li><a class="dropdown-item" href="Meal.php">Meal</a></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Venue Section &ndash;&gt;-->
+<!--    <div class="dropdown mb-3 btnwed">-->
+<!--        <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            <i class="bi bi-house-door-fill color"></i> Venue Section-->
+<!--        </div>-->
+<!--        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
+<!--            <li><a class="dropdown-item" href="venusecatrgory.php">Venue Category</a></li>-->
+<!--            <li><a class="dropdown-item" href="categorylist.php">Venue Category List</a></li>-->
+<!--            <li><a class="dropdown-item" href="addvenueslisting.php">Add Venue Listing</a></li>-->
+<!--            <li><a class="dropdown-item" href="viewvenueslisting.php">View Venue Listing</a></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+    <!-- footer blog -->
+    <!-- <div class="dropdown mb-3 btnwed">
+                <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-bar-chart-steps color"></i> Footer Top Blogs
+                </div>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="blog.php">Featured Blogs </a></li>
+                </ul>
+            </div> -->
+</div>
+
+<!--       End sidebar -->
+
+
+
+        <!--  -->
+
+        {% block content %}
+
+
+
+
+
+
+        {% endblock %}
+
+    </div>
+        <!-- include footer here -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- owl slider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- javascript -->
+<script src="{% static 'assets/js//script.js' %}"></script>
+<!-- off canvas -->
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel"><i class="bi bi-person-fill"></i> Amit Kumar</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+    <div class="d-flex">
+           <a href="userprofile.php"><div class="btn  text-grey btnwed"> <i class="bi bi-person"></i> View Profile</div></a>
+        </div>
+    <div class="d-flex">
+            <button class="btn  text-grey btnwed"> <i class="bi bi-speedometer2"></i> Dashboard</button>
+        </div>
+        <div class="d-flex mt-2 ">
+            <button class="btn  text-grey btnwed"> <i class="bi bi-image"></i> Leads</button>
+        </div>
+
+        <div class="d-flex mt-2">
+            <button class="btn  text-grey btnwed"> <i class="bi bi-key"> </i>Change Password</button>
+        </div>
+        <div class="d-flex mt-2">
+            <button class="btn  text-grey btnwed"> <i class="bi bi-gear"></i> Logout</button>
+        </div>
+    </div>
+</div>
+<!-- off canvas end -->
+<!-- offcanvas left -->
+
+

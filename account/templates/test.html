@@ -1,0 +1,1023 @@
+{% extends 'frontmaster.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+<div class="banner-area banner-area-two banner-bg">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="banner-single-content text-white">
+                <h2 class="banner-single-content-title text-center fw-700"> Book our <span class="banner-single-content-title-shape"> Hotels, Stays </span> for your next <span class="banner-single-content-title-shape star-shape"> tour </span> </h2>
+                <p class="banner-single-content-para mt-4 text-center"> Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim. </p>
+            </div>
+            {{ msg }}
+            <div class="col-lg-10">
+                <form method="post" id="indexForm" data-hotel-url="{% url 'searchfilter' %}">
+                    {% csrf_token %}
+                <div class="input-group mb-1 justify-content-center py-3">
+                    <select name="state" id="state" class="form-select form--control radius-5" aria-label="Default select example">
+                        <option selected>Select Your State</option>
+                        {% for i in state %}
+                        <option value="{{ i.id }}">{{ i.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <select class="form-select" id="hotel" name="hotel" class="form-select form--control radius-5" aria-label="Default select example">
+
+                    </select>
+                    <div class="btn-wrapper">
+                        <input type="submit" value="Submit" class="cmn-btn btn-bg-1 radius-10">
+                    </div>
+                </div>
+            </form>
+
+
+                <form method="post" action="{% url 'search_filter' %}">
+                    {% csrf_token %}
+                <div class="input-group my-1 justify-content-center">
+                    <div>
+                        <label for="" class="text-white">Check In</label>
+                        <input type="date" name="check_in" class="form-control">
+                    </div>
+                    <div>
+                        <label for="" class="text-white">Check Out</label>
+                        <input type="date" name="check_out" class="form-control">
+                    </div>
+
+                    <div>
+                        <label for="" class="text-white">Promo Code</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="btn-wrapper py-2">
+                        <input type="submit" class="cmn-btn btn-bg-1 radius-10" value="Book Now">
+                    </div>
+                </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .carousel-item {
+        height: 500px;
+    }
+
+    .carousel-item img {
+        height: 500px;
+        object-fit: cover;
+    }
+
+    .form-overlay {
+        position: absolute;
+        top:135px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color: rgba(255, 255, 255, 0.7); */
+        z-index: 1;
+    }.inputBox{
+        height:50px;
+    }
+
+    /* .form-control {
+  width: 100%;
+} */
+</style>
+
+<section>
+    <div class="container-fluid bg-light">
+        <div class="row text-center">
+            <div class="col-lg-12 py-5 px-2">
+                <p class="text-success">
+                    Experience the passion of hospitality</p>
+                <h3>Pacific Inn Hotel and Resorts</h3>
+                <p>Pacific Inn hotel and resorts is among top hotels and resorts in Delhi NCR, Jaipur, Rishikesh and Lansdowne. we are having our presence in India from more than a decade.We have hosted guests from around the world and counting. We are offering luxury yet affordable room in Delhi NCR, Jaipur and awesome travel destination like Rishikesh and Lansdowne.From from this we are offering Camping, Hiking, River Rafting, Bungee Jumping, Boating, Trekking etc.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="booking-two-area pat-100 pab-50">
+    <div class="container">
+        <div class="row g-4">
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="section-title-booking">
+                    <div class="section-title-three">
+                        <h2 class="title"> What makes our hotels best than others? </h2>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="single-why-two bg-white single-why-two-border radius-10">
+                    <div class="single-why-two-flex">
+                        <div class="single-why-two-icon">
+                            <i class="las la-thumbs-up"></i>
+                        </div>
+                        <div class="single-why-two-contents">
+                            <h4 class="single-why-two-contents-title"> <a href="javascript:void(0)"> Hassle Free Booking </a> </h4>
+                            <p class="single-why-two-contents-para mt-2"> Book hotels from our website without any hassle. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="single-why-two bg-white single-why-two-border radius-10">
+                    <div class="single-why-two-flex">
+                        <div class="single-why-two-icon">
+                            <i class="las la-star"></i>
+                        </div>
+                        <div class="single-why-two-contents">
+                            <h4 class="single-why-two-contents-title"> <a href="javascript:void(0)"> 28,000 Reviews </a> </h4>
+                            <p class="single-why-two-contents-para mt-2"> Book hotels from our website without any hassle. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="single-why-two bg-white single-why-two-border radius-10">
+                    <div class="single-why-two-flex">
+                        <div class="single-why-two-icon">
+                            <i class="las la-headset"></i>
+                        </div>
+                        <div class="single-why-two-contents">
+                            <h4 class="single-why-two-contents-title"> <a href="javascript:void(0)"> 24/7 Support </a> </h4>
+                            <p class="single-why-two-contents-para mt-2"> Book hotels from our website without any hassle. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="attraction-area pat-50 pab-50">
+    <div class="container">
+        <div class="section-title center-text">
+            <h2 class="title"> Luxurious Experience <br> OUR HOTEL AND RESORTS </h2>
+            <div class="section-title-line"> </div>
+        </div>
+        <div class="row mt-5 justify-content-center">
+
+            {% for h in hme %}
+            <div class="col-md-4">
+                <div class="p-2">
+                    <div class="attraction-item">
+                        <div class="single-attraction-two radius-20">
+                            <div class="single-attraction-two-thumb">
+                                <a href="{% url 'hotel_details' h.slug %}" class="gallery-popup"> <img src="{{ h.img.url }}" alt="{{ h.name }}" width="100%"> </a>
+                            </div>
+                            <div class="single-attraction-two-contents">
+                                <h4 class="single-attraction-two-contents-title"> <a href="{% url 'hotel_details' h.slug %}"> {{ h.name }} </a> </h4>
+                                <p class="single-attraction-two-contents-para fixedLength"> {{ h.summary | safe | truncatechars:120 }} </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+</section>
+
+<script>
+    let fixedLength = document.querySelector(".fixedLength").innerHTML.slice(0, 17);
+    console.log(fixedLength);
+</script>
+
+
+
+
+
+
+
+<section class="blog-area pat-50 pab-50">
+    <div class="container">
+        <div class="section-title center-text">
+            <h2 class="title"> Latest News </h2>
+            <div class="section-title-line"> </div>
+        </div>
+        <div class="row gy-4 mt-4">
+
+
+            {% for i in blg %}
+            <div class="col-xxl-4 col-lg-4 col-md-6">
+                <div class="single-blog blog-two">
+                    <div class="single-blog-thumbs">
+                        <a href="{% url 'blog_details' i.slug %}"> <img class="lazyloads" src="{{ i.img.url }}" alt=""> </a>
+                        <div class="single-blog-thumbs-date">
+                            <a href="javascript:void(0)"> <span class="date"> {{ i.create_at | date }}</span> </a>
+                        </div>
+                    </div>
+                    <div class="single-blog-contents mt-3">
+                        <div class="single-blog-contents-tags mt-3">
+                            <span class="single-blog-contents-tags-item">
+                                <a href="javascript:void(0)"> <i class="las la-tag"></i> Hotel </a>
+                            </span>
+                            <span class="single-blog-contents-tags-item"> <a href="javascript:void(0)"> 22 Comments </a> </span>
+                        </div>
+                        <h4 class="single-blog-contents-title mt-3"> <a href="{% url 'blog_details' i.slug %}">{{ i.title }}</a> </h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#state").change(function () {
+      var url = $("#indexForm").attr("data-hotel-url");  // get the url of the `load_courses` view
+      var stateId = $(this).val();  // get the selected programming ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load-courses/)
+        data: {
+          'state': stateId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_courses` view function
+          $("#hotel").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+
+    });
+  </script>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% extends 'frontmaster.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="breadcrumb-area breadcrumb-padding">
+    <div class="container custom-container-one">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-contents">
+                    <h4 class="breadcrumb-contents-title"> Hotel Details </h4>
+                    <ul class="breadcrumb-contents-list list-style-none">
+                        <li class="breadcrumb-contents-list-item"> <a href="/" class="breadcrumb-contents-list-item-link"> Home </a> </li>
+                        <li class="breadcrumb-contents-list-item">  Hotels  </li>
+                        <li class="breadcrumb-contents-list-item"> Hotel Details </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="hotel-details-area section-bg-2 pat-100 pab-100">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-xl-8 col-lg-7">
+                <div class="details-left-wrapper">
+                    <div class="details-contents bg-white radius-10">
+                        <div class="details-contents-header">
+                            <div class="details-contents-thumb details-contents-main-thumb bg-image" style="background-image: url({{ ht.img.url }});">
+                            </div>
+                            <div class="details-contents-header-flex">
+                                {% for p in ht.venuimages_set.all %}
+                                <div class="details-contents-header-thumb">
+                                    <img src="{{ p.img.url }}" alt="{{ p.name }}">
+                                </div>
+                                {% endfor %}
+
+
+                            </div>
+                        </div>
+                        <div class="hotel-view-contents">
+                            <div class="hotel-view-contents-header">
+                                <span class="hotel-view-contents-review"> <i class="las la-star"></i> 4.5 <span class="hotel-view-contents-review-count"> (380) </span> </span>
+                                <h3 class="hotel-view-contents-title"> {{ ht.name }} </h3>
+                                <div class="hotel-view-contents-location mt-2">
+                                    <span class="hotel-view-contents-location-icon"> <i class="las la-map-marker-alt"></i> </span>
+                                    <span class="hotel-view-contents-location-para"> {{ ht.address }}, {{ ht.city.name }}, {{ ht.state.name }} </span>
+                                </div>
+                            </div>
+                            <div class="hotel-view-contents-middle">
+                                <div class="hotel-view-contents-flex">
+                                    <div class="hotel-view-contents-icon d-flex gap-1">
+                                        <span> <i class="las la-parking"></i> </span>
+                                        <p class="hotel-view-contents-icon-title flex-fill"> Parking </p>
+                                    </div>
+                                    <div class="hotel-view-contents-icon d-flex gap-1">
+                                        <span> <i class="las la-wifi"></i> </span>
+                                        <p class="hotel-view-contents-icon-title flex-fill"> Wifi </p>
+                                    </div>
+                                    <div class="hotel-view-contents-icon d-flex gap-1">
+                                        <span> <i class="las la-coffee"></i> </span>
+                                        <p class="hotel-view-contents-icon-title flex-fill"> Breakfast </p>
+                                    </div>
+                                    <div class="hotel-view-contents-icon d-flex gap-1">
+                                        <span> <i class="las la-quidditch"></i> </span>
+                                        <p class="hotel-view-contents-icon-title flex-fill"> Room Service </p>
+                                    </div>
+                                    <div class="hotel-view-contents-icon d-flex gap-1">
+                                        <span> <i class="las la-swimming-pool"></i> </span>
+                                        <p class="hotel-view-contents-icon-title flex-fill"> Pool </p>
+                                    </div>
+                                    <div class="hotel-view-contents-icon d-flex gap-1">
+                                        <span> <i class="las la-receipt"></i> </span>
+                                        <p class="hotel-view-contents-icon-title flex-fill"> Reception </p>
+                                    </div>
+                                    <div class="hotel-view-contents-icon d-flex gap-1">
+                                        <span> <i class="las la-dumbbell"></i> </span>
+                                        <p class="hotel-view-contents-icon-title flex-fill"> Gym </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% if user.is_authenticated %}
+                            {% if request.user.is_agent %}
+                            <div class="hotel-view-contents-bottom">
+                                <div class="hotel-view-contents-bottom-flex">
+                                    <div class="hotel-view-contents-bottom-contents">
+                                        <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ ht.agent_price }} /Night</h4>
+                                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ ht.budget }} | Tax  {{ ht.price_increase }}%  | Agent Discount {{ ht.agent }} % </p>
+                                    </div>
+                                    <div class="btn-wrapper">
+<!--                                        <a href="javascript:void(0)" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>-->
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="hotel-view-contents-bottom">
+                                <div class="hotel-view-contents-bottom-flex">
+                                    <div class="hotel-view-contents-bottom-contents">
+                                        <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ ht.total_budget }} /Night</h4>
+                                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ ht.budget }} | Tax  {{ ht.price_increase }} % </p>
+                                    </div>
+                                    <div class="btn-wrapper">
+<!--                                        <a href="javascript:void(0)" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>-->
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% else %}
+
+                            <div class="hotel-view-contents-bottom">
+                                <div class="hotel-view-contents-bottom-flex">
+                                    <div class="hotel-view-contents-bottom-contents">
+                                        <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ ht.total_budget }} /Night</h4>
+                                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ ht.budget }} | Tax  {{ ht.price_increase }} % </p>
+                                    </div>
+                                    <div class="btn-wrapper">
+<!--                                        <a href="javascript:void(0)" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>-->
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+
+
+
+
+                        </div>
+                        <div class="details-contents-tab">
+                            <ul class="tabs details-tab details-tab-border">
+                                <li class="active" data-tab="about"> About </li>
+                                <li data-tab="reviews"> Reviews </li>
+                            </ul>
+                            <div id="about" class="tab-content-item active">
+                                <div class="about-tab-contents">
+                                    <p>{{ ht.summary | safe }} </p>
+                                </div>
+                            </div>
+                            <div id="reviews" class="tab-content-item">
+                                <div class="review-tab-contents">
+<!--                                    <div class="review-tab-contents-single">-->
+<!--                                        <div class="rating-wrap">-->
+<!--                                            <div class="ratings">-->
+<!--                                                <span class="hide-rating"></span>-->
+<!--                                                <span class="show-rating"></span>-->
+<!--                                            </div>-->
+<!--                                            <p> <span class="total-ratings">(167)</span></p>-->
+<!--                                        </div>-->
+<!--                                        <p class="about-review-para mt-3"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a egestas leo. Aliquam ut ante lobortis tellus cursus pellentesque. Praesent feugiat tellus quis aliquet </p>-->
+<!--                                        <div class="review-tab-contents-author mt-4">-->
+<!--                                            <h4 class="review-tab-contents-author-name"> Sandra M. Hurt </h4>-->
+<!--                                            <p class="review-tab-contents-author-para mt-2"> TrustPilot </p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="review-tab-contents-single">-->
+<!--                                        <div class="rating-wrap">-->
+<!--                                            <div class="ratings">-->
+<!--                                                <span class="hide-rating"></span>-->
+<!--                                                <span class="show-rating"></span>-->
+<!--                                            </div>-->
+<!--                                            <p> <span class="total-ratings">(236)</span></p>-->
+<!--                                        </div>-->
+<!--                                        <p class="about-review-para mt-3"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a egestas leo. Aliquam ut ante lobortis tellus cursus pellentesque. Praesent feugiat tellus quis aliquet </p>-->
+<!--                                        <div class="review-tab-contents-author mt-4">-->
+<!--                                            <h4 class="review-tab-contents-author-name"> Robert Fox </h4>-->
+<!--                                            <p class="review-tab-contents-author-para mt-2"> Designer </p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5">
+                <div class="sticky-top">
+                    <div class="hotel-details-widget hotel-details-widget-padding widget bg-white radius-10">
+                        <div class="details-sidebar">
+
+                            <form action="" method="post">
+                                {% csrf_token %}
+                            <div class="details-sidebar-dropdown custom-form">
+                                    <div class="single-input">
+                                        <label class="details-sidebar-dropdown-title"> Check In </label>
+                                        <input class="form--control" name="check_in" type="date" placeholder="Check in">
+                                    </div>
+                                    <div class="single-input mt-3">
+                                        <label class="details-sidebar-dropdown-title"> Check Out </label>
+                                        <input class="form--control" name="check_out" type="date" placeholder="Check out">
+                                    </div>
+                            </div>
+                            <div class="details-sidebar-quantity pt-4">
+                                <div class="details-sidebar-quantity-flex">
+                                    <div class="details-sidebar-quantity-item">
+                                        <h6 class="details-sidebar-quantity-title"> Guest </h6>
+                                        <div class="details-sidebar-quantity-field">
+                                            <span class="minus"><i class="las la-minus"></i></span>
+                                            <input name="guest" class="quantity-input" type="number" value="5">
+                                            <span class="plus"><i class="las la-plus"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="details-sidebar-quantity-item">
+                                        <h6 class="details-sidebar-quantity-title"> Children </h6>
+                                        <div class="details-sidebar-quantity-field">
+                                            <span class="minus"><i class="las la-minus"></i></span>
+                                            <input name="children" class="quantity-input" type="number" value="3">
+                                            <span class="plus"><i class="las la-plus"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="details-sidebar-quantity-item">
+                                        <h6 class="details-sidebar-quantity-title"> Room </h6>
+                                        <div class="details-sidebar-quantity-field">
+                                            <span class="minus"><i class="las la-minus"></i></span>
+                                            <input name="room" class="quantity-input" type="number" value="2">
+                                            <span class="plus"><i class="las la-plus"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-wrapper mt-4">
+                                <input type="submit" class="cmn-btn btn-bg-1 btn-small" value="Check Out">
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="hotel-details-widget widget bg-white radius-10">
+                        <div class="hotel-view">
+                            <div class="hotel-view-thumb hotel-view-grid-thumb bg-image" style="background-image: url(assets/img/single-page/hotel-grid1.jpg);">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hotel-details-widget hotel-details-widget-padding widget bg-white radius-10">
+                        <div class="details-sidebar">
+                            <div class="details-sidebar-offer center-text radius-10">
+                                <div class="details-sidebar-offer-shapes">
+                                    <img src="assets/img/single-page/offer_shapes.png" alt="shapes">
+                                </div>
+                                <div class="details-sidebar-offer-thumb">
+                                    <img src="assets/img/single-page/offer.png" alt="">
+                                </div>
+
+
+                                <div class="btn-wrapper mt-5">
+                                    <a href="javascript:void(0)" class="cmn-btn btn-bg-white"> Book Now </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+{% extends 'frontmaster.html' %}
+{% block content %}
+
+
+
+<div class="breadcrumb-area section-bg-2 breadcrumb-padding">
+    <div class="container custom-container-one">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-contents">
+                    <h4 class="breadcrumb-contents-title"> Hotel List </h4>
+                    <ul class="breadcrumb-contents-list list-style-none">
+                        <li class="breadcrumb-contents-list-item"> <a href="index.php" class="breadcrumb-contents-list-item-link"> Home </a> </li>
+                        <li class="breadcrumb-contents-list-item"> Hotels </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="responsive-overlay"></div>
+<section class="hotel-list-area section-bg-2 pat-100 pab-100">
+    <div class="container">
+
+        <div class="shop-contents-wrapper mt-5">
+            <div class="shop-icon">
+                <div class="shop-icon-sidebar">
+                    <i class="las la-bars"></i>
+                </div>
+            </div>
+            <div class="shop-sidebar-content">
+                <div class="shop-close-content">
+                    <div class="shop-close-content-icon"> <i class="las la-times"></i> </div>
+                    <div class="single-shop-left bg-white radius-10">
+                        <div class="single-shop-left-title open">
+                            <h5 class="title"> Prices </h5>
+                            <div class="single-shop-left-inner mt-4">
+                                <form class="price-range-slider" method="post" data-start-min="0" data-start-max="10000" data-min="0" data-max="10000" data-step="5">
+                                    <div class="ui-range-slider"></div>
+                                    <div class="ui-range-slider-footer">
+                                        <div class="ui-range-values">
+                                            <span class="ui-price-title"> Price: </span>
+                                            <div class="ui-range-value-min">Rs.<span class="min_price">100</span>
+                                                <input type="hidden" value="100">
+                                            </div>-
+                                            <div class="ui-range-value-max">Rs.<span class="max_price">9950</span>
+                                                <input type="hidden" value="9950">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-shop-left bg-white radius-10 mt-4">
+                        <div class="single-shop-left-title open">
+                            <h5 class="title"> Amenities </h5>
+                            <div class="single-shop-left-inner margin-top-15">
+                                <ul class="single-shop-left-list active-list list-style-none">
+                                    <li class="item-search">
+                                        <input type="text" class="form--control" placeholder="Search Amenities">
+                                        <div class="item-search-icon"> <i class="las la-search"></i> </div>
+                                    </li>
+
+                                    {% for i in scat %}
+                                    <li class="item"> <a href="{% url 'categoryhotel' i.slug %}"> {{ i.name }} </a> </li>
+                                   {% endfor %}
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="shop-grid-contents">
+                <div class="grid-list-contents">
+                    <div class="grid-list-contents-flex">
+                        <p class="grid-list-contents-para"> Showing 1-10  </p>
+                        <div class="grid-list-view">
+                            <ul class="grid-list-view-flex d-flex tabs list-style-none">
+                                <li class="grid-list-view-icons active" data-tab="tab-grid">
+                                    <a href="javascript:void(0)" class="icon"> <i class="las la-border-all"></i> </a>
+                                </li>
+                                <li class="grid-list-view-icons" data-tab="tab-list">
+                                    <a href="javascript:void(0)" class="icon"> <i class="las la-bars"></i> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-grid" class="tab-content-item active mt-4">
+                    <div class="row gy-4">
+
+
+
+
+
+
+                        {% for i in page_obj.object_list %}
+                        <div class="col-md-6">
+                            <div class="hotel-view bg-white radius-20">
+                                <a href="{% url 'hotel_details' i.slug %}" class="hotel-view-thumb hotel-view-grid-thumb bg-image" style="background-image: url({{ i.img.url }});">
+                                </a>
+                                <div class="hotel-view-contents">
+                                    <div class="hotel-view-contents-header">
+                                        <span class="hotel-view-contents-review"> <i class="las la-star"></i> 4.5 <span class="hotel-view-contents-review-count"> (380) </span> </span>
+                                        <h3 class="hotel-view-contents-title"> <a href="{% url 'hotel_details' i.slug %}"> {{ i.name }} </a> </h3>
+                                        <div class="hotel-view-contents-location mt-2">
+                                            <span class="hotel-view-contents-location-icon"> <i class="las la-map-marker-alt"></i> </span>
+                                            <span class="hotel-view-contents-location-para"> {{ i.address }} </span>
+                                        </div>
+                                    </div>
+                                    <div class="hotel-view-contents-middle">
+                                        <div class="hotel-view-contents-flex">
+                                            <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Car Parking">
+                                                <i class="las la-parking"></i>
+                                            </div>
+                                            <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Free Wifi">
+                                                <i class="las la-wifi"></i>
+                                            </div>
+                                            <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Free Breakfast">
+                                                <i class="las la-coffee"></i>
+                                            </div>
+                                            <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Home Service">
+                                                <i class="las la-quidditch"></i>
+                                            </div>
+                                            <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Swimming Pool">
+                                                <i class="las la-swimming-pool"></i>
+                                            </div>
+                                            <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Reception">
+                                                <i class="las la-receipt"></i>
+                                            </div>
+                                            <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Gym">
+                                                <i class="las la-dumbbell"></i>
+                                            </div>
+                                            <div class="hotel-view-contents-icon">
+                                                <a class="hotel-view-contents-icon-more" href="javascript:void(0)"> +8 More </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                     {% if user.is_authenticated %}
+                                            {% if request.user.is_agent %}
+                                            <div class="hotel-view-contents-bottom">
+                                                <div class="hotel-view-contents-bottom-flex">
+                                                    <div class="hotel-view-contents-bottom-contents">
+                                                        <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ i.agent_price }} /Night</h4>
+                                                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }}%  | Agent Discount {{ i.agent }} % </p>
+                                                    </div>
+                                                    <div class="btn-wrapper">
+                                                        <a href="{% url 'hotel_details' i.slug %}" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>
+                                                    </div>                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% else %}
+                                            <div class="hotel-view-contents-bottom">
+                                                <div class="hotel-view-contents-bottom-flex">
+                                                    <div class="hotel-view-contents-bottom-contents">
+                                                        <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ i.total_budget }} /Night</h4>
+                                                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }} % </p>
+                                                    </div>
+                                                    <div class="btn-wrapper">
+                                                        <a href="{% url 'hotel_details' i.slug %}" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                            {% else %}
+
+                                            <div class="hotel-view-contents-bottom">
+                                                <div class="hotel-view-contents-bottom-flex">
+                                                    <div class="hotel-view-contents-bottom-contents">
+                                                        <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ i.total_budget }} /Night</h4>
+                                                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }} % </p>
+                                                    </div>
+                                                     <div class="btn-wrapper">
+                                                        <a href="{% url 'hotel_details' i.slug %}" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+
+
+
+
+                                </div>
+                            </div>
+                         {% endfor %}
+
+                        </div>
+
+
+
+
+
+
+
+
+                                    <div class="row mt-5">
+                        <div class="col">
+                            <div class="pagination-wrapper">
+                                <ul class="pagination-list list-style-none">
+
+                                    <li class="pagination-list-item-prev">
+                                         {%if page_obj.has_previous %}
+                                        <a href="?page={{page_obj.previous_page_number}}" class="pagination-list-item-button"> Prev </a>
+                                        {% endif %}
+                                    </li>
+
+
+                                    {% for n in page_obj.paginator.page_range %}
+                                        {% if page_obj.number == n %}
+                                    <li class="pagination-list-item">
+                                        <span class="page-link">{{ n }}<span class="sr-only"></span></span>
+                                    </li>
+                                    {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
+
+                                    <li class="pagination-list-item active">
+                                        <a href="?page={{ n }}" class="pagination-list-item-link"> {{ n }} </a>
+                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                    <li class="pagination-list-item-next">
+                                        {%if page_obj.has_next %}
+                                        <a href="?page={{page_obj.next_page_number}}" class="pagination-list-item-button"> Next </a>
+                                        {% endif %}
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    </div>
+                </div>
+                <div id="tab-list" class="tab-content-item mt-4">
+
+
+                    <div class="row gy-4">
+                        {% for i in page_obj.object_list %}
+
+                        <div class="col-12">
+                            <div class="hotel-view bg-white radius-20">
+                                <div class="hotel-view-flex">
+                                    <a href="{% url 'hotel_details' i.slug %}" class="hotel-view-thumb hotel-view-list-thumb bg-image" style="background-image: url({{ i.img.url }});">
+                                    </a>
+                                    <div class="hotel-view-contents">
+                                        <div class="hotel-view-contents-header">
+                                            <div class="hotel-view-contents-header-flex d-flex flex-wrap gap-3 align-items-center justify-content-between">
+                                                <span class="hotel-view-contents-review"> <i class="las la-star"></i> 4.5 <span class="hotel-view-contents-review-count"> (380) </span> </span>
+                                                <div class="btn-wrapper">
+                                                    <a href="{% url 'hotel_details' i.slug %}" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>
+                                                </div>
+                                            </div>
+                                            <h3 class="hotel-view-contents-title"> <a href="{% url 'hotel_details' i.slug %}"> {{ i.name }} </a> </h3>
+                                            <div class="hotel-view-contents-location mt-2">
+                                                <span class="hotel-view-contents-location-icon"> <i class="las la-map-marker-alt"></i> </span>
+                                                <span class="hotel-view-contents-location-para"> {{ i.address }} , {{ i.city.name }} </span>
+                                            </div>
+                                        </div>
+                                        <div class="hotel-view-contents-middle">
+                                            <div class="hotel-view-contents-flex">
+                                                <div class="hotel-view-contents-icon d-flex gap-1">
+                                                    <span> <i class="las la-parking"></i> </span>
+                                                    <p class="hotel-view-contents-icon-title flex-fill"> Parking </p>
+                                                </div>
+                                                <div class="hotel-view-contents-icon d-flex gap-1">
+                                                    <span> <i class="las la-wifi"></i> </span>
+                                                    <p class="hotel-view-contents-icon-title flex-fill"> Wifi </p>
+                                                </div>
+                                                <div class="hotel-view-contents-icon d-flex gap-1">
+                                                    <span> <i class="las la-coffee"></i> </span>
+                                                    <p class="hotel-view-contents-icon-title flex-fill"> Breakfast </p>
+                                                </div>
+                                                <div class="hotel-view-contents-icon d-flex gap-1">
+                                                    <span> <i class="las la-quidditch"></i> </span>
+                                                    <p class="hotel-view-contents-icon-title flex-fill"> Room Service </p>
+                                                </div>
+                                                <div class="hotel-view-contents-icon d-flex gap-1">
+                                                    <span> <i class="las la-swimming-pool"></i> </span>
+                                                    <p class="hotel-view-contents-icon-title flex-fill"> Pool </p>
+                                                </div>
+                                                <div class="hotel-view-contents-icon d-flex gap-1">
+                                                    <span> <i class="las la-receipt"></i> </span>
+                                                    <p class="hotel-view-contents-icon-title flex-fill"> Reception </p>
+                                                </div>
+                                                <div class="hotel-view-contents-icon d-flex gap-1">
+                                                    <span> <i class="las la-dumbbell"></i> </span>
+                                                    <p class="hotel-view-contents-icon-title flex-fill"> Gym </p>
+                                                </div>
+                                                <div class="hotel-view-contents-icon d-flex gap-1">
+                                                    <a class="hotel-view-contents-icon-more" href="javascript:void(0)"> +8 More </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                           {% if user.is_authenticated %}
+                                            {% if request.user.is_agent %}
+                                            <div class="hotel-view-contents-bottom">
+                                                <div class="hotel-view-contents-bottom-flex">
+                                                    <div class="hotel-view-contents-bottom-contents">
+                                                        <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ i.agent_price }} /Night</h4>
+                                                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }}%  | Agent Discount {{ i.agent }} % </p>
+                                                    </div>
+                                                    <div class="btn-wrapper">
+                <!--                                        <a href="javascript:void(0)" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% else %}
+                                            <div class="hotel-view-contents-bottom">
+                                                <div class="hotel-view-contents-bottom-flex">
+                                                    <div class="hotel-view-contents-bottom-contents">
+                                                        <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ i.total_budget }} /Night</h4>
+                                                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }} % </p>
+                                                    </div>
+                                                    <div class="btn-wrapper">
+                <!--                                        <a href="javascript:void(0)" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                            {% else %}
+
+                                            <div class="hotel-view-contents-bottom">
+                                                <div class="hotel-view-contents-bottom-flex">
+                                                    <div class="hotel-view-contents-bottom-contents">
+                                                        <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ i.total_budget }} /Night</h4>
+                                                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }} % </p>
+                                                    </div>
+                                                    <div class="btn-wrapper">
+                <!--                                        <a href="javascript:void(0)" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="row mt-5">
+                        <div class="col">
+                            <div class="pagination-wrapper">
+                                <ul class="pagination-list list-style-none">
+
+                                    <li class="pagination-list-item-prev">
+                                         {%if page_obj.has_previous %}
+                                        <a href="?page={{page_obj.previous_page_number}}" class="pagination-list-item-button"> Prev </a>
+                                        {% endif %}
+                                    </li>
+
+
+                                    {% for n in page_obj.paginator.page_range %}
+                                        {% if page_obj.number == n %}
+                                    <li class="pagination-list-item">
+                                        <span class="page-link">{{ n }}<span class="sr-only"></span></span>
+                                    </li>
+                                    {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
+
+                                    <li class="pagination-list-item active">
+                                        <a href="?page={{ n }}" class="pagination-list-item-link"> {{ n }} </a>
+                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                    <li class="pagination-list-item-next">
+                                        {%if page_obj.has_next %}
+                                        <a href="?page={{page_obj.next_page_number}}" class="pagination-list-item-button"> Next </a>
+                                        {% endif %}
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+{% extends 'frontmaster.html' %}
+{% block content %}
+
+
+
+
+
+<div class="breadcrumb-area breadcrumb-padding">
+  <div class="container custom-container-one">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb-contents">
+          <h4 class="breadcrumb-contents-title"> Gallery</h4>
+          <ul class="breadcrumb-contents-list list-style-none">
+            <li class="breadcrumb-contents-list-item"> <a href="index.php" class="breadcrumb-contents-list-item-link"> Home </a> </li>
+            <li class="breadcrumb-contents-list-item"> Gallery </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section class="pat-50 pab-50">
+  <div class="container">
+    <div class="row">
+
+      {% for i in gi %}
+        <div class="col-lg-4 my-3">
+        <div class="p-2">
+         <a href="" target="_bl
+         "><img src="{{ i.img.url }}" class="img-fluid rounded" alt=""></a>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+{% endblock %}

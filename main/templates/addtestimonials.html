@@ -1,0 +1,128 @@
+{% extends 'master.html' %}
+{% block content %}
+
+        <div class="col-md-10 fixwidth">
+            <div class="row justify-content-center">
+                <h3>Testimonial</h3>
+                <div class="col-md-11 shadow-sm mt-3">
+                    {{ msg }}
+                    <form method="post" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    <div class="row p-3">
+
+                        <div class="mb-3 col-md-6">
+                            <label for="">Name</label>
+                            <input type="text" name="name" class="form-control" id="exampleInput" placeholder="Enter Name">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="">Enter Position</label>
+                            <input type="text" name="postion" class="form-control" id="exampleInput" placeholder="Enter Position">
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label for="">Image</label>
+                            <input type="file" name="img" class="form-control" id="exampleInput">
+                        </div>
+
+
+                        <!--  -->
+                        <div class="mb-3 col-md-12">
+                            <label for="">Discription</label>
+                            <textarea id="editor1" name="txt"></textarea>
+
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                        </form>
+                </div>
+                <div class="col-md-11 col-12 mt-5">
+                    <div class="tableresposive">
+                        <table class="table border">
+                            <thead>
+                                <tr>
+                                <th scope="col">ID</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Position</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Show Front</th>
+                                    <th scope="col">status Action</th>
+                                    <th scope="col">Option</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for i in page_obj.object_list %}
+
+                                <tr>
+                                    <th scope="row">{{ i.id }}</th>
+                                    <td><img src="{{ i.img.url }}" style="width:50px; height:50px;"> </td>
+                                    <td class="table-success">{{ i.name }}</td>
+                                    <td>{{ i.postion }}</td>
+                                    <td>{{ i.txt | safe }}</td>
+                                    <td>ak7280032@</td>
+                                    <td class="table-primary"><i class="bi bi-eye"></i></td>
+                                    <td class="table-primary"><i class="bi bi-eye"></i></td>
+                                    <td class="text-danger text-center"><i class="bi bi-archive"></i></td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-11 mt-3">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p>Showing 5 of 5</p>
+                        </div>
+                        <div>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        {%if page_obj.has_previous %}
+                                        <a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+                                                {% endif %}
+                                    </li>
+                                    {% for n in page_obj.paginator.page_range %}
+                                        {% if page_obj.number == n %}
+                                            <li class="page-item active">
+                                            <span class="page-link">{{ n }}<span class="sr-only"></span></span>
+                                            </li>
+                                    {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ n }}">{{ n }}</a>
+                                    </li>
+
+                                      {% endif %}
+                                    {% endfor %}
+<!--                                    <li class="page-item">-->
+<!--                                        <a class="page-link" href="?page={{page_obj.number}}">{{page_obj.number}}</a>-->
+<!--                                    </li>-->
+
+
+                                    <li class="page-item">
+                                        {%if page_obj.has_next %}
+                                        <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+                                        {% endif %}
+                                    </li>
+
+                                </ul>
+
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+<script>
+    CKEDITOR.replace('editor1');
+</script>
+
+{% endblock %}

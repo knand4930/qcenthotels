@@ -1,0 +1,263 @@
+{% extends 'master.html' %}
+{% block content %}
+
+        <div class="col-md-10 fixwidth">
+            <div class="row justify-content-center">
+                <h3>Add Rooms</h3>
+                {{ msg }}
+                <div class="col-md-11 shadow-sm mt-3">
+                <form method="post" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row p-3">
+                        <div class="mb-3 col-md-3">
+                            <label for="">Select Category</label>
+                            <select class="form-select" name="cat" aria-label="Default select example">
+                                {% for c in cat %}
+                                <option value="{{ c.id }}" selected>{{ c.name}}</option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label for="">Enter Room Name</label>
+                            <input type="text" name="name" class="form-control" id="exampleInput" placeholder="Enter name">
+                        </div>
+
+                        <div class="mb-3 col-md-3">
+                            <label for="">Select State</label>
+                            <select name="state" class="form-select" aria-label="Default select example">
+                                {% for s in state %}
+                                <option value="{{ s.id }}">{{ s.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-md-3">
+                            <label for="">Select City</label>
+                            <select name="city" class="form-select" aria-label="Default select example">
+                                {% for c in city %}
+                                <option value="{{ c.id }}">{{ c.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-md-3">
+                            <label for="">Hotel Name</label>
+                            <select class="form-select" name="related_location" aria-label="Default select example">
+                               {% for r in hotel %}
+                                <option value="{{ r.id }}">{{ r.name }}</option>
+                                {% endfor %}
+
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label for="">Address</label>
+                            <input type="text" name="address" class="form-control" id="exampleInput" placeholder="address">
+                        </div>
+<!--                        <div class="mb-3 col-md-3">-->
+<!--                            <label for="">Mobile</label>-->
+<!--                            <input type="number" name="phone" class="form-control" id="exampleInput" placeholder="Enter Mobile Number">-->
+<!--                        </div>-->
+<!--                        <div class="mb-3 col-md-3">-->
+<!--                            <label for="">Email</label>-->
+<!--                            <input type="email" name="email" class="form-control" id="exampleInput" placeholder="Enter Email">-->
+<!--                        </div>-->
+<!--                        <div class="mb-3 col-md-3">-->
+<!--                            <label for="">Veg Price/plate</label>-->
+<!--                            <input type="number" name="veg_plate" class="form-control" id="exampleInput" placeholder="Veg Price/plate">-->
+<!--                        </div>-->
+<!--                        <div class="mb-3 col-md-3">-->
+<!--                            <label for="">Non veg Price/plate</label>-->
+<!--                            <input type="number" name="non_veg_plate" class="form-control" id="exampleInput" placeholder="Non veg Price/plate">-->
+<!--                        </div>-->
+<!--                        <div class="mb-3 col-md-3">-->
+<!--                            <label for="">Min Capacity</label>-->
+<!--                            <input type="number" name="min_capacity" class="form-control" id="exampleInput" placeholder="Min Capacity">-->
+<!--                        </div>-->
+<!--                        <div class="mb-3 col-md-3">-->
+<!--                            <label for="">Max Capacity</label>-->
+<!--                            <input type="number" name="max_capacity" class="form-control" id="exampleInput" placeholder="Min Capacity">-->
+<!--                        </div>-->
+<!--                        <div class="mb-3 col-md-3">-->
+<!--                            <label for="">Meta Title</label>-->
+<!--                            <input type="text" name="meta_title" class="form-control" id="exampleInput" placeholder="Enter Meta Title ">-->
+<!--                        </div>-->
+<!--                        <div class="mb-3 col-md-3">-->
+<!--                            <label for="">Enter Metakeyword</label>-->
+<!--                            <input type="text" name="meta_keyword" class="form-control" id="exampleInput" placeholder="Enter Metakeyword">-->
+<!--                        </div>-->
+<!--                        <div class="mb-3 col-md-3">-->
+<!--                            <label for="">Enter Meta Description</label>-->
+<!--                            <input type="text" name="meta_description" class="form-control" id="exampleInput" placeholder="Enter Meta Description">-->
+<!--                        </div>-->
+
+
+                        <div class="mb-3 col-md-3">
+                            <label for="">Image</label>
+                            <input type="file" name="img" class="form-control" id="exampleInput">
+                        
+
+                        </div>
+
+
+
+
+
+                        <div class="mb-3 col-md-3">
+                            <label for="">
+                                Budget</label>
+                            <input type="number" name="budget" class="form-control" placeholder="Enter Hotel Budget">
+
+                        </div>
+
+
+<!--                        <div class="mb-3 col-md-3">-->
+<!--                            <label for="">-->
+<!--                                Facility</label>-->
+<!--                            <select name="facility" class="form-select" aria-label="Default select example">-->
+<!--                                {% for f in facility %}-->
+<!--                                <option value="{{ f.id }}">{{ f.name }}</option>-->
+<!--                                {% endfor %}-->
+<!--                            </select>-->
+<!--                        </div>-->
+                        <!--  -->
+                        <div class="mb-3 col-md-12">
+                            <label for="">Summary</label>
+                            <textarea id="editor1" name="summary"></textarea>
+
+                        </div>
+                        <!--  -->
+<!--                        <div class="mb-3 col-md-12">-->
+<!--                            <label for="">Venue Policies</label>-->
+<!--                            <textarea id="editor2" name="venue_policy"></textarea>-->
+
+<!--                        </div>-->
+
+                        <div class="mb-3 col-md-3">
+                            <label for="">check In</label>
+                            <input type="time" name="check_in" class="form-control" id="exampleInput">
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label for="">Check Out</label>
+                            <input type="time" name="check_out" class="form-control" id="exampleInput">
+                        </div>
+
+<!--                        <div class="mb-3 col-md-3">-->
+<!--                            <label for="">Start Time Evening</label>-->
+<!--                            <input type="time" name="start_time_evening" class="form-control" id="exampleInput">-->
+<!--                        </div>-->
+<!--                        <div class="mb-3 col-md-3">-->
+<!--                            <label for="">End Time Evening</label>-->
+<!--                            <input type="time" name="end_time_evening" class="form-control" id="exampleInput">-->
+<!--                        </div>-->
+
+
+<!--                        <div class="mb-6 col-md-3">-->
+<!--                            <label for="">Check In</label>-->
+<!--                            <input type="date" name="check_in" class="form-control" id="exampleInput" placeholder="write about advance discripation">-->
+<!--                        </div>-->
+
+<!--                        <div class="mb-3 col-md-3">-->
+<!--                            <label for="">Check Out</label>-->
+<!--                            <input type="date" name="check_out" class="form-control" id="exampleInput" placeholder="about Cancelecation charge">-->
+<!--                        </div>-->
+
+                        <div class="mb-6 col-md-3">
+                            <label for="">Advance</label>
+                            <input type="text" name="advance" class="form-control" id="exampleInput" placeholder="write about advance discripation">
+                        </div>
+
+                        <div class="mb-3 col-md-3">
+                            <label for="">Cancelecation charge</label>
+                            <input type="text" name="cancelecation_charge" class="form-control" id="exampleInput" placeholder="about Cancelecation charge">
+                        </div>
+
+
+                        <div class="mb-3 col-md-3">
+                            <label for="">
+                                Price Increase or Taxes (%)</label>
+                            <input type="number" name="price_increase" class="form-control" placeholder="Enter Hotel Budget">
+
+                        </div>
+
+
+                        <div class="mb-3 col-md-3">
+                            <label for="">
+                                Agent Decrease Price(%)</label>
+                            <input type="number" name="agent" class="form-control" placeholder="Enter Hotel Budget">
+
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label for="">Parking</label>
+                            <select class="form-select" name="parking" aria-label="Default select example">
+
+                                <option value="False" selected>Not Available</option>
+                                <option value="True" selected>Available</option>
+
+
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label for="">Wi-Fi</label>
+                            <select class="form-select" name="wifi" aria-label="Default select example">
+
+                                <option value="False" selected>Not Available</option>
+                                <option value="True" selected>Available</option>
+
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label for="">Break Fast</label>
+                            <select class="form-select" name="breakfast" aria-label="Default select example">
+
+                                <option value="False" selected>Not Available</option>
+                                <option value="True" selected>Available</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label for="">Swing Pool</label>
+                            <select class="form-select" name="pool" aria-label="Default select example">
+
+                                <option value="False" selected>Not Available</option>
+                                <option value="True" selected>Available</option>
+
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label for="">Reception</label>
+                            <select class="form-select" name="reception" aria-label="Default select example">
+
+                                <option value="False" selected>Not Available</option>
+                                <option value="True" selected>Available</option>
+
+                            </select>
+                        </div>
+                                                <div class="mb-3 col-md-3">
+                            <label for="">Gym</label>
+                            <select class="form-select" name="gym" aria-label="Default select example">
+
+                                <option value="False" selected>Not Available</option>
+                                <option value="True" selected>Available</option>
+
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <button class="btn btnstyle">Submit</button>
+                        </div>
+
+                    </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+<script>
+    CKEDITOR.replace('editor1');
+    CKEDITOR.replace('editor2');
+    CKEDITOR.replace('editor3');
+    CKEDITOR.replace('editor4');
+    CKEDITOR.replace('editor5');
+</script>
+
+{% endblock %}

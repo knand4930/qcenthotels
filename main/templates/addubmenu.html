@@ -1,0 +1,132 @@
+{% extends 'master.html' %}
+
+{% block content %}
+
+        <div class="col-md-10 fixwidth">
+            <div class="row justify-content-center">
+                <h3>Add Sub Menu </h3>
+                <div class="col-md-11 shadow-sm mt-3">
+                    {{ msg }}
+                    <form method="post" action="" >
+                        {% csrf_token %}
+                    <div class="row p-3">
+                            <div class="mb-3 col-md-6">
+                                <label for="">Enter Title</label>
+                                <input type="text" name="title" class="form-control" id="exampleInput" placeholder="Enter Title">
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label for="">Choose Menu</label>
+
+                                <select id="cars" name="menu" class="form-control">
+                                    {% for i in val %}
+                                  <option value="{{ i.id }}">{{ i.title }}</option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+                            <button class="btn btn-primary">Submit</button>
+                            </div>
+                    </div>
+                        </form>
+                </div>
+                <div class="col-md-11 mt-3">
+                    <div class="d-flex justify-content-end">
+                        <!-- <div>
+                            <button class="btn btn-secondary btn-sm">Excel</button>
+                            <button class="btn btn-secondary btn-sm">Pdf</button>
+                            <button class="btn btn-secondary btn-sm">Print</button>
+                        </div> -->
+                        <div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="exampleInput" placeholder="Seacrch">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-11 col-12">
+                    <div class="tableresposive">
+                        <table class="table border">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Link</th>
+                                    <th scope="col">Status Action</th>
+                                    <th scope="col">Option</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for i in page_obj.object_list %}
+                                <tr>
+                                    <th scope="row">{{ i.id }}</th>
+                                    <td class="table-success">{{ i.title }}</td>
+                                    <td><a href="/{{ i.slug }}">{{ i.slug }}</a></td>
+                                    <td class="text-danger table-primary"><i class="bi bi-eye"></i></td>
+                                    <td class="d-flex justify-content-evenly"
+                                        >
+                                     <i class="bi bi-pencil-square text-warning"></i>
+                                     <i class="bi bi-archive text-danger"></i>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-11 mt-3">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p>Showing 5 of 5</p>
+                        </div>
+                        <div>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        {%if page_obj.has_previous %}
+                                        <a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+                                                {% endif %}
+                                    </li>
+                                    {% for n in page_obj.paginator.page_range %}
+                                        {% if page_obj.number == n %}
+                                            <li class="page-item active">
+                                            <span class="page-link">{{ n }}<span class="sr-only"></span></span>
+                                            </li>
+                                    {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ n }}">{{ n }}</a>
+                                    </li>
+
+                                      {% endif %}
+                                    {% endfor %}
+<!--                                    <li class="page-item">-->
+<!--                                        <a class="page-link" href="?page={{page_obj.number}}">{{page_obj.number}}</a>-->
+<!--                                    </li>-->
+
+
+                                    <li class="page-item">
+                                        {%if page_obj.has_next %}
+                                        <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+                                        {% endif %}
+                                    </li>
+
+                                </ul>
+
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+{% endblock %}

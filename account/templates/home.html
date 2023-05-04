@@ -1,0 +1,423 @@
+{% extends 'frontmaster.html' %} {% load static %} {% block content %}
+
+<div
+  id="carouselExampleControls"
+  class="carousel slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    {% for s in slider %}
+    <div class="carousel-item active">
+      <img src="{{ s.img.url }}" class="d-block w-100" alt="Slide 1" />
+    </div>
+    {% endfor %}
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleControls"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden"  onclick="controller(-1)">Previous</span>
+    
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleControls"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden"  onclick="controller(1)">Next</span>
+  </button>
+  <div class="form-overlay">
+    <div>
+      <h2
+        class="banner-single-content-title text-center fw-700"
+        style="color: #91c61f"
+      >
+        Book our
+        <span class="banner-single-content-title-shape"> Hotels, Stays </span>
+        for your next
+        <span class="banner-single-content-title-shape star-shape"> tour </span>
+      </h2>
+
+      <form method="post" action="{% url 'searchfilter' %}">
+        {% csrf_token %}
+        <div class="input-group mb-1 justify-content-center py-3">
+          <select name="state" id="states" class="form-select form--control radius-5" onchange="gethotels()" aria-label="Default select example">
+            <option selected>Select Your State</option>
+            {% for i in state %}
+            <option value="{{ i.id }}">{{ i.name }}</option>
+            {% endfor %}
+          </select>
+
+          <select
+            class="form-select" id="hotel_result" name="hotel" class="form-select form--control radius-5" aria-label="Default select example" >
+          </select>
+
+          <div class="btn-wrapper">
+            <input type="submit" value="Submit" class="cmn-btn btn-bg-1 radius-10"/>
+          </div>
+      </form>
+</div>
+
+      <form method="post" action="{% url 'search_filter' %}">
+        {% csrf_token %}
+        <div class="input-group my-1 justify-content-center">
+          <div>
+            <label for="" class="text-white">Check In</label>
+            <input type="time" name="check_in" class="form-control inputBox" required />
+          </div>
+          <div>
+            <label for="" class="text-white">Check Out</label>
+            <input type="time" name="check_out" class="form-control inputBox" required />
+          </div>
+
+          <div>
+<!--            <label for="" class="text-white">Promo Code</label>-->
+<!--            <input type="text" class="form-control inputBox" />-->
+          </div>
+          <div class="btn-wrapper py-2" style="margin-top: 18px">
+            <input
+              type="submit"
+              class="cmn-btn btn-bg-1 radius-10"
+              value="Check"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+      
+  </div>
+</div>
+<script>
+    let flag = 0;
+
+
+function controller(x) {
+  flag = flag + x;
+  slideshow(flag);
+}
+
+slideshow(flag);
+
+
+setInterval(pop, 5000);
+function pop() {
+  flag++;
+  if (flag == 3) { flag = 0; }
+  slideshow(flag);
+
+};
+
+
+function slideshow(num) {
+  let slides = document.getElementsByClassName('active');
+  if (num == slides.length) {
+    flag = 0;
+    num = 0;
+
+  }
+  if (num < 0) {
+    flag = slides.length - 1;
+    num = slides.length - 1;
+
+  }
+
+  for (let y of slides) {
+    y.style.display = "none";
+  }
+  slides[num].style.display = "block";
+}
+</script>
+
+<style>
+  .carousel-item {
+    height: 500px;
+  }
+
+  .carousel-item img {
+    height: 500px;
+    object-fit: cover;
+  }
+
+  .form-overlay {
+    position: absolute;
+    top: 110px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgba(255, 255, 255, 0.7); */
+    z-index: 1;
+  }
+  .inputBox {
+    height: 50px;
+  }
+  @media only screen and (max-width: 600px) {
+    .form-overlay {
+      top: 10px;
+    }
+  }
+</style>
+
+<section>
+  <div class="container-fluid bg-light">
+    <div class="row text-center">
+      <div class="col-lg-12 py-5 px-2">
+        <p class="text-success">Experience the passion of hospitality</p>
+        <h3>Pacific Inn Hotel and Resorts</h3>
+        <p>
+          Pacific Inn hotel and resorts is among top hotels and resorts in Delhi
+          NCR, Jaipur, Rishikesh and Lansdowne. we are having our presence in
+          India from more than a decade.We have hosted guests from around the
+          world and counting. We are offering luxury yet affordable room in
+          Delhi NCR, Jaipur and awesome travel destination like Rishikesh and
+          Lansdowne.From from this we are offering Camping, Hiking, River
+          Rafting, Bungee Jumping, Boating, Trekking etc.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="booking-two-area pat-100 pab-50">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-xl-3 col-lg-4 col-md-6">
+        <div class="section-title-booking">
+          <div class="section-title-three">
+            <h2 class="title">What makes our hotels best than others?</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-lg-4 col-md-6">
+        <div class="single-why-two bg-white single-why-two-border radius-10">
+          <div class="single-why-two-flex">
+            <div class="single-why-two-icon">
+              <i class="las la-thumbs-up"></i>
+            </div>
+            <div class="single-why-two-contents">
+              <h4 class="single-why-two-contents-title">
+                <a href="javascript:void(0)"> Hassle Free Booking </a>
+              </h4>
+              <p class="single-why-two-contents-para mt-2">
+                Book hotels from our website without any hassle.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-4 col-md-6">
+        <div class="single-why-two bg-white single-why-two-border radius-10">
+          <div class="single-why-two-flex">
+            <div class="single-why-two-icon">
+              <i class="las la-star"></i>
+            </div>
+            <div class="single-why-two-contents">
+              <h4 class="single-why-two-contents-title">
+                <a href="javascript:void(0)"> 28,000 Reviews </a>
+              </h4>
+              <p class="single-why-two-contents-para mt-2">
+                Book hotels from our website without any hassle.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-4 col-md-6">
+        <div class="single-why-two bg-white single-why-two-border radius-10">
+          <div class="single-why-two-flex">
+            <div class="single-why-two-icon">
+              <i class="las la-headset"></i>
+            </div>
+            <div class="single-why-two-contents">
+              <h4 class="single-why-two-contents-title">
+                <a href="javascript:void(0)"> 24/7 Support </a>
+              </h4>
+              <p class="single-why-two-contents-para mt-2">
+                Book hotels from our website without any hassle.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="attraction-area pat-50 pab-50">
+  <div class="container">
+    <div class="section-title center-text">
+      <h2 class="title">
+        Luxurious Experience <br />
+        OUR HOTELS AND RESORTS
+      </h2>
+      <div class="section-title-line"></div>
+    </div>
+    <div class="row mt-5 justify-content-center">
+      {% for h in hme %}
+      <div class="col-md-4">
+        <div class="p-2">
+          <div class="attraction-item">
+            <div class="single-attraction-two radius-20">
+              <div class="single-attraction-two-thumb">
+                <a
+                  href="{% url 'room_list' h.slug %}"
+                  class="gallery-popup"
+                >
+                  <img src="{{ h.img.url }}" alt="{{ h.name }}" width="100%" height="300px"  />
+                </a>
+              </div>
+              <div class="single-attraction-two-contents">
+                <h4 class="single-attraction-two-contents-title">
+                  <a href="{% url 'room_list' h.slug %}"> {{ h.name }} </a>
+                </h4>
+                <p class="single-attraction-two-contents-para fixedLength">
+                  {{ h.summary | safe | truncatechars:120 }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  let fixedLength = document
+    .querySelector(".fixedLength")
+    .innerHTML.slice(0, 17);
+  console.log(fixedLength);
+</script>
+
+<section class="blog-area pat-50 pab-50">
+  <div class="container">
+    <div class="section-title center-text">
+      <h2 class="title">Latest News</h2>
+      <div class="section-title-line"></div>
+    </div>
+    <div class="row gy-4 mt-4">
+      {% for i in blg %}
+      <div class="col-xxl-4 col-lg-4 col-md-6">
+        <div class="single-blog blog-two">
+          <div class="single-blog-thumbs">
+            <a href="{% url 'blog_details' i.slug %}">
+              <img class="lazyloads" src="{{ i.img.url }}" alt="" />
+            </a>
+            <div class="single-blog-thumbs-date">
+              <a href="javascript:void(0)">
+                <span class="date"> {{ i.create_at | date }}</span>
+              </a>
+            </div>
+          </div>
+          <div class="single-blog-contents mt-3">
+            <div class="single-blog-contents-tags mt-3">
+              <span class="single-blog-contents-tags-item">
+                <a href="javascript:void(0)">
+                  <i class="las la-tag"></i> Hotel
+                </a>
+              </span>
+              <span class="single-blog-contents-tags-item">
+                <a href="javascript:void(0)"> 22 Comments </a>
+              </span>
+            </div>
+            <h4 class="single-blog-contents-title mt-3">
+              <a href="{% url 'blog_details' i.slug %}">{{ i.title }}</a>
+            </h4>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- popup -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5 stylepopup bg-white rounded d-none" id="close-btn" >
+            <div class="text-end">
+                <h2 style="cursor:pointer;">x</h2>
+            </div>
+          <div>
+            <img src="https://qcenthotels.com/media/galleryimage/Wedding-Awards-2023.jpg"  style="height:70vh; width:100%;" class="rounded shadow-sm" alt="">
+          </div>
+        </div>
+    </div>
+ </div>
+ <script>
+    let close_btn  = document.getElementById("close-btn");
+    // setTimeout(() => {
+    //     close_btn.classList.remove("d-none");
+    //  }, 10000);
+     close_btn.addEventListener("click",()=>{
+        close_btn.remove();
+     })
+    
+ </script>
+ <style>
+      .stylepopup{
+    position: fixed;
+     top:5%;
+     z-index:99999;
+    }
+ </style>
+<!-- popup end -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  $("#state").change(function () {
+    var url = $("#indexForm").attr("data-hotel-url"); // get the url of the `load_courses` view
+    var stateId = $(this).val(); // get the selected programming ID from the HTML input
+
+    $.ajax({
+      // initialize an AJAX request
+      url: url, // set the url of the request (= localhost:8000/load-courses/)
+      data: {
+        state: stateId, // add the programming id to the GET parameters
+      },
+      success: function (data) {
+        // `data` is the return of the `load_courses` view function
+        $("#hotel").html(data); // replace the contents of the course input with the data that came from the server
+      },
+    });
+  });
+</script>
+
+<script>
+  function gethotels() {
+    var e = document.getElementById("states");
+    var st_value = e.value;
+    var result = "";
+    axios
+      .get("get-hotel/?state=" + st_value)
+      .then(function (response) {
+        // handle success
+        for (var i = 0; i < response.data.length; i++) {
+          result =
+            result +
+            "<option value='" +
+            response.data[i].id +
+            "'>" +
+            response.data[i].name +
+            "</option>";
+        }
+        console.log(result);
+        document.getElementById("hotel_result").innerHTML = result;
+      })
+
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+{% endblock %}
