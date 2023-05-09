@@ -232,8 +232,8 @@ def statehotel(request, slug):
 
 
 def categoryhotel(request, slug):
-    cat = VenuCategory.objects.get(slug=slug)
-    hotel = Venu.objects.filter(cat=cat)
+    venu_cat = VenuCategory.objects.get(slug=slug)
+    hotel = Venu.objects.filter(cat=venu_cat)
     offer = OfferSlider.objects.all()
     p = Paginator(hotel, 10)
     page_number = request.GET.get('page')
@@ -247,7 +247,7 @@ def categoryhotel(request, slug):
     cat = VenuCategory.objects.all()[:1]
     scat = VenuCategory.objects.all()
     return render(request, 'categoryhotel.html', {'hotel': hotel, 'state': state, 'cat': cat, "page_obj": page_obj,
-                                                  'scat': scat, 'offer': offer})
+                                                  'scat': scat, 'offer': offer, 'venu_cat':venu_cat})
 
 
 def room_list(request, slug):
