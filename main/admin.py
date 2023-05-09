@@ -35,8 +35,13 @@ admin.site.register(Venu, VenuAdmin)
 
 
 class VenuImageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'venu', 'name')
+    list_display = ('id', 'venu', 'name', 'get_image_tags')
     list_filter = ('id', 'venu', 'name')
+
+    def get_image_tags(self, obj):
+        return format_html('<img src="{}" width="90" height="90"/>', obj.img.url)
+
+    get_image_tags.short_description = 'img'
 
 
 admin.site.register(VenuImages, VenuImageAdmin)

@@ -2,6 +2,7 @@ from random import randint
 
 from django.db import models
 from django.utils import timezone
+from django.utils.html import format_html
 from django.utils.text import slugify
 from .utils import *
 from ckeditor.fields import RichTextField
@@ -490,6 +491,7 @@ class VenuImages(models.Model):
 
     def __str__(self):
         return self.name
+
 
 
 #
