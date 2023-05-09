@@ -272,6 +272,7 @@ class BlogComment(models.Model):
 class VenuCategory(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True, unique=True)
     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
+    img = models.ImageField(upload_to="vanu/category/", blank=True, null=True)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 

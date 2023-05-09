@@ -13,13 +13,16 @@
                 </div>
                
             </div> -->
-
+    {% if cat.img %}
       <img
         src="{{ cat.img.url }}"
         height="400"
         width="1200"
         alt=""
       />
+        {% else %}
+        <h4>Please update Image Category</h4>
+        {% endif %}
     </div>
   </div>
 </div>
