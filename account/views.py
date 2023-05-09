@@ -234,6 +234,7 @@ def statehotel(request, slug):
 def categoryhotel(request, slug):
     venu_cat = VenuCategory.objects.get(slug=slug)
     hotel = Venu.objects.filter(cat=venu_cat)
+    print(venu_cat.img, "===========================")
     offer = OfferSlider.objects.all()
     p = Paginator(hotel, 10)
     page_number = request.GET.get('page')
@@ -247,7 +248,7 @@ def categoryhotel(request, slug):
     cat = VenuCategory.objects.all()[:1]
     scat = VenuCategory.objects.all()
     return render(request, 'categoryhotel.html', {'hotel': hotel, 'state': state, 'cat': cat, "page_obj": page_obj,
-                                                  'scat': scat, 'offer': offer, 'venu_cat':venu_cat})
+                                                  'scat': scat, 'offer': offer, 'venu_cat': venu_cat})
 
 
 def room_list(request, slug):
@@ -346,7 +347,7 @@ def searchfilter(request):
             page_obj = p.page(1)
         except EmptyPage:
             page_obj = p.page(p.num_pages)
-        return render(request, 'search_hotels.html', {'page_obj': page_obj, 'hotel': hotel, 'state':state})
+        return render(request, 'search_hotels.html', {'page_obj': page_obj, 'hotel': hotel, 'state': state})
     return render(request, 'home.html', context)
 
 
@@ -500,7 +501,7 @@ def bookevent(request):
             return render(request, 'bookevent.html', {'msg': msg})
     except Exception as E:
         return render(request, 'bookevent.html', {'msg': "Please Input Correct Date and Time"})
-    return render(request, 'bookevent.html', {'state':state, 'event':event, 'sl':sl})
+    return render(request, 'bookevent.html', {'state': state, 'event': event, 'sl': sl})
 
 
 def partner(request):
@@ -520,4 +521,4 @@ def partner(request):
         msg = "Your Details Has Been Sent Successfully !"
         return render(request, 'partner.html', {'msg': msg})
 
-    return render(request, 'partner.html', {'state':state})
+    return render(request, 'partner.html', {'state': state})
