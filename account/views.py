@@ -334,6 +334,7 @@ def searchfilter(request):
     context = {'cat': cat, 'city': city, 'related': related, 'venu': venu,
                'state': state, 'blg': blg, 'hme': hme, 'slider': slider}
     if request.method == 'POST':
+        state = State.objects.all()
         hotel_id = request.POST.get('hotel')
         hotel = Hotel.objects.get(id=hotel_id)
         room = Venu.objects.filter(hotel=hotel)
@@ -345,7 +346,7 @@ def searchfilter(request):
             page_obj = p.page(1)
         except EmptyPage:
             page_obj = p.page(p.num_pages)
-        return render(request, 'search_hotels.html', {'page_obj': page_obj, 'hotel': hotel})
+        return render(request, 'search_hotels.html', {'page_obj': page_obj, 'hotel': hotel, 'state':state})
     return render(request, 'home.html', context)
 
 
@@ -475,27 +476,30 @@ def bookevent(request):
     state = State.objects.all()
     event = EventText.objects.all()[:1]
     sl = EventSlider.objects.all()
-    if request.method == 'POST':
-        bride_groom = request.POST.get('bride_groom')
-        function = request.POST.get('function')
-        date = request.POST.get('date')
-        time = request.POST.get('time')
-        number_of_room = request.POST.get('number_of_room')
-        location = request.POST.get('location')
-        guest_capacity = request.POST.get('guest_capacity')
-        number_of_night = request.POST.get('number_of_night')
-        contact_number = request.POST.get('contact_number')
-        email_address = request.POST.get('email_address')
-        msg = request.POST.get('msg')
-        data = MarriageEvents.objects.create(bride_groom=bride_groom, function=function, date=date, time=time,
-                                             number_of_room=number_of_room, location=location,
-                                             guest_capacity=guest_capacity,
-                                             number_of_night=number_of_night, contact_number=contact_number,
-                                             email_address=email_address,
-                                             msg=msg)
-        data.save()
-        msg = "Your Details Has Been Successfully sent!"
-        return render(request, 'bookevent.html', {'msg': msg})
+    try:
+        if request.method == 'POST':
+            bride_groom = request.POST.get('bride_groom')
+            function = request.POST.get('function')
+            date = request.POST.get('date')
+            time = request.POST.get('time')
+            number_of_room = request.POST.get('number_of_room')
+            location = request.POST.get('location')
+            guest_capacity = request.POST.get('guest_capacity')
+            number_of_night = request.POST.get('number_of_night')
+            contact_number = request.POST.get('contact_number')
+            email_address = request.POST.get('email_address')
+            msg = request.POST.get('msg')
+            data = MarriageEvents.objects.create(bride_groom=bride_groom, function=function, date=date, time=time,
+                                                 number_of_room=number_of_room, location=location,
+                                                 guest_capacity=guest_capacity,
+                                                 number_of_night=number_of_night, contact_number=contact_number,
+                                                 email_address=email_address,
+                                                 msg=msg)
+            data.save()
+            msg = "Your Details Has Been Successfully sent!"
+            return render(request, 'bookevent.html', {'msg': msg})
+    except Exception as E:
+        return render(request, 'bookevent.html', {'msg': "Please Input Correct Date and Time"})
     return render(request, 'bookevent.html', {'state':state, 'event':event, 'sl':sl})
 
 
