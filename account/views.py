@@ -1,5 +1,6 @@
 from django.contrib.auth import logout, authenticate, login
 from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from main.models import *
@@ -195,6 +196,7 @@ def blog_section(request):
 def blog_details(request, slug):
     blg = Blog.objects.get(slug=slug)
     comment = BlogComment.objects.filter(blog=blg)
+    blog = Blog.objects.all().order_by('-id')
     state = State.objects.all()
     cat = VenuCategory.objects.all()[:1]
     if request.method == 'POST':
@@ -206,8 +208,9 @@ def blog_details(request, slug):
         data.save()
         blg = Blog.objects.get(slug=slug)
         msg = 'Comment Created Successfully!'
-        return render(request, 'blog_details.html', {'blg': blg, 'msg': msg})
-    return render(request, 'blog_details.html', {'blg': blg, 'comment': comment, 'state': state, 'cat': cat})
+        return render(request, 'blog_details.html', {'blg': blg, 'msg': msg, 'blog': blog})
+    return render(request, 'blog_details.html',
+                  {'blg': blg, 'comment': comment, 'state': state, 'cat': cat, 'blog': blog})
 
 
 def statehotel(request, slug):
@@ -224,7 +227,8 @@ def statehotel(request, slug):
         page_obj = p.page(p.num_pages)
     state = State.objects.all()
     cat = VenuCategory.objects.all()[:1]
-    return render(request, 'statehotel.html', {'hotel': hotel, 'state': state, 'cat': cat, 'page_obj': page_obj, 'offer':offer})
+    return render(request, 'statehotel.html',
+                  {'hotel': hotel, 'state': state, 'cat': cat, 'page_obj': page_obj, 'offer': offer})
 
 
 def categoryhotel(request, slug):
@@ -243,27 +247,30 @@ def categoryhotel(request, slug):
     cat = VenuCategory.objects.all()[:1]
     scat = VenuCategory.objects.all()
     return render(request, 'categoryhotel.html', {'hotel': hotel, 'state': state, 'cat': cat, "page_obj": page_obj,
-                                                  'scat': scat, 'offer':offer})
+                                                  'scat': scat, 'offer': offer})
 
 
 def room_list(request, slug):
-    cat = Hotel.objects.get(slug=slug)
-    hotel = Venu.objects.filter(hotel=cat)
-    offer = OfferSlider.objects.all()
-    p = Paginator(hotel, 10)
-    page_number = request.GET.get('page')
     try:
-        page_obj = p.get_page(page_number)
-    except PageNotAnInteger:
-        page_obj = p.page(1)
-    except EmptyPage:
-        page_obj = p.page(p.num_pages)
-    state = State.objects.all()
-    cat = VenuCategory.objects.all()[:1]
-    scat = VenuCategory.objects.all()
-
-    return render(request, 'room_list.html', {'hotel': hotel, 'state': state, 'cat': cat, "page_obj": page_obj,
-                                              'scat': scat, 'offer':offer})
+        hotels = Hotel.objects.get(slug=slug)
+        hotel = Venu.objects.filter(hotel=hotels)
+        offer = OfferSlider.objects.all()
+        p = Paginator(hotel, 10)
+        page_number = request.GET.get('page')
+        try:
+            page_obj = p.get_page(page_number)
+        except PageNotAnInteger:
+            page_obj = p.page(1)
+        except EmptyPage:
+            page_obj = p.page(p.num_pages)
+        state = State.objects.all()
+        cat = VenuCategory.objects.all()[:1]
+        scat = VenuCategory.objects.all()
+        # print(cat.name)
+        return render(request, 'room_list.html', {'hotel': hotel, 'state': state, 'cat': cat, "page_obj": page_obj,
+                                                  'scat': scat, 'offer': offer, 'hotels': hotels})
+    except Exception as E:
+        return HttpResponse("<h1>Hotel Image Not Found !</h1>")
 
 
 def hotel_details(request, slug):
@@ -338,7 +345,7 @@ def searchfilter(request):
             page_obj = p.page(1)
         except EmptyPage:
             page_obj = p.page(p.num_pages)
-        return render(request, 'search_hotels.html', {'page_obj': page_obj})
+        return render(request, 'search_hotels.html', {'page_obj': page_obj, 'hotel': hotel})
     return render(request, 'home.html', context)
 
 
@@ -465,6 +472,9 @@ def career(request):
 
 
 def bookevent(request):
+    state = State.objects.all()
+    event = EventText.objects.all()[:1]
+    sl = EventSlider.objects.all()
     if request.method == 'POST':
         bride_groom = request.POST.get('bride_groom')
         function = request.POST.get('function')
@@ -486,10 +496,11 @@ def bookevent(request):
         data.save()
         msg = "Your Details Has Been Successfully sent!"
         return render(request, 'bookevent.html', {'msg': msg})
-    return render(request, 'bookevent.html')
+    return render(request, 'bookevent.html', {'state':state, 'event':event, 'sl':sl})
 
 
 def partner(request):
+    state = State.objects.all()
     if request.method == 'POST':
         fname = request.POST.get('fname')
         hotel_name = request.POST.get('hotel_name')
@@ -505,4 +516,4 @@ def partner(request):
         msg = "Your Details Has Been Sent Successfully !"
         return render(request, 'partner.html', {'msg': msg})
 
-    return render(request, 'partner.html')
+    return render(request, 'partner.html', {'state':state})

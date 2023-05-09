@@ -1,4 +1,5 @@
 {% extends 'frontmaster.html' %}
+{% load static %}
 {% block content %}
 
 
@@ -35,7 +36,11 @@
 <span class="single-blog-details-content-tags-item"> {{ blg.create_at | date }} </span>
 </div>
 <div class="single-blog-details-thumb mt-4">
+    {% if blg.img %}
 <img class="radius-5" style="width:700px; height: 500px;" src="{{ blg.img.url }}" alt="{{ blg.title }}">
+    {% else %}
+    <h4>Image Not Found</h4>
+    {% endif %}
 </div>
 <p class="single-blog-details-content-para mt-4">{{ blg.txt | safe }} </p>
 </div>
@@ -65,22 +70,12 @@
 </ul>
 </div>
 </div>
-<div class="col-lg-6 mt-4">
-<div class="blog-details-share-content right-align">
-<h4 class="blog-details-share-content-title"> Tags: </h4>
-<ul class="blog-details-tag list-style-none">
-<li class="blog-details-tag-list"><a class="blog-details-tag-list-item" href="javascript:void(0)"> New </a></li>
-<li class="blog-details-tag-list"><a class="blog-details-tag-list-item" href="javascript:void(0)"> Luxurious </a></li>
-<li class="blog-details-tag-list"><a class="blog-details-tag-list-item" href="javascript:void(0)"> Simple </a></li>
-</ul>
-</div>
-</div>
 </div>
 </div>
 
 
 <div class="comment-area color-two pat-50 pab-50">
-<h3 class="details-section-title"> Comments(03) </h3>
+<h3 class="details-section-title"> Comment ({{ blg.number_of_comments }}) </h3>
 <div class="row">
 <div class="col-lg-12 mt-2">
 <div class="comment-show-contents">
@@ -89,7 +84,7 @@
     {% for c in comment %}
 <div class="blog-details-flex-content">
 <div class="blog-details-thumb radius-10">
-<img src="assets/img/blog/details-comment1.jpg" alt="">
+<img src="{% static 'assets/img/blog/details-comment1.jpg' %}" alt="">
 </div>
 <div class="blog-details-content">
 <div class="blog-details-content-flex">
@@ -143,69 +138,25 @@
 <h5 class="title"> Recent Post </h5>
 <div class="blog-details-side-inner">
 <ul class="recent-list list-style-none">
+
+{% for b in blog %}
 <li class="recent-list-item">
  <div class="recent-list-thumb">
-<a href="#0"> <img class="lazyloads radius-5" src="assets/img/blog/recent-post1.jpg" alt=""> </a>
+     {% if b.img %}
+<a href="#0"> <img class="lazyloads radius-5" src="{{ b.img.url }}" alt=""> </a>
+     {% else %}
+     <h4>Image Not Found</h4>
+     {% endif %}
 </div>
 <div class="recent-list-contents">
-<h6 class="recent-list-title fs-16"> <a href="#0"> Choose From a Wide Range of Properties </a> </h6>
-<span class="recent-list-dates light-color fs-14 mt-2"> 21 Jun 2022 </span>
+<h6 class="recent-list-title fs-16"> <a href="#0"> {{ b.title }} </a> </h6>
+<span class="recent-list-dates light-color fs-14 mt-2"> {{ b.create_at | date }} </span>
 </div>
 </li>
-<li class="recent-list-item">
-<div class="recent-list-thumb">
-<a href="#0"> <img class="lazyloads radius-5" src="assets/img/blog/recent-post2.jpg" alt=""> </a>
-</div>
-<div class="recent-list-contents">
-<h6 class="recent-list-title fs-16"> <a href="#0"> Choose From a Wide Range of Properties </a> </h6>
-<span class="recent-list-dates light-color fs-14 mt-2"> 22 Jun 2022 </span>
-</div>
-</li>
-<li class="recent-list-item">
-<div class="recent-list-thumb">
-<a href="#0"> <img class="lazyloads radius-5" src="assets/img/blog/recent-post3.jpg" alt=""> </a>
-</div>
-<div class="recent-list-contents">
-<h6 class="recent-list-title fs-16"> <a href="#0"> Choose From a Wide Range of Properties </a> </h6>
-<span class="recent-list-dates light-color fs-14 mt-2"> 24 Jun 2022 </span>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="blog-details-side-item radius-10">
-<div class="blog-details-side-title open">
-<h5 class="title"> Tags </h5>
-<div class="blog-details-side-inner">
-<ul class="tag-list list-style-none active-list">
-<li class="tag-list-item">
-<a class="tag-list-link" href="#0"> Low Price </a>
-</li>
-<li class="tag-list-item active">
-<a class="tag-list-link" href="#0"> High Price </a>
-</li>
-<li class="tag-list-item">
-<a class="tag-list-link" href="#0"> Big Room </a>
-</li>
-<li class="tag-list-item">
-<a class="tag-list-link" href="#0"> Small Room </a>
-</li>
-<li class="tag-list-item">
-<a class="tag-list-link" href="#0"> New </a>
-</li>
-<li class="tag-list-item">
-<a class="tag-list-link" href="#0"> Discount </a>
-</li>
-<li class="tag-list-item">
-<a class="tag-list-link" href="#0"> Luxurious </a>
-</li>
-<li class="tag-list-item">
-<a class="tag-list-link" href="#0"> Normal </a>
-</li>
-<li class="tag-list-item">
-<a class="tag-list-link" href="#0"> Sale </a>
-</li>
+{% endfor %}
+
+
+
 </ul>
 </div>
 </div>

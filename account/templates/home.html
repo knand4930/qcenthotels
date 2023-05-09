@@ -8,7 +8,11 @@
   <div class="carousel-inner">
     {% for s in slider %}
     <div class="carousel-item active">
+      {% if s.img %}
       <img src="{{ s.img.url }}" class="d-block w-100" alt="Slide 1" />
+      {% else %}
+      <h4>Image Not Found</h4>
+      {% endif %}
     </div>
     {% endfor %}
   </div>
@@ -68,11 +72,11 @@
         <div class="input-group my-1 justify-content-center">
           <div>
             <label for="" class="text-white">Check In</label>
-            <input type="time" name="check_in" class="form-control inputBox" required />
+            <input type="date" name="check_in" class="form-control inputBox" required />
           </div>
           <div>
             <label for="" class="text-white">Check Out</label>
-            <input type="time" name="check_out" class="form-control inputBox" required />
+            <input type="date" name="check_out" class="form-control inputBox" required />
           </div>
 
           <div>
@@ -271,7 +275,11 @@ function slideshow(num) {
                   href="{% url 'room_list' h.slug %}"
                   class="gallery-popup"
                 >
+                  {% if h.img %}
                   <img src="{{ h.img.url }}" alt="{{ h.name }}" width="100%" height="300px"  />
+                  {% else %}
+                  <h4 width="100%" height="300px">Image Not Found</h4>
+                  {% endif %}
                 </a>
               </div>
               <div class="single-attraction-two-contents">
@@ -310,7 +318,11 @@ function slideshow(num) {
         <div class="single-blog blog-two">
           <div class="single-blog-thumbs">
             <a href="{% url 'blog_details' i.slug %}">
+              {% if i.img %}
               <img class="lazyloads" src="{{ i.img.url }}" alt="" />
+              {% else %}
+              <h4> Image Not Found</h4>
+              {% endif %}
             </a>
             <div class="single-blog-thumbs-date">
               <a href="javascript:void(0)">
@@ -322,11 +334,11 @@ function slideshow(num) {
             <div class="single-blog-contents-tags mt-3">
               <span class="single-blog-contents-tags-item">
                 <a href="javascript:void(0)">
-                  <i class="las la-tag"></i> Hotel
+                  <i class="las la-tag"></i> {{ i.cat }}
                 </a>
               </span>
               <span class="single-blog-contents-tags-item">
-                <a href="javascript:void(0)"> 22 Comments </a>
+                <a href="javascript:void(0)"> Comments ({{ i.number_of_comments }}) </a>
               </span>
             </div>
             <h4 class="single-blog-contents-title mt-3">

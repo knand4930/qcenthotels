@@ -147,7 +147,11 @@
                         {% for i in page_obj.object_list %}
                         <div class="col-md-6">
                             <div class="hotel-view bg-white radius-20">
+                                {% i.img %}
                                 <a href="{% url 'hotel_details' i.slug %}" class="hotel-view-thumb hotel-view-grid-thumb bg-image" style="background-image: url({{ i.img.url }});">
+                                {% else %}
+                                    <h1>Image Not Found </h1>
+                                    {% endif %}
                                 </a>
                                 <div class="hotel-view-contents">
                                     <div class="hotel-view-contents-header">

@@ -13,12 +13,16 @@
                 </div>
                
             </div> -->
+        {% if hotel.img %}
       <img
-        src="https://media.millenniumhotels.com/Live/B/C/A/BCA5A406-50A6-49D5-9A8D-0D38D90337AF/Orchard%20Hero.jpg?r=210614065435"
+        src="{{ hotel.img.url }}"
         height="300px"
         width="100%"
         alt=""
       />
+        {% else %}
+        <h1> Image Not Found !</h1>
+        {% endif %}
     </div>
   </div>
 </div>
@@ -58,6 +62,7 @@
             {% for i in page_obj.object_list %}
             <div class="col-md-6">
               <div class="hotel-view bg-white radius-20">
+                  {% if i.img %}
                 <a
                   href="{% url 'hotel_details' i.slug %}"
                   class="hotel-view-thumb hotel-view-grid-thumb bg-image"
@@ -66,6 +71,9 @@
                   "
                 >
                 </a>
+                  {% else %}
+                  <h1>Image Not Found! </h1>
+                  {% endif %}
                 <div class="hotel-view-contents">
                   <div class="hotel-view-contents-header">
                     <h3 class="hotel-view-contents-title">

@@ -63,10 +63,13 @@
     <div class="slider-container">
       {% for s in slider %}
       <div class="slide">
+        {% if s.img s%}
         <img src="{{ s.img.url }}" alt="" width="100%" class="fluid" />
-        <div class="caption">Hello World</div>
+        {% else %}
+        <h1>Image Not Found!</h1>
+        {% endif %}
+        <div class="caption"></div>
         <p class="caption1">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
         </p>
       </div>
       {% endfor %}

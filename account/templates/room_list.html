@@ -13,16 +13,17 @@
                 </div>
 
             </div> -->
-            {% for o in offer %}
-            {% if forloop.counter == 1 %}
+
+        {% if hotels.img %}
       <img
-        src="{{ o.img.url }}"
+        src="{{hotels.img.url}}"
         height="500px"
         width="100%"
         alt=""
       />
-      {% endif %}
-      {% endfor %}
+    {% else %}
+        <h1> Image Not Found</h1>
+        {% endif %}
     </div>
   </div>
 </div>
@@ -62,6 +63,7 @@
             {% for i in page_obj.object_list %}
             <div class="col-md-6">
               <div class="hotel-view bg-white radius-20">
+                  {% if i.img %}
                 <a
                   href="{% url 'hotel_details' i.slug %}"
                   class="hotel-view-thumb hotel-view-grid-thumb bg-image"
@@ -70,6 +72,9 @@
                   "
                 >
                 </a>
+                  {% else %}
+                  <h4>Image Not Found</h4>
+                  {% endif %}
                 <div class="hotel-view-contents">
                   <div class="hotel-view-contents-header">
                     <h3 class="hotel-view-contents-title">

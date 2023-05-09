@@ -128,9 +128,6 @@ class BlogCategory(models.Model):
         super(BlogCategory, self).save(*args, **kwargs)
 
 
-
-
-
 class GalleryCategory(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True, unique=True)
     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
@@ -436,10 +433,10 @@ class Venu(models.Model):
     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
     address = models.CharField(max_length=500, blank=True, null=True)
 
-    parking = models.BooleanField("Parking",default=False, blank=True, null=True)
+    parking = models.BooleanField("Parking", default=False, blank=True, null=True)
     wifi = models.BooleanField("Wi Fi", default=False, blank=True, null=True)
-    breakfast = models.BooleanField("Break Fast",default=False, blank=True, null=True)
-    pool = models.BooleanField("Swiming Pool",default=False, blank=True, null=True)
+    breakfast = models.BooleanField("Break Fast", default=False, blank=True, null=True)
+    pool = models.BooleanField("Swiming Pool", default=False, blank=True, null=True)
     reception = models.BooleanField(default=False, blank=True, null=True)
     gym = models.BooleanField(default=False, blank=True, null=True)
 
@@ -536,3 +533,5 @@ class Reservation(models.Model):
 
     def __str__(self):
         return self.name
+
+

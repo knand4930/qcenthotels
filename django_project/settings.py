@@ -18,7 +18,6 @@ import netifaces
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -27,6 +26,7 @@ SECRET_KEY = 'edebb28e23733cd43cd5c46886768446'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
 
 # Find out what the IP addresses are at run time
 # This is necessary because otherwise Gunicorn will reject the connections
@@ -39,8 +39,8 @@ def ip_addresses():
                 ip_list.append(addrs[x][0]['addr'])
     return ip_list
 
-ALLOWED_HOSTS = ['*', 'qcenthotels.com']
 
+ALLOWED_HOSTS = ['*', 'qcenthotels.com']
 
 # Application definition
 
@@ -91,11 +91,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
+# DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #        'NAME': 'django',
@@ -104,8 +103,7 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 #        'HOST': 'localhost',
 #        'PORT': '',
 #    }
-#}
-
+# }
 
 
 DATABASES = {
@@ -114,7 +112,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -134,7 +131,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -147,7 +143,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -165,16 +160,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 AUTH_USER_MODEL = 'account.User'
-
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ORIGIN_ALLOW_ALL = True
-
-CORS_ALLOW_CREDENTIALS = True
-
-CSRF_TRUSTED_ORIGINS = ['https://qcenthotels.com']
-
-CSRF_COOKIE_DOMAIN = 'qcenthotels.com'
+#
+# CORS_ALLOW_CREDENTIALS = True
+#
+# CORS_ORIGIN_ALLOW_ALL = True
+#
+# CORS_ALLOW_CREDENTIALS = True
+#
+# CSRF_TRUSTED_ORIGINS = ['https://qcenthotels.com']
+#
+# CSRF_COOKIE_DOMAIN = 'qcenthotels.com'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [

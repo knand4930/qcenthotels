@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
@@ -144,6 +145,7 @@ class Career(models.Model):
     def __str__(self):
         return self.fname
 
+
 class MarriageEvents(models.Model):
     bride_groom = models.CharField(max_length=500, blank=True, null=True)
     function = models.CharField(max_length=500, blank=True, null=True)
@@ -159,7 +161,8 @@ class MarriageEvents(models.Model):
 
     def __str__(self):
         return self.bride_groom
-    
+
+
 class Partner(models.Model):
     fname = models.CharField(max_length=300, blank=True, null=True)
     hotel_name = models.CharField(max_length=300, blank=True, null=True)
@@ -171,3 +174,13 @@ class Partner(models.Model):
 
     def __str__(self):
         return self.fname
+
+
+class EventText(models.Model):
+    title = models.CharField(max_length=200, blank=True, null=True)
+    desc = RichTextField(blank=True, null=True, default=None)
+
+
+class EventSlider(models.Model):
+    title = models.CharField(max_length=200, blank=True, null=True)
+    img = models.ImageField(upload_to="EventSlider/", blank=True, null=True)

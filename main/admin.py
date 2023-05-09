@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+
 # Register your models here.
 
 admin.site.register(Slider)
@@ -23,7 +24,21 @@ admin.site.register(Hotel)
 admin.site.register(VenuCategory)
 admin.site.register(State)
 admin.site.register(City)
-admin.site.register(Venu)
-admin.site.register(VenuImages)
+
+
+class VenuAdmin(admin.ModelAdmin):
+    list_display = ('id', 'hotel', 'city', 'cat', 'name')
+    list_filter = ('hotel', 'state', 'city', 'hotel', 'cat')
+
+
+admin.site.register(Venu, VenuAdmin)
+
+
+class VenuImageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'venu', 'name')
+    list_filter = ('id', 'venu', 'name')
+
+
+admin.site.register(VenuImages, VenuImageAdmin)
 admin.site.register(Reservation)
 # admin.site.register()

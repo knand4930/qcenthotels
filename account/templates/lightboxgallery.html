@@ -156,7 +156,12 @@ img.hover-shadow {
 {% for i in gi %}
     <div class="mySlides">
       <div class="numbertext"></div>
+                {% if i.img %}
+
       <img src="{{ i.img.url }}" style="width:100%;height:550px" alt="{{ i.name }}">
+              {% else %}
+        <h1>Image Not Found !</h1>
+        {% endif %}
     </div>
      {% endfor %}
     
@@ -172,7 +177,11 @@ img.hover-shadow {
 
         {% for i in gi %}
     <div class="column">
+        {% if i.img %}
       <img class="demo cursor" src="{{ i.img.url }}" style="width:100%;height:200px;margin-top:20px;" onclick="currentSlide({{ i.id }})" alt="{{ i.name }}">
+      {% else %}
+        <h1>Image Not Found !</h1>
+        {% endif %}
     </div>
 
    {% endfor %}
