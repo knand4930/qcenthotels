@@ -31,84 +31,6 @@ class OfferSlider(models.Model):
         return self.title
 
 
-# class Menu(models.Model):
-#     title = models.CharField(max_length=200, blank=True, null=True, unique=True)
-#     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
-#     create_at = models.DateTimeField(auto_now_add=True)
-#     update_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return self.title
-#
-#     def save(self, *args, **kwargs):
-#         if Menu.objects.filter(title=self.title).exists():
-#             extra = str(randint(1, 10000))
-#             self.slug = slugify(self.title) + "-" + extra
-#         else:
-#             self.slug = slugify(self.title)
-#         super(Menu, self).save(*args, **kwargs)
-#
-#
-# class SubMenu(models.Model):
-#     menu = models.ForeignKey(Menu, on_delete=models.CASCADE, blank=True, null=True)
-#     title = models.CharField(max_length=200, blank=True, null=True, unique=True)
-#     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
-#     create_at = models.DateTimeField(auto_now_add=True)
-#     update_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return self.title
-#
-#     def save(self, *args, **kwargs):
-#         if SubMenu.objects.filter(title=self.title).exists():
-#             extra = str(randint(1, 10000))
-#             self.slug = slugify(self.title) + "-" + extra
-#         else:
-#             self.slug = slugify(self.title)
-#         super(SubMenu, self).save(*args, **kwargs)
-
-
-# class AboutCategory(models.Model):
-#     name = models.CharField(max_length=200, blank=True, null=True, unique=True)
-#     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
-#     txt = models.TextField(blank=True, null=True)
-#     icon = models.ImageField(upload_to='aboutcategory/', blank=True, null=True)
-#     create_at = models.DateTimeField(auto_now_add=True)
-#     update_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return self.name
-#
-#     def save(self, *args, **kwargs):
-#         if AboutCategory.objects.filter(name=self.name).exists():
-#             extra = str(randint(1, 10000))
-#             self.slug = slugify(self.name) + "-" + extra
-#         else:
-#             self.slug = slugify(self.name)
-#         super(AboutCategory, self).save(*args, **kwargs)
-#
-#
-# class EventCategory(models.Model):
-#     name = models.CharField(max_length=200, blank=True, null=True, unique=True)
-#     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
-#     txt = models.TextField(blank=True, null=True)
-#     icon = models.ImageField(upload_to='eventcategory/', blank=True, null=True)
-#     img = models.ImageField(upload_to='eventcategory/', blank=True, null=True)
-#     create_at = models.DateTimeField(auto_now_add=True)
-#     update_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return self.name
-#
-#     def save(self, *args, **kwargs):
-#         if EventCategory.objects.filter(name=self.name).exists():
-#             extra = str(randint(1, 10000))
-#             self.slug = slugify(self.name) + "-" + extra
-#         else:
-#             self.slug = slugify(self.name)
-#         super(EventCategory, self).save(*args, **kwargs)
-
-
 class BlogCategory(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True, unique=True)
     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
@@ -226,49 +148,6 @@ class BlogComment(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
 
 
-# class Event(models.Model):
-#     cat = models.ForeignKey(EventCategory, on_delete=models.CASCADE, blank=True, null=True)
-#     title = models.CharField(max_length=500, blank=True, null=True, unique=True)
-#     slug = models.SlugField(max_length=600, blank=True, null=True, unique=True)
-#     caption = models.TextField(blank=True, null=True)
-#     img = models.ImageField(upload_to='blog/', blank=True, null=True)
-#     txt = RichTextField(blank=True, null=True)
-#     create_at = models.DateTimeField(auto_now_add=True)
-#     update_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return self.title
-#
-#     def save(self, *args, **kwargs):
-#         if Event.objects.filter(title=self.title).exists():
-#             extra = str(randint(1, 10000))
-#             self.slug = slugify(self.title) + "-" + extra
-#         else:
-#             self.slug = slugify(self.title)
-#         super(Event, self).save(*args, **kwargs)
-
-
-# class Testimonial(models.Model):
-#     name = models.CharField(max_length=200, blank=True, null=True, unique=True)
-#     slug = models.SlugField(max_length=200, blank=True, null=True, unique=True)
-#     postion = models.CharField(max_length=200, blank=True, null=True)
-#     img = models.ImageField(upload_to='testimonial/', blank=True, null=True)
-#     txt = RichTextField(blank=True, null=True)
-#     create_at = models.DateTimeField(auto_now_add=True)
-#     update_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return self.name
-#
-#     def save(self, *args, **kwargs):
-#         if Testimonial.objects.filter(name=self.name).exists():
-#             extra = str(randint(1, 10000))
-#             self.slug = slugify(self.name) + "-" + extra
-#         else:
-#             self.slug = slugify(self.name)
-#         super(Testimonial, self).save(*args, **kwargs)
-
-
 class VenuCategory(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True, unique=True)
     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
@@ -306,24 +185,6 @@ class State(models.Model):
         super(State, self).save(*args, **kwargs)
 
 
-# class Location(models.Model):
-#     name = models.CharField(max_length=200, blank=True, null=True, unique=True)
-#     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
-#     create_at = models.DateTimeField(auto_now_add=True)
-#     udpate_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return self.name
-#
-#     def save(self, *args, **kwargs):
-#         if Location.objects.filter(name=self.name).exists():
-#             extra = str(randint(1, 10000))
-#             self.slug = slugify(self.name) + "-" + extra
-#         else:
-#             self.slug = slugify(self.name)
-#         super(Location, self).save(*args, **kwargs)
-
-
 class City(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)
     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
@@ -340,60 +201,6 @@ class City(models.Model):
         else:
             self.slug = slugify(self.name)
         super(City, self).save(*args, **kwargs)
-
-
-# class SimilarCategory(models.Model):
-#     name = models.CharField(max_length=200, blank=True, null=True)
-#     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
-#     create_at = models.DateTimeField(auto_now_add=True)
-#     udpate_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return self.name
-#
-#     def save(self, *args, **kwargs):
-#         if SimilarCategory.objects.filter(name=self.name).exists():
-#             extra = str(randint(1, 10000))
-#             self.slug = slugify(self.name) + "-" + extra
-#         else:
-#             self.slug = slugify(self.name)
-#         super(SimilarCategory, self).save(*args, **kwargs)
-
-
-# class AddBudget(models.Model):
-#     name = models.CharField(max_length=200, blank=True, null=True)
-#     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
-#     create_at = models.DateTimeField(auto_now_add=True)
-#     udpate_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return self.name
-#
-#     def save(self, *args, **kwargs):
-#         if AddBudget.objects.filter(name=self.name).exists():
-#             extra = str(randint(1, 10000))
-#             self.slug = slugify(self.name) + "-" + extra
-#         else:
-#             self.slug = slugify(self.name)
-#         super(AddBudget, self).save(*args, **kwargs)
-
-
-# class AddFacility(models.Model):
-#     name = models.CharField(max_length=200, blank=True, null=True)
-#     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
-#     create_at = models.DateTimeField(auto_now_add=True)
-#     udpate_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return self.name
-#
-#     def save(self, *args, **kwargs):
-#         if AddFacility.objects.filter(name=self.name).exists():
-#             extra = str(randint(1, 10000))
-#             self.slug = slugify(self.name) + "-" + extra
-#         else:
-#             self.slug = slugify(self.name)
-#         super(AddFacility, self).save(*args, **kwargs)
 
 
 class Hotel(models.Model):
@@ -494,23 +301,6 @@ class VenuImages(models.Model):
         return self.name
 
 
-
-#
-# class VenuCategory(models.Model):
-#     name = models.CharField(max_length=200, blank=True, null=True)
-#     slug = models.SlugField(max_length=300, blank=True, null=True)
-#     create_at = models.DateTimeField(auto_now_add=True)
-#     update_at = models.DateTimeField(auto_now=True)
-#
-#     def save(self, *args, **kwargs):
-#         if VenuCategory.objects.filter(name=self.name).exists():
-#             extra = str(randint(1, 10000))
-#             self.slug = slugify(self.name) + "-" + extra
-#         else:
-#             self.slug = slugify(self.name)
-#         super(VenuCategory, self).save(*args, **kwargs)
-
-
 class Reservation(models.Model):
     STATUS_CHOICE = (
         ('pending', 'pending'),
@@ -536,5 +326,3 @@ class Reservation(models.Model):
 
     def __str__(self):
         return self.name
-
-
