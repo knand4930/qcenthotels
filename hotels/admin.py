@@ -4,6 +4,9 @@ from .models import *
 
 
 # Register your models here.
+class HotelContentInline(admin.StackedInline):
+    model = HotelContent
+
 
 class HotelsSliderInline(admin.StackedInline):
     model = HotelSlider
@@ -34,8 +37,9 @@ class ExploreVenuInline(admin.StackedInline):
 
 
 class HotelAdmin(admin.ModelAdmin):
-    inlines = [HotelsSliderInline, DiningInline, PackageInline, SpaInline, GalleryHotelInline, LocationInline,
+    inlines = [HotelContentInline, HotelsSliderInline, DiningInline, PackageInline, SpaInline, GalleryHotelInline, LocationInline,
                ExploreVenuInline]
 
 
 admin.site.register(Hotel, HotelAdmin)
+admin.site.register(HotelContact)

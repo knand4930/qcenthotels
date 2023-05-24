@@ -502,7 +502,7 @@ def hotel(request):
         state = State.objects.get(id=state_id)
         if Hotel.objects.filter(name=name).exists():
             msg = "Hotel Already Exists"
-            return render(request, 'hotels.html', {'msg': msg})
+            return render(request, 'hotels_list.html', {'msg': msg})
         data = Hotel.objects.create(state=state, name=name, img=img, summary=summary)
         data.save()
     var = Hotel.objects.all()
@@ -515,7 +515,7 @@ def hotel(request):
     except EmptyPage:
         page_obj = p.page(p.num_pages)
     state = State.objects.all()
-    return render(request, 'hotels.html', {'page_obj': page_obj, 'state': state})
+    return render(request, 'hotels_list.html', {'page_obj': page_obj, 'state': state})
 
 
 # def add_budget(request):

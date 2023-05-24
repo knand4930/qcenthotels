@@ -1,0 +1,70 @@
+{% extends 'frontmaster.html' %}
+{% block content %}
+
+{% include 'header.html' %}
+
+
+
+<div class="breadcrumb-area breadcrumb-padding">
+    <div class="container custom-container-one">
+        <div class="row">
+            <div class="col-lg-12">
+                    {% for d in din %}
+                    {% if forloop.counter == 1 %}
+                <div class="breadcrumb-contents">
+                    <h4 class="breadcrumb-contents-title"> {{ d.title }} </h4>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+        {% for s in slider %}
+        {% if s.img %}
+        <div class="carousel-item active">
+            <img src="{{ s.img.url }}" class="d-block w-100" alt="..." height="450px">
+        </div>
+        {% endif %}
+        {% endfor %}
+
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<div class="container my-5">
+    {% for d in din %}
+    {% if forloop.counter == 1 %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="hotel-view-contents">
+                <div class="hotel-view-contents-header">
+                    <p>{{ d.txt | safe }}</p>
+                </div>
+                <div class="hotel-view-contents-bottom">
+                    <div class="hotel-view-contents-bottom-flex">
+                        <div class="btn-wrapper">
+<!--                            <a href="javascript:void(0)" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

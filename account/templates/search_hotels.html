@@ -1,149 +1,198 @@
 {% extends 'frontmaster.html' %} {% block content %}
 
-<div class="breadcrumb-area section-bg-2">
-  <div class="container-fluid custom-container-one">
-    <div class="row py-2">
-      <!-- <div class="col-lg-12">
-                <div class="breadcrumb-contents">
-                    <h4 class="breadcrumb-contents-title"> Hotel List </h4>
-                    <ul class="breadcrumb-contents-list list-style-none">
-                        <li class="breadcrumb-contents-list-item"> <a href="index.php" class="breadcrumb-contents-list-item-link"> Home </a> </li>
-                        <li class="breadcrumb-contents-list-item"> Hotels </li>
-                    </ul>
-                </div>
-               
-            </div> -->
-        {% if hotel.img %}
-      <img
-        src="{{ hotel.img.url }}"
-        height="400px"
-        width="100%"
-        alt=""
-      />
-        {% else %}
-        <h1> Image Not Found !</h1>
+{% include 'header.html' %}
+<!-- banner -->
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+
+
+        {% for i in hotels.hotelslider_set.all %}
+        {% if i.img %}
+        <div class="carousel-item active">
+            <img src="{{ i.img.url }}" class="d-block w-100" alt="..." height="450px">
+        </div>
         {% endif %}
+        {% endfor %}
+
+
     </div>
-  </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
+<!-- banner End -->
+<!-- book Venus -->
 
-<div class="responsive-overlay"></div>
-<section class="hotel-list-area section-bg-2 pat-50 pab-100">
-  <div class="container">
-    <div class="shop-contents-wrapper mt-5">
-      <div class="shop-icon">
-        <div class="shop-icon-sidebar">
-          <i class="las la-bars"></i>
-        </div>
-      </div>
-      <div class="shop-sidebar-content">
-        <div class="shop-close-content">
-          <div class="single-shop-left bg-white radius-10 mt-4">
-            <div class="single-shop-left-title open">
-              <h5 class="title">Amenities</h5>
-              <div class="single-shop-left-inner margin-top-15">
-                <ul class="single-shop-left-list active-list list-style-none">
-                  {% for i in scat %}
-                  <li class="item">
-                    <a href="{% url 'categoryhotel' i.slug %}">
-                      {{ i.name }}
-                    </a>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
+<!-- end -->
+<section class="hotel-details-area section-bg-2 pat-10 pab-10">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-8">
+                <div class="sticky-top">
+                    <div class="hotel-details-widget hotel-details-widget-padding widget bg-white radius-10">
+                        <div class="details-sidebar">
+                            <div class="input-group mb-1 justify-content-center py-3">
+                                <select class="form-select form--control radius-5" aria-label="Default select example">
+                                    <option selected>Select Your Destinations</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Select Your Hotel</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                                <div class="btn-wrapper">
+                                    <a href="signup.html" class="cmn-btn btn-bg-1 radius-10"> Book Now </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h3>{{ hotels.name }}</h3>
+                            <p>{{ hotels.contact_details | safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="shop-grid-contents">
-        <div id="tab-grid" class="tab-content-item active mt-4">
-          <div class="row gy-4">
-            {% for i in page_obj.object_list %}
-            <div class="col-md-6">
-              <div class="hotel-view bg-white radius-20">
-                  {% if i.img %}
-                <a
-                  href="{% url 'hotel_details' i.slug %}"
-                  class="hotel-view-thumb hotel-view-grid-thumb bg-image"
-                  style="
-                    background-image: url({{ i.img.url }});
-                  "
-                >
-                </a>
-                  {% else %}
-                  <h1>Image Not Found! </h1>
-                  {% endif %}
-                <div class="hotel-view-contents">
-                  <div class="hotel-view-contents-header">
-                    <h3 class="hotel-view-contents-title">
-                      <a href="{% url 'hotel_details' i.slug %}">
-                        {{ i.name }}</a
-                      >
-                    </h3>
-                    <div class="hotel-view-contents-location mt-2">
-                      <span class="hotel-view-contents-location-icon">
-                        <i class="las la-map-marker-alt"></i>
-                      </span>
-                      <span class="hotel-view-contents-location-para">
-                        {{ i.address }}
-                      </span>
+    </div>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <h3 class="text-center">Hotel Amenities</h3>
+            {% if hotels.parking %}
+            <div class="col-lg-4 col-6 my-1">
+                <div class="hotel-view-contents-icon d-flex gap-1">
+                    <span> <i class="las la-parking fs-4"></i> </span>
+                    <p class="hotel-view-contents-icon-title flex-fill fs-5"> Parking </p>
+                </div>
+            </div>
+            {% endif %}
+            {% if hotels.wifi %}
+            <div class="col-lg-4 col-6 my-1">
+                <div class="hotel-view-contents-icon d-flex gap-1">
+                    <span> <i class="las la-wifi fs-4"></i> </span>
+                    <p class="hotel-view-contents-icon-title flex-fill fs-5"> Wifi </p>
+                </div>
+            </div>
+            {% endif %}
+            {% if hotels.breakfast %}
+            <div class="col-lg-4 col-6 my-1">
+                <div class="hotel-view-contents-icon d-flex gap-1">
+                    <span> <i class="las la-coffee fs-4"></i> </span>
+                    <p class="hotel-view-contents-icon-title flex-fill fs-5"> Breakfast </p>
+                </div>
+            </div>
+            {% endif %}
+            {% if hotels.room_service %}
+            <div class="col-lg-4 col-6 my-1">
+                <div class="hotel-view-contents-icon d-flex gap-1">
+                    <span> <i class="las la-quidditch fs-3"></i> </span>
+                    <p class="hotel-view-contents-icon-title flex-fill fs-5"> Room Service </p>
+                </div>
+            </div>
+            {% endif %}
+            {% if hotels.pool %}
+            <div class="col-lg-4 col-6 my-1">
+                <div class="hotel-view-contents-icon d-flex gap-1">
+                    <span> <i class="las la-swimming-pool fs-4"></i> </span>
+                    <p class="hotel-view-contents-icon-title flex-fill fs-5"> Pool </p>
+                </div>
+            </div>
+            {% endif %}
+            {% if hotels.reception %}
+            <div class="col-lg-4 col-6 my-1">
+                <div class="hotel-view-contents-icon d-flex gap-1">
+                    <span> <i class="las la-receipt fs-4"></i> </span>
+                    <p class="hotel-view-contents-icon-title flex-fill fs-5"> Reception </p>
+                </div>
+            </div>
+            {% endif %}
+            {% if hotels.gym %}
+            <div class="col-lg-4 col-6 my-1">
+                <div class="hotel-view-contents-icon d-flex gap-1">
+                    <span> <i class="las la-dumbbell fs-4"></i> </span>
+                    <p class="hotel-view-contents-icon-title flex-fill fs-5"> Gym </p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-6">
+                {% if hotels.img %}
+                <img src="{{ hotels.img.url }}" alt="" height="100%" class="rounded">
+                {% endif %}
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-12">
+                        {% if hotels.img1 %}
+                        <img src="{{ hotels.img1.url }}" alt="" class="img-fluid rounded">
+                        {% endif %}
                     </div>
-                  </div>
-                  <div class="hotel-view-contents-middle">
-                    <div class="hotel-view-contents-flex">
-                        {% if i.parking %}
-                      <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Car Parking">
-                        <i class="las la-parking"></i>
-                      </div>
+                    <div class="col-lg-12 my-1">
+                        {% if hotels.img2 %}
+                        <img src="{{ hotels.img2.url }}" alt="" class="img-fluid rounded">
                         {% endif %}
-
-                        {% if i.wifi %}
-                      <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Free Wifi">
-                        <i class="las la-wifi"></i>
-                      </div>
-                        {% endif %}
-
-                        {% if i.breakfast %}
-                      <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Free Breakfast">
-                        <i class="las la-coffee"></i>
-                      </div>
-                        {% endif %}
-
-
-                      <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Home Service">
-                        <i class="las la-quidditch"></i>
-                      </div>
-
-                        {% if i.pool %}
-                      <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Swimming Pool">
-                        <i class="las la-swimming-pool"></i>
-                      </div>
-                        {% endif %}
-
-                        {% if i.reception %}
-                      <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip"  data-bs-placement="top" title="Reception">
-                        <i class="las la-receipt"></i>
-                      </div>
-                        {% endif %}
-
-                        {% if i.gym %}
-                      <div class="hotel-view-contents-icon myTooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Gym">
-                        <i class="las la-dumbbell"></i>
-                      </div>
-                        {% endif %}
-
                     </div>
-                  </div>
-                  {% if user.is_authenticated %} 
+                </div>
+            </div>
+            <div class="col-lg-12 my-3">
+                {{ hotels.summary }}
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <h3 class="text-center">Accommodation</h3>
+            <p class="text-center">{{ hotels.accommodation | safe }}
+
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row g-4">
+
+
+            {% for h in page_obj.object_list %}
+            <div class="col-xl-6 col-lg-6">
+                <div class="sticky-top">
+                    <div class="hotel-details-widget widget bg-white radius-10">
+                        <div class="hotel-view">
+                            {% if h.img %}
+                            <div class="hotel-view-thumb hotel-view-grid-thumb bg-image" style="background-image: url({{ h.img.url }});">
+                                {% endif %}
+                            </div>
+                            <div class="hotel-view-contents">
+                                <div class="hotel-view-contents-header">
+                                    <h3 class="hotel-view-contents-title"> {{ h.name }} </h3>
+                                    <div class="hotel-view-contents-location mt-2">
+                                        <span class="hotel-view-contents-location-icon"> <i class="las la-map-marker-alt"></i> </span>
+                                        <span class="hotel-view-contents-location-para"> {{ h.address }} </span>
+                                    </div>
+                                    <p>{{ h.summary | slice:300 }}...</p>
+                                </div>
+
+                                {% if user.is_authenticated %}
                   {% if request.user.is_agent %}
                   <div class="hotel-view-contents-bottom">
                     <div class="hotel-view-contents-bottom-flex">
                       <div class="hotel-view-contents-bottom-contents">
                         <h4 class="hotel-view-contents-bottom-title">
-                          Rs.{{ i.agent_price }} <sub>/Night</sub>
+                          Rs.{{ h.agent_price }} <sub>/- Per Room Per Night</sub>
                         </h4>
-                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }}%  | Agent Discount {{ i.agent }} % </p>
+                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ h.budget }} | Tax  {{ h.price_increase }}%  | Agent Discount {{ h.agent }} % </p>
                       </div>
                       <div class="btn-wrapper">
                         <a
@@ -159,11 +208,11 @@
                   <div class="hotel-view-contents-bottom">
                     <div class="hotel-view-contents-bottom-flex">
                         <div class="hotel-view-contents-bottom-contents">
-                            <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ i.total_budget }} /Night</h4>
-                            <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }} % </p>
+                            <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ h.total_budget }} /- Per Room Per Night</h4>
+                            <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ h.budget }} | Tax  {{ h.price_increase }} % </p>
                         </div>
                         <div class="btn-wrapper">
-                            <a href="{% url 'hotel_details' i.slug %}" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>
+                            <a href="{% url 'hotel_details' h.slug %}" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>
                         </div>
                     </div>
                 </div>
@@ -171,61 +220,105 @@
                   <div class="hotel-view-contents-bottom">
                     <div class="hotel-view-contents-bottom-flex">
                         <div class="hotel-view-contents-bottom-contents">
-                            <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ i.total_budget }} /Night</h4>
-                            <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }} % </p>
+                            <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ h.total_budget }} /- Per Room Per Night</h4>
+                            <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ h.budget }} | Tax  {{ h.price_increase }} % </p>
                         </div>
                          <div class="btn-wrapper">
-                            <a href="{% url 'hotel_details' i.slug %}" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>
+                            <a href="{% url 'hotel_details' h.slug %}" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>
                         </div>
                     </div>
                 </div>
                   {% endif %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
             {% endfor %}
-          </div>
-
-          <div class="row mt-5">
-            <div class="col">
-                <div class="pagination-wrapper">
-                    <ul class="pagination-list list-style-none">
-
-                        <li class="pagination-list-item-prev">
-                             {%if page_obj.has_previous %}
-                            <a href="?page={{page_obj.previous_page_number}}" class="pagination-list-item-button"> Prev </a>
-                            {% endif %}
-                        </li>
 
 
-                        {% for n in page_obj.paginator.page_range %}
-                            {% if page_obj.number == n %}
-                        <li class="pagination-list-item">
-                            <span class="page-link">{{ n }}<span class="sr-only"></span></span>
-                        </li>
-                        {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
 
-                        <li class="pagination-list-item active">
-                            <a href="?page={{ n }}" class="pagination-list-item-link"> {{ n }} </a>
-                        </li>
-                        {% endif %}
-                        {% endfor %}
-
-
-                        <li class="pagination-list-item-next">
-                            {%if page_obj.has_next %}
-                            <a href="?page={{page_obj.next_page_number}}" class="pagination-list-item-button"> Next </a>
-                            {% endif %}
-
-                        </li>
-                    </ul>
+            <div class="col-lg-12 text-center">
+                <div class="btn-wrapper">
+                    <a href="{% url 'roomlist' hotels.slug %}" class="cmn-btn btn-bg-1 btn-small"> More Rooms </a>
                 </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</section>
 
+    <div class="container my-5">
+
+        <div class="row">
+
+            {% for hc in hotels.hotelcontent_set.all %}
+            {% if forloop.counter == 1 %}
+            <h3 class="text-center py-3">{{ hc.title }}</h3>
+            <div class="col-lg-6 my-2">
+                <h4>{{ hc.heading }}</h4>
+                <p>{{ hc.txt | safe }}</p>
+
+            </div>
+            {% if hc.img %}
+            <div class="col-lg-6 my-1">
+                <img src="{{ hc.img.url }}" alt="" class="rounded" width="100%" height="auto">
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+
+             {% for hc in hotels.hotelcontent_set.all %}
+            {% if forloop.counter == 2 %}
+            <div class="col-lg-12">
+                <h3 class="text-center py-3">{{ hc.title }}</h3>
+            </div>
+            {% if hc.img %}
+            <div class="col-lg-6 my-1">
+                <img src="{{ hc.img.url }}" alt="" class="rounded" width="100%" height="auto">
+            </div>
+             {% endif %}
+            <div class="col-lg-6 my-2">
+                <h4>{{ hc.heading }}</h4>
+                <p>{{ hc.txt | safe }} </p>
+
+            </div>
+
+            {% endif %}
+            {% endfor %}
+
+
+
+        </div>
+
+
+    </div>
+</section>
+<script>
+  function gethotels() {
+    var e = document.getElementById("states");
+    var st_value = e.value;
+    var result = "";
+    axios
+      .get("get-hotel/?state=" + st_value)
+      .then(function (response) {
+        // handle success
+        for (var i = 0; i < response.data.length; i++) {
+          result =
+            result +
+            "<option value='" +
+            response.data[i].id +
+            "'>" +
+            response.data[i].name +
+            "</option>";
+        }
+        console.log(result);
+        document.getElementById("hotel_result").innerHTML = result;
+      })
+
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+  }
+</script>
+<?php include 'footer2.html';?>
 {% endblock %}

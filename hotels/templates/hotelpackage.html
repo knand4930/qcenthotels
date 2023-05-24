@@ -1,0 +1,46 @@
+{% extends 'frontmaster.html' %}
+{% block content %}
+
+{% include 'header.html' %}
+
+
+
+<div class="container my-5">
+    <div class="row g-4">
+        <h3 class="text-center my-3">Special Holiday Packages at Qcent Hotels Grace Boutique Hotel & Spa, {{ hotels.state.name }}
+        </h3>
+        {% for p in package %}
+        <div class="col-xl-6 col-lg-6 my-2">
+            <div class="sticky-top">
+                <div class="hotel-details-widget widget bg-white radius-10">
+                    <div class="hotel-view">
+                        {% if p.img %}
+                        <div class="hotel-view-thumb hotel-view-grid-thumb bg-image" style="background-image: url({{ p.img.url }});">
+                        </div>
+                        {% endif %}
+                        <div class="hotel-view-contents">
+                            <div class="hotel-view-contents-header">
+                                <h3 class="hotel-view-contents-title">{{ p.title }}</h3>
+                                <p>{{ p.offer1 }}</p>
+                            </div>
+                            <div class="hotel-view-contents-bottom">
+                                <div class="hotel-view-contents-bottom-flex">
+                                    <div class="btn-wrapper">
+                                        <a href="{% url 'packagedetails' p.id %}" class="cmn-btn btn-bg-1 btn-small"> View </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+{% endblock %}

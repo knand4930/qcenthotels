@@ -1,0 +1,25 @@
+{% extends 'frontmaster.html' %}
+{% block content %}
+
+{% include 'header.html' %}
+
+
+
+ <div class="container">
+     {% for s in sp %}
+     {% if forloop.counter == 1 %}
+    <div class="row">
+        <div class="col-lg-12">
+            {% if s.img %}
+          <img src="{{ s.img.url }}" alt="" class="rounded my-3 img-fluid">
+            {% endif %}
+          <p class="py-3">{{ s.txt |safe }}</p>
+        </div>
+    </div>
+     {% endif %}
+     {% endfor %}
+ </div>
+
+
+
+{% endblock %}

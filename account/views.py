@@ -252,26 +252,26 @@ def categoryhotel(request, slug):
 
 
 def room_list(request, slug):
+    # try:
+    hotels = get_object_or_404(Hotel, slug=slug)
+    hotel = Venu.objects.filter(hotel=hotels)
+    offer = OfferSlider.objects.all()
+    p = Paginator(hotel, 2)
+    page_number = request.GET.get('page')
     try:
-        hotels = Hotel.objects.get(slug=slug)
-        hotel = Venu.objects.filter(hotel=hotels)
-        offer = OfferSlider.objects.all()
-        p = Paginator(hotel, 10)
-        page_number = request.GET.get('page')
-        try:
-            page_obj = p.get_page(page_number)
-        except PageNotAnInteger:
-            page_obj = p.page(1)
-        except EmptyPage:
-            page_obj = p.page(p.num_pages)
-        state = State.objects.all()
-        cat = VenuCategory.objects.all()[:1]
-        scat = VenuCategory.objects.all()
-        # print(cat.name)
-        return render(request, 'room_list.html', {'hotel': hotel, 'state': state, 'cat': cat, "page_obj": page_obj,
-                                                  'scat': scat, 'offer': offer, 'hotels': hotels})
-    except Exception as E:
-        return HttpResponse("<h1>Hotel Image Not Found !</h1>")
+        page_obj = p.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = p.page(1)
+    except EmptyPage:
+        page_obj = p.page(p.num_pages)
+    state = State.objects.all()
+    cat = VenuCategory.objects.all()[:1]
+    scat = VenuCategory.objects.all()
+    # print(cat.name)
+    return render(request, 'hotels_list.html', {'hotel': hotel, 'state': state, 'cat': cat, "page_obj": page_obj,
+                                              'scat': scat, 'offer': offer, 'hotels': hotels})
+    # except Exception as E:
+    #     return HttpResponse("<h1>Hotel Image Not Found !</h1>")
 
 
 def hotel_details(request, slug):
@@ -347,14 +347,14 @@ def searchfilter(request):
             page_obj = p.page(1)
         except EmptyPage:
             page_obj = p.page(p.num_pages)
-        return render(request, 'search_hotels.html', {'page_obj': page_obj, 'hotel': hotel, 'state': state})
+        return render(request, 'search_hotels.html', {'page_obj': page_obj, 'hotels': hotel,'cat':cat, 'state': state})
     return render(request, 'home.html', context)
 
 
 def search_filter(request):
     cat = VenuCategory.objects.all()[:1]
-    city = City.objects.all()
     state = State.objects.all()
+    city = City.objects.all()
     # location = Location.objects.all()
     related = Hotel.objects.all()
     # budget = AddBudget.objects.all()
@@ -475,6 +475,7 @@ def career(request):
 
 def bookevent(request):
     state = State.objects.all()
+    cat = VenuCategory.objects.all()[:1]
     event = EventText.objects.all()[:1]
     sl = EventSlider.objects.all()
     try:
@@ -501,11 +502,13 @@ def bookevent(request):
             return render(request, 'bookevent.html', {'msg': msg})
     except Exception as E:
         return render(request, 'bookevent.html', {'msg': "Please Input Correct Date and Time"})
-    return render(request, 'bookevent.html', {'state': state, 'event': event, 'sl': sl})
+    return render(request, 'bookevent.html', {'state': state, 'event': event, 'sl': sl, 'cat':cat})
 
 
 def partner(request):
     state = State.objects.all()
+    cat = VenuCategory.objects.all()[:1]
+
     if request.method == 'POST':
         fname = request.POST.get('fname')
         hotel_name = request.POST.get('hotel_name')
@@ -521,4 +524,4 @@ def partner(request):
         msg = "Your Details Has Been Sent Successfully !"
         return render(request, 'partner.html', {'msg': msg})
 
-    return render(request, 'partner.html', {'state': state})
+    return render(request, 'partner.html', {'state': state, 'cat':cat})
