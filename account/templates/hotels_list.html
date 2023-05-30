@@ -15,7 +15,6 @@
         {% endif %}
         {% endfor %}
 
-
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -27,44 +26,12 @@
     </button>
 </div>
 <!-- banner End -->
+
+
 <!-- book Venus -->
 
 <!-- end -->
 <section class="hotel-details-area section-bg-2 pat-10 pab-10">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-xl-10 col-lg-8">
-                <div class="sticky-top">
-                    <div class="hotel-details-widget hotel-details-widget-padding widget bg-white radius-10">
-                        <div class="details-sidebar">
-                             <form method="post" action="{% url 'searchfilter' %}">
-                                {% csrf_token %}
-                                <div class="input-group mb-1 justify-content-center py-3">
-                                  <select name="state" id="states" class="form-select form--control radius-5" onchange="gethotels()" aria-label="Default select example">
-                                    <option selected>Select Your State</option>
-                                    {% for i in state %}
-                                    <option value="{{ i.id }}">{{ i.name }}</option>
-                                    {% endfor %}
-                                  </select>
-
-                                  <select
-                                    class="form-select" id="hotel_data" name="hotel" class="form-select form--control radius-5" aria-label="Default select example" >
-                                  </select>
-
-                                  <div class="btn-wrapper">
-                                    <input type="submit" value="Submit" class="cmn-btn btn-bg-1 radius-10"/>
-                                  </div>
-                              </form>
-                        </div>
-                        <div class="text-center">
-                            <h3>{{ hotels.name }}</h3>
-                            <p>{{ hotels.contact_details | safe }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="container my-5">

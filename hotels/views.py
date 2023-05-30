@@ -89,15 +89,17 @@ def hotelcontact(request, slug):
     return render(request, 'hotelcontact.html', {'hotels': hotels, 'state': state, 'cat': cat})
 
 
-def packagedetails(request, id):
+def packagedetails(request, slug, id):
+    hotels = get_object_or_404(Hotel, slug=slug)
     cat = VenuCategory.objects.all()[:1]
     state = State.objects.all()
     package = Package.objects.get(id=id)
-    return render(request, 'package.html', {'package': package, 'cat':cat, 'state':state})
+    return render(request, 'package.html', {'package': package, 'cat':cat, 'state':state, 'hotels':hotels})
 
 
-def explorevenu(request, id):
+def explorevenu(request, slug, id):
+    hotels = get_object_or_404(Hotel, slug=slug)
     cat = VenuCategory.objects.all()[:1]
     state = State.objects.all()
     exp = get_object_or_404(ExploreVenu, id=id)
-    return render(request, 'explorevenu.html', {'exp': exp, 'cat':cat, 'state':state})
+    return render(request, 'explorevenu.html', {'exp': exp, 'cat':cat, 'state':state, 'hotels':hotels})

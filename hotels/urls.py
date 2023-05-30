@@ -10,6 +10,6 @@ urlpatterns = [
     path('hotelvenue/<slug:slug>/', hotelvenue, name='hotelvenue'),
     path('hotelcontact/<slug:slug>/', hotelcontact, name='hotelcontact'),
     path('hotelpackage/<slug:slug>/', hotelpackage, name='hotelpackage'),
-    path('packagedetails/<int:id>/', packagedetails, name='packagedetails'),
-    path('explorevenu/<int:id>/', explorevenu, name='explorevenu'),
+    path('packagedetails/<slug:slug>/<int:id>/', packagedetails, name='packagedetails'),
+    path('explorevenu/<slug:slug>/<int:id>/', explorevenu, name='explorevenu'),
 ]
