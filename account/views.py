@@ -233,7 +233,7 @@ def statehotel(request, slug):
 
 def categoryhotel(request, slug):
     venu_cat = VenuCategory.objects.get(slug=slug)
-    hotel = Venu.objects.filter(cat=venu_cat)
+    hotel = Hotel.objects.filter(cat=venu_cat)
     print(venu_cat.img, "===========================")
     offer = OfferSlider.objects.all()
     p = Paginator(hotel, 10)

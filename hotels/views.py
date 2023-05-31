@@ -79,9 +79,11 @@ def hotelcontact(request, slug):
             txt = request.POST.get('txt')
             state_hotel = hotels.state.name
             hotel = hotels.name
-            data = HotelContact.objects.create(name=name, city=city, phone=phone, email=email, txt=txt,
+            print(name, city, phone, txt, state_hotel, hotel, "==============================================")
+            var = HotelContact.objects.create(name=name, phone=phone, email=email, txt=txt, city=city,
                                                state_hotel=state_hotel, hotel=hotel)
-            data.save()
+            var.save()
+            print(var, "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
             msg = "Your Contact Details Has Been Successfully sent !"
             return render(request, "successhotels.html", {'msg': msg})
     except Exception as E:

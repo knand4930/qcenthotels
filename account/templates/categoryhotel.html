@@ -63,7 +63,7 @@
             <div class="col-md-6">
               <div class="hotel-view bg-white radius-20">
                 <a
-                  href="{% url 'hotel_details' i.slug %}"
+                  href="{% url 'room_list' i.slug %}"
                   class="hotel-view-thumb hotel-view-grid-thumb bg-image"
                   style="
                     background-image: url({{ i.img.url }});
@@ -73,7 +73,7 @@
                 <div class="hotel-view-contents">
                   <div class="hotel-view-contents-header">
                     <h3 class="hotel-view-contents-title">
-                      <a href="{% url 'hotel_details' i.slug %}">
+                      <a href="{% url 'room_list' i.slug %}">
                         {{ i.name }}</a
                       >
                     </h3>
@@ -82,7 +82,7 @@
                         <i class="las la-map-marker-alt"></i>
                       </span>
                       <span class="hotel-view-contents-location-para">
-                        {{ i.address }}
+                        {{ i.state }} | {{ i.city }}
                       </span>
                     </div>
                   </div>
@@ -131,51 +131,50 @@
 
                     </div>
                   </div>
-                  {% if user.is_authenticated %} 
-                  {% if request.user.is_agent %}
+
                   <div class="hotel-view-contents-bottom">
                     <div class="hotel-view-contents-bottom-flex">
                       <div class="hotel-view-contents-bottom-contents">
-                        <h4 class="hotel-view-contents-bottom-title">
-                          Rs.{{ i.agent_price }} <sub>/- Per Room Per Night</sub>
-                        </h4>
-                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }}%  | Agent Discount {{ i.agent }} % </p>
-                      </div>
+<!--                        <h4 class="hotel-view-contents-bottom-title">-->
+<!--                          Rs.{{ i.agent_price }} <sub>/- Per Room Per Night</sub>-->
+<!--                        </h4>-->
+<!--                        <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }}%  | Agent Discount {{ i.agent }} % </p>-->
+<!--                      </div>-->
                       <div class="btn-wrapper">
                         <a
-                          href="{% url 'hotel_details' i.slug %}"
+                          href="{% url 'room_list' i.slug %}"
                           class="cmn-btn btn-bg-1 btn-small"
                         >
-                          Reserve Now
+                          View Hotels
                         </a>
                       </div>
                     </div>
                   </div>
-                  {% else %}
-                  <div class="hotel-view-contents-bottom">
-                    <div class="hotel-view-contents-bottom-flex">
-                        <div class="hotel-view-contents-bottom-contents">
-                            <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ i.total_budget }} /- Per Room Per Night</h4>
-                            <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }} % </p>
-                        </div>
-                        <div class="btn-wrapper">
-                            <a href="{% url 'hotel_details' i.slug %}" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>
-                        </div>
-                    </div>
-                </div>
-                  {% endif %} {% else %}
-                  <div class="hotel-view-contents-bottom">
-                    <div class="hotel-view-contents-bottom-flex">
-                        <div class="hotel-view-contents-bottom-contents">
-                            <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ i.total_budget }} /- Per Room Per Night</h4>
-                            <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }} % </p>
-                        </div>
-                         <div class="btn-wrapper">
-                            <a href="{% url 'hotel_details' i.slug %}" class="cmn-btn btn-bg-1 btn-small"> Reserve Now </a>
-                        </div>
-                    </div>
-                </div>
-                  {% endif %}
+
+<!--                  <div class="hotel-view-contents-bottom">-->
+<!--                    <div class="hotel-view-contents-bottom-flex">-->
+<!--                        <div class="hotel-view-contents-bottom-contents">-->
+<!--                            <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ i.total_budget }} /- Per Room Per Night</h4>-->
+<!--                            <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }} % </p>-->
+<!--                        </div>-->
+<!--                        <div class="btn-wrapper">-->
+<!--                            <a href="{% url 'room_list' i.slug %}" class="cmn-btn btn-bg-1 btn-small"> View Hotels</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                  <div class="hotel-view-contents-bottom">-->
+<!--                    <div class="hotel-view-contents-bottom-flex">-->
+<!--                        <div class="hotel-view-contents-bottom-contents">-->
+<!--                            <h4 class="hotel-view-contents-bottom-title"> Total Price Rs. {{ i.total_budget }} /- Per Room Per Night</h4>-->
+<!--                            <p class="hotel-view-contents-bottom-para">Main Price Rs. {{ i.budget }} | Tax  {{ i.price_increase }} % </p>-->
+<!--                        </div>-->
+<!--                         <div class="btn-wrapper">-->
+<!--                            <a href="{% url 'room_list' i.slug %}" class="cmn-btn btn-bg-1 btn-small"> View Hotels </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                 -->
                 </div>
               </div>
             </div>
