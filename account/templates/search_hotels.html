@@ -1,18 +1,27 @@
 {% extends 'frontmaster.html' %} {% block content %}
 
 {% include 'header.html' %}
-<!-- banner -->
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-
-
-
         {% for i in hotels.hotelslider_set.all %}
         {% if i.img %}
+        {% if forloop.counter == 1 %}
         <div class="carousel-item active">
-            <img src="{{ i.img.url }}" class="d-block w-100" alt="..." height="450px">
+            <img src="{{ i.img.url }}" class="d-block w-100" alt="{{ i.txt }}" height="450px">
         </div>
+{% endif %}
+
         {% endif %}
+        {% endfor %}
+
+
+     {% for i in hotels.hotelslider_set.all %}
+        {% if i.img %}
+
+        <div class="carousel-item">
+            <img src="{{ i.img.url }}" class="d-block w-100" alt="{{ i.txt }}" height="450px">
+        </div>
+      {% endif %}
         {% endfor %}
 
     </div>
@@ -25,7 +34,7 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<!-- banner End -->
+
 
 
 <!-- book Venus -->

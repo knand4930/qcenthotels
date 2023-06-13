@@ -25,41 +25,33 @@
 <section class="contact-area pab-100">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-7 mt-5">
-                <div class="contact-wrapper contact-padding bg-white radius-20">
-                    <div class="contact-contents">
-                        <h4 class="contact-contents-title"> Contact Qcent Hotels & Resorts </h4>
-                        <div class="contact-contents-form custom-form">
-
-                            <form method="post" action="{% url 'hotelcontact' hotels.slug %}">
-                                {% csrf_token %}
-                                <div class="single-flex-input mt-4">
-                                    <div class="single-input mt-4">
-                                        <input type="text" name="name" class="form--control radius-5" placeholder="Name" required>
-                                    </div>
-                                    <div class="single-input mt-4">
-                                        <input type="text" name="city" class="form--control radius-5" placeholder="City" required>
-                                    </div>
-                                </div>
-
-                                <div class="single-input mt-4">
-                                        <input type="number" name="phone" class="form--control radius-5" placeholder="Number" required>
-                                    </div>
-                                <div class="single-input mt-4">
-                                    <input type="text" name="email" class="form--control radius-5" placeholder="Type Email" required>
-                                </div>
-                                <div class="single-input mt-4">
-                                    <textarea name="txt" class="form--control form-message radius-5" required></textarea>
-                                </div>
-                                <button type="submit" class="submit-btn radius-5"> Submit </button>
-                            </form>
-
-                        </div>
-                    </div>
+            <h3 class="text-center my-5">Contact Summit Grace Boutique Hotel & Spa, Darjeeling
+            </h3>
+            <div class="col-lg-6 my-6 p-3 content-ceneter">
+              <div>
+                <h5><a href="#" style="color:#91c61f;">Summit Grace Boutique Hotel & Spa, Darjeeling</a></h5>
+                <p>Jalapahar Road, Near St. Paul's School,
+                 Darjeeling - 734101</p> 
+                 <p> <b>Hotel:</b> +91 35 4225 2507</p>
+                 <p> <b>For Reservation :</b>  +91 83 8887 7888</p>
+                 <p> <b>Email:</b> grace@summithotels.in</p>
+                 <div class="btn-wrapper">
+                    <a href="#" class="cmn-btn btn-bg-1 btn-small"> Book </a>
                 </div>
+              </div>
+            </div>
+            <div class="col-lg-6 my-6">
+               <img src="https://www.tajhotels.com/content/dam/luxury/hotels/taj-amer/images/overview-images/high-Res-day.jpg/jcr:content/renditions/cq5dam.web.756.756.jpeg"  class="img-fluid rounded" alt="">
             </div>
         </div>
     </div>
+    <style>
+        .content-ceneter{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </section>
 
 <?php include 'footer2.html'; ?>

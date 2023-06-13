@@ -1,96 +1,133 @@
-
 <style>
-    .sticky{
-        position: fixed;
-        top:0;
-        width: 100%;
-        z-index:9999;
-    }
-    .animation{
-  -webkit-animation-name: slideInDown;
-  animation-name: slideInDown;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+  .bg{
+    background-color:#91c61fba;
+  }
+  .animation {
+    -webkit-animation-name: slideInDown;
+    animation-name: slideInDown;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
   }
   @-webkit-keyframes slideInDown {
-  0% {
-  -webkit-transform: translateY(-100%);
-  transform: translateY(-100%);
-  visibility: visible;
-  }
-  100% {
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  }
+    0% {
+      -webkit-transform: translateY(-100%);
+      transform: translateY(-100%);
+      visibility: visible;
+    }
+    100% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
   }
   @keyframes slideInDown {
-  0% {
-  -webkit-transform: translateY(-100%);
-  transform: translateY(-100%);
-  visibility: visible;
+    0% {
+      -webkit-transform: translateY(-100%);
+      transform: translateY(-100%);
+      visibility: visible;
+    }
+    100% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
   }
-  100% {
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  }
-  }
-
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" id="ulmenu">
-    <div class="container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'room_list' hotels.slug %}">{{ hotels.name }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{% url 'roomlist' hotels.slug %}">Room</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'hoteldining' hotels.slug %}">Dining</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'hotelpackage' hotels.slug %}">Package</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'hotelspa' hotels.slug %}">Spa</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'hotelgallery' hotels.slug %}">Gallery</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'hotellocation' hotels.slug %}">Location</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'hotelvenue' hotels.slug %}">Explore Venue</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'hotelcontact' hotels.slug %}">Contact Us</a>
-                </li>
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" href="#"><Button class="btn btn-success btn-sm">Pay Us</Button></a>-->
-<!--                </li>-->
-            </ul>
-        </div>
+  <div class="container">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a
+            class="nav-link active rounded"
+            aria-current="page"
+            href="{% url 'room_list' hotels.slug %}"
+            >{{ hotels.name }}</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link rounded"
+            aria-current="page"
+            href="{% url 'roomlist' hotels.slug %}"
+            >Room</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded" href="{% url 'hoteldining' hotels.slug %}"
+            >Dining</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded" href="{% url 'hotelpackage' hotels.slug %}"
+            >Package</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded" href="{% url 'hotelspa' hotels.slug %}">Spa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded" href="{% url 'hotelgallery' hotels.slug %}"
+            >Gallery</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded" href="{% url 'hotellocation' hotels.slug %}"
+            >Location</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded" href="{% url 'hotelvenue' hotels.slug %}"
+            >Explore Venue</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded" href="{% url 'hotelcontact' hotels.slug %}"
+            >Contact Us</a
+          >
+        </li>
+        <!--                <li class="nav-item">-->
+        <!--                    <a class="nav-link" href="#"><Button class="btn btn-success btn-sm">Pay Us</Button></a>-->
+        <!--                </li>-->
+      </ul>
     </div>
+  </div>
 </nav>
 
 <script>
-       window.addEventListener('scroll',function(){
-           let ulnavbar = document.getElementById("ulmenu");
-           if(window.pageYOffset >= 200){
-            ulnavbar.classList.add('sticky');
-                ulnavbar.classList.add("animation");
-           }
-           else{
-            ulnavbar.classList.remove('sticky');
-            ulnavbar.classList.remove("animation");
-           }
-       });
-
-    </script>
+  window.addEventListener("scroll", function () {
+    let ulnavbar = document.getElementById("ulmenu");
+    if (window.pageYOffset >= 200) {
+      ulnavbar.classList.add("sticky");
+      ulnavbar.classList.add("animation");
+    } else {
+      ulnavbar.classList.remove("sticky");
+      ulnavbar.classList.remove("animation");
+    }
+  });
+  let active = document.querySelectorAll(".nav-link");
+  const activepage = window.location.pathname;
+  for (key of active) {
+    if (key.href.includes(`${activepage}`)) {
+      key.classList.add("bg");
+      key.classList.replace("link-dark", "link-light");
+    }
+  }
+</script>
