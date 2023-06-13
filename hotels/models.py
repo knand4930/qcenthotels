@@ -47,7 +47,7 @@ class GalleryHotel(models.Model):
 
 class Location(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, blank=True, null=True)
-    address = models.CharField(max_length=200, blank=True, null=True)
+    location = models.URLField(blank=True, null=True)
 
 
 class ExploreVenu(models.Model):
@@ -58,10 +58,6 @@ class ExploreVenu(models.Model):
 
 
 class HotelContact(models.Model):
-    name = models.CharField(max_length=200, blank=True, null=True)
-    state_hotel = models.CharField(max_length=200, blank=True, null=True)
-    hotel = models.CharField(max_length=300, blank=True, null=True)
-    city = models.CharField(max_length=200, blank=True, null=True)
-    phone = models.IntegerField(default=None)
-    email = models.EmailField(blank=True, null=True, max_length=400)
-    txt = models.TextField(default=None)
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, blank=True, null=True)
+    txt = RichTextField(default=None, null=True, blank=True)
+    img = models.ImageField(upload_to="hotelcontact/", blank=True, null=True)

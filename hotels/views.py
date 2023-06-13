@@ -52,7 +52,7 @@ def hotelgallery(request, slug):
 
 def hotellocation(request, slug):
     hotels = get_object_or_404(Hotel, slug=slug)
-    loc = Location.objects.filter(hotel=hotels)
+    loc = Location.objects.last()
     state = State.objects.all()
     cat = VenuCategory.objects.all()[:1]
     return render(request, 'hotellocation.html', {'hotels': hotels, 'loc': loc, 'state': state, 'cat': cat})
@@ -70,25 +70,8 @@ def hotelcontact(request, slug):
     hotels = get_object_or_404(Hotel, slug=slug)
     state = State.objects.all()
     cat = VenuCategory.objects.all()[:1]
-    try:
-        if request.method == 'POST':
-            name = request.POST.get('name')
-            city = request.POST.get('city')
-            phone = request.POST.get('phone')
-            email = request.POST.get('email')
-            txt = request.POST.get('txt')
-            state_hotel = hotels.state.name
-            hotel = hotels.name
-            print(name, city, phone, txt, state_hotel, hotel, "==============================================")
-            var = HotelContact.objects.create(name=name, phone=phone, email=email, txt=txt, city=city,
-                                               state_hotel=state_hotel, hotel=hotel)
-            var.save()
-            print(var, "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-            msg = "Your Contact Details Has Been Successfully sent !"
-            return render(request, "successhotels.html", {'msg': msg})
-    except Exception as E:
-        return render(request, 'successhotels.html', {'msg': E})
-    return render(request, 'hotelcontact.html', {'hotels': hotels, 'state': state, 'cat': cat})
+    address = HotelContact.objects.last()
+    return render(request, 'hotelcontact.html', {'hotels': hotels, 'state': state, 'cat': cat, 'address':address})
 
 
 def packagedetails(request, slug, id):

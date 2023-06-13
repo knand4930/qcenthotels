@@ -219,7 +219,7 @@ class Hotel(models.Model):
     img = models.ImageField(upload_to="hotel/", blank=True, null=True)
     img1 = models.ImageField(upload_to="hotel/", blank=True, null=True)
     img2 = models.ImageField(upload_to="hotel/", blank=True, null=True)
-    summary = models.TextField(default=None, blank=True, null=True)
+    summary = RichTextField(default=None, blank=True, null=True)
     parking = models.BooleanField("Parking", default=False)
     wifi = models.BooleanField("Wi-Fi", default=False)
     breakfast = models.BooleanField("Break Fast", default=False)

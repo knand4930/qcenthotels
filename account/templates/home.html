@@ -173,16 +173,10 @@ function slideshow(num) {
   <div class="container-fluid bg-light">
     <div class="row text-center">
       <div class="col-lg-12 py-5 px-2">
-        <p class="text-success">Experience the passion of hospitality</p>
-        <h3>Pacific Inn Hotel and Resorts</h3>
+        <p class="text-success">{{ hm.head1 }}</p>
+        <h3>{{ hm.head2 }}</h3>
         <p>
-          Pacific Inn hotel and resorts is among top hotels and resorts in Delhi
-          NCR, Jaipur, Rishikesh and Lansdowne. we are having our presence in
-          India from more than a decade.We have hosted guests from around the
-          world and counting. We are offering luxury yet affordable room in
-          Delhi NCR, Jaipur and awesome travel destination like Rishikesh and
-          Lansdowne.From from this we are offering Camping, Hiking, River
-          Rafting, Bungee Jumping, Boating, Trekking etc.
+          {{ hm.txt | safe }}
         </p>
       </div>
     </div>

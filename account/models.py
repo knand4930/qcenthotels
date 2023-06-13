@@ -26,6 +26,12 @@ class Profile(models.Model):
     address = models.TextField(default=None, blank=True, null=True)
 
 
+class HomePages(models.Model):
+    head1 = models.CharField(max_length=500, blank=True, null=True)
+    head2 = models.CharField(max_length=500, blank=True, null=True)
+    txt = RichTextField(default=None, blank=True, null=True)
+
+
 class ContactUs(models.Model):
     first_name = models.CharField(max_length=200, blank=True, null=True)
     last_name = models.CharField(max_length=200, blank=True, null=True)

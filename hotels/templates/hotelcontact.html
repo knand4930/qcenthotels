@@ -25,23 +25,19 @@
 <section class="contact-area pab-100">
     <div class="container">
         <div class="row justify-content-center">
-            <h3 class="text-center my-5">Contact Summit Grace Boutique Hotel & Spa, Darjeeling
+            <h3 class="text-center my-5">Contact {{hotels.name}}
             </h3>
             <div class="col-lg-6 my-6 p-3 content-ceneter">
               <div>
-                <h5><a href="#" style="color:#91c61f;">Summit Grace Boutique Hotel & Spa, Darjeeling</a></h5>
-                <p>Jalapahar Road, Near St. Paul's School,
-                 Darjeeling - 734101</p> 
-                 <p> <b>Hotel:</b> +91 35 4225 2507</p>
-                 <p> <b>For Reservation :</b>  +91 83 8887 7888</p>
-                 <p> <b>Email:</b> grace@summithotels.in</p>
-                 <div class="btn-wrapper">
-                    <a href="#" class="cmn-btn btn-bg-1 btn-small"> Book </a>
-                </div>
+                <h5><a href="#" style="color:#91c61f;">{{hotels.name}}</a></h5>
+                <p>{{ address.txt | safe }}</p>
+
               </div>
             </div>
             <div class="col-lg-6 my-6">
-               <img src="https://www.tajhotels.com/content/dam/luxury/hotels/taj-amer/images/overview-images/high-Res-day.jpg/jcr:content/renditions/cq5dam.web.756.756.jpeg"  class="img-fluid rounded" alt="">
+                {% if address.img %}
+               <img src="{{ address.img.url }}"  class="img-fluid rounded" alt="">
+                {% endif %}
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@ from .models import *
 admin.site.register(User)
 admin.site.register(Profile)
 admin.site.register(ContactUs)
-# admin.site.register(Reservation)
+admin.site.register(HomePages)
 # admin.site.register(CancelletionRefund)
 # admin.site.register(Facility)
 admin.site.register(RoomType)

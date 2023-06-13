@@ -16,18 +16,13 @@ def home(request):
     cat = VenuCategory.objects.all()[:1]
     city = City.objects.all()
     state = State.objects.all()
-    # location = Location.objects.all()
     related = Hotel.objects.all()
-    # budget = AddBudget.objects.all()
-    # facility = AddFacility.objects.all()
-    # sm_cat = SimilarCategory.objects.all()
     slider = Slider.objects.all()
     venu = Venu.objects.all()
-    offer = OfferSlider.objects.all()
     hme = Hotel.objects.all()[:6]
-    #   hotel = Hotels.objects.all()[:3]
+    hm = HomePages.objects.last()
     context = {'cat': cat, 'city': city, 'related': related, 'venu': venu,
-               'state': state, 'blg': blg, 'hme': hme, 'slider': slider}
+               'state': state, 'blg': blg, 'hme': hme, 'slider': slider, 'hm':hm}
     return render(request, 'home.html', context)
 
 
@@ -525,3 +520,5 @@ def partner(request):
         return render(request, 'partner.html', {'msg': msg})
 
     return render(request, 'partner.html', {'state': state, 'cat':cat})
+
+

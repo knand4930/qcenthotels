@@ -36,10 +36,14 @@ class ExploreVenuInline(admin.StackedInline):
     model = ExploreVenu
 
 
+class HotelContactInline(admin.StackedInline):
+    model = HotelContact
+
+
 class HotelAdmin(admin.ModelAdmin):
-    inlines = [HotelContentInline, HotelsSliderInline, DiningInline, PackageInline, SpaInline, GalleryHotelInline, LocationInline,
-               ExploreVenuInline]
+    inlines = [HotelContentInline, HotelsSliderInline, DiningInline, PackageInline, SpaInline, GalleryHotelInline,
+               LocationInline,
+               ExploreVenuInline, HotelContactInline]
 
 
 admin.site.register(Hotel, HotelAdmin)
-admin.site.register(HotelContact)
