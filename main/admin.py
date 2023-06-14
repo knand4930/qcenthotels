@@ -24,6 +24,7 @@ class ImageInline(admin.StackedInline):
 class VenuAdmin(admin.ModelAdmin):
     inlines = [ImageInline]
     list_display = ('name','hotel')
+    list_filter = ('name', 'hotel')
 
 
 admin.site.register(VenuImages)
