@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'hotels',
+    'import_export',
 ]
 
 MIDDLEWARE = [

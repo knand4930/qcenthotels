@@ -296,8 +296,8 @@ class VenuImages(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)
     img = models.ImageField(upload_to="venu/images/")
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
 
 
 class Reservation(models.Model):

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from main.models import Hotel
 from .models import *
+from import_export.admin import ImportExportModelAdmin
 
 
 # Register your models here.
@@ -40,10 +41,14 @@ class HotelContactInline(admin.StackedInline):
     model = HotelContact
 
 
-class HotelAdmin(admin.ModelAdmin):
+class HotelAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     inlines = [HotelContentInline, HotelsSliderInline, DiningInline, PackageInline, SpaInline, GalleryHotelInline,
                LocationInline,
                ExploreVenuInline, HotelContactInline]
+    list_display = ('name', 'state', 'cat', 'city')
 
 
 admin.site.register(Hotel, HotelAdmin)
+
+
+
