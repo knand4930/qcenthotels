@@ -104,3 +104,10 @@ class VenuImageAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
 
 admin.site.register(VenuImages, VenuImageAdmin)
+
+
+class StateAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    pass
+
+
+admin.site.register(State, StateAdmin)
