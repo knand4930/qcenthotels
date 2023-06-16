@@ -59,7 +59,7 @@
             class="nav-link active rounded"
             aria-current="page"
             href="{% url 'room_list' hotels.slug %}"
-            >{{ hotels.name }}</a
+            ><strong>{{ hotels.name }}</strong></a
           >
         </li>
         <li class="nav-item">
@@ -95,7 +95,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link rounded" href="{% url 'hotelvenue' hotels.slug %}"
-            >Explore {{ hotels.name }}</a
+            >Explore {{ hotels.city.name }}</a
           >
         </li>
         <li class="nav-item">
