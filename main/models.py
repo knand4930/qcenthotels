@@ -42,14 +42,14 @@ class BlogCategory(models.Model):
     def __str__(self):
         return self.name
 
-    # def save(self, *args, **kwargs):
-    #     if not self.pk:
-    #         if BlogCategory.objects.filter(name=self.name).exists():
-    #             extra = str(randint(1, 10000))
-    #             self.slug = slugify(self.name) + "-" + extra
-    #         else:
-    #             self.slug = slugify(self.name)
-    #         super(BlogCategory, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            if BlogCategory.objects.filter(name=self.name).exists():
+                extra = str(randint(1, 10000))
+                self.slug = slugify(self.name) + "-" + extra
+            else:
+                self.slug = slugify(self.name)
+            super(BlogCategory, self).save(*args, **kwargs)
 
 
 class GalleryCategory(models.Model):
@@ -62,14 +62,14 @@ class GalleryCategory(models.Model):
     def __str__(self):
         return self.name
 
-    # def save(self, *args, **kwargs):
-    #     if not self.pk:
-    #         if GalleryCategory.objects.filter(name=self.name).exists():
-    #             extra = str(randint(1, 10000))
-    #             self.slug = slugify(self.name) + "-" + extra
-    #         else:
-    #             self.slug = slugify(self.name)
-    #         super(GalleryCategory, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            if GalleryCategory.objects.filter(name=self.name).exists():
+                extra = str(randint(1, 10000))
+                self.slug = slugify(self.name) + "-" + extra
+            else:
+                self.slug = slugify(self.name)
+            super(GalleryCategory, self).save(*args, **kwargs)
 
 
 class GalleryImage(models.Model):
@@ -83,14 +83,14 @@ class GalleryImage(models.Model):
     def __str__(self):
         return self.title
 
-    # def save(self, *args, **kwargs):
-    #     if not self.pk:
-    #         if GalleryImage.objects.filter(title=self.title).exists():
-    #             extra = str(randint(1, 10000))
-    #             self.slug = slugify(self.title) + "-" + extra
-    #         else:
-    #             self.slug = slugify(self.title)
-    #         super(GalleryImage, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            if GalleryImage.objects.filter(title=self.title).exists():
+                extra = str(randint(1, 10000))
+                self.slug = slugify(self.title) + "-" + extra
+            else:
+                self.slug = slugify(self.title)
+            super(GalleryImage, self).save(*args, **kwargs)
 
 
 class GalleryVideo(models.Model):
@@ -163,14 +163,14 @@ class VenuCategory(models.Model):
     def __str__(self):
         return self.name
 
-    # def save(self, *args, **kwargs):
-    #     if not self.pk:
-    #         if VenuCategory.objects.filter(name=self.name).exists():
-    #             extra = str(randint(1, 10000))
-    #             self.slug = slugify(self.name) + "-" + extra
-    #         else:
-    #             self.slug = slugify(self.name)
-    #         super(VenuCategory, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            if VenuCategory.objects.filter(name=self.name).exists():
+                extra = str(randint(1, 10000))
+                self.slug = slugify(self.name) + "-" + extra
+            else:
+                self.slug = slugify(self.name)
+            super(VenuCategory, self).save(*args, **kwargs)
 
 
 class State(models.Model):
@@ -182,14 +182,14 @@ class State(models.Model):
     def __str__(self):
         return self.name
 
-    # def save(self, *args, **kwargs):
-    #     if not self.pk:
-    #         if State.objects.filter(name=self.name).exists():
-    #             extra = str(randint(1, 10000))
-    #             self.slug = slugify(self.name) + "-" + extra
-    #         else:
-    #             self.slug = slugify(self.name)
-    #         super(State, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            if State.objects.filter(name=self.name).exists():
+                extra = str(randint(1, 10000))
+                self.slug = slugify(self.name) + "-" + extra
+            else:
+                self.slug = slugify(self.name)
+            super(State, self).save(*args, **kwargs)
 
 
 class City(models.Model):
@@ -201,16 +201,17 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
-    # def save(self, *args, **kwargs):
-    #     if not self.pk:
-    #         if City.objects.filter(name=self.name).exists():
-    #             extra = str(randint(1, 10000))
-    #             self.slug = slugify(self.name) + "-" + extra
-    #         else:
-    #             self.slug = slugify(self.name)
-    #         super(City, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            if City.objects.filter(name=self.name).exists():
+                extra = str(randint(1, 10000))
+                self.slug = slugify(self.name) + "-" + extra
+            else:
+                self.slug = slugify(self.name)
+            super(City, self).save(*args, **kwargs)
     # class Meta:
     #     ordering = ('-create_at', )
+
 
 class Hotel(models.Model):
     state = models.ForeignKey(State, on_delete=models.CASCADE, blank=True, null=True)
@@ -237,23 +238,24 @@ class Hotel(models.Model):
     def __str__(self):
         return self.name
 
-    # def save(self, *args, **kwargs):
-    #     if not self.pk:  # Only generate slug for new objects
-    #         if Hotel.objects.filter(name=self.name).exists():
-    #             extra = str(randint(1, 10000))
-    #             self.slug = slugify(self.name) + "-" + extra
-    #         else:
-    #             self.slug = slugify(self.name)
-    #     super(Hotel, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.pk:  # Only generate slug for new objects
+            if Hotel.objects.filter(name=self.name).exists():
+                extra = str(randint(1, 10000))
+                self.slug = slugify(self.name) + "-" + extra
+            else:
+                self.slug = slugify(self.name)
+        super(Hotel, self).save(*args, **kwargs)
 
 
 class Venu(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, blank=True, null=True)
-    budget = models.PositiveBigIntegerField(blank=True, null=True)
-    price_increase = models.PositiveBigIntegerField(blank=True, null=True)
-    agent_price = models.PositiveBigIntegerField(blank=True, null=True)
-    total_budget = models.PositiveBigIntegerField(blank=True, null=True)
-    agent = models.PositiveBigIntegerField(blank=True, null=True)
+
+    budget = models.IntegerField(blank=True, null=True)
+    price_increase = models.IntegerField(blank=True, null=True)
+    agent_price = models.IntegerField(blank=True, null=True)
+    total_budget = models.IntegerField(blank=True, null=True)
+    agent = models.IntegerField(blank=True, null=True)
 
     name = models.CharField(max_length=200, blank=True, null=True)
     slug = models.SlugField(max_length=300, blank=True, null=True, unique=True)
@@ -282,14 +284,14 @@ class Venu(models.Model):
     def __str__(self):
         return self.name
 
-    # def save(self, *args, **kwargs):
-    #     if not self.pk:
-    #         if Venu.objects.filter(name=self.name).exists():
-    #             extra = str(randint(1, 10000))
-    #             self.slug = slugify(self.name) + "-" + extra
-    #         else:
-    #             self.slug = slugify(self.name)
-    #         super(Venu, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.pk:  # Only generate slug for new objects
+            if Venu.objects.filter(name=self.name).exists():
+                extra = str(randint(1, 10000))
+                self.slug = slugify(self.name) + "-" + extra
+            else:
+                self.slug = slugify(self.name)
+        super(Venu, self).save(*args, **kwargs)
 
 
 class VenuImages(models.Model):
