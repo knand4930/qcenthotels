@@ -27,10 +27,11 @@
         <div class="row justify-content-center">
             <h3 class="text-center my-5">Contact {{hotels.name}}
             </h3>
+            {% for i in address %}
             <div class="col-lg-6 my-6 p-3 content-ceneter">
               <div>
                 <h5><a href="#" style="color:#91c61f;">{{hotels.name}}</a></h5>
-                <p>{{ address.txt | safe }}</p>
+                <p>{{ i.txt | safe }}</p>
 
               </div>
             </div>
@@ -39,6 +40,7 @@
                <img src="{{ address.img.url }}"  class="img-fluid rounded" alt="">
                 {% endif %}
             </div>
+            {% endfor %}
         </div>
     </div>
     <style>

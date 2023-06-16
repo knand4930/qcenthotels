@@ -2,6 +2,8 @@ from django.contrib import admin
 from .models import *
 from django.forms import inlineformset_factory
 from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportMixin
+
 from import_export import resources
 
 
@@ -63,8 +65,9 @@ class BlogCommentAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 admin.site.register(BlogComment, BlogCommentAdmin)
 
 
-class CityAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('name', 'create_at')
+# class CityResource(resources)
+class CityAdmin(ImportExportMixin, admin.ModelAdmin):
+    list_display = ['name']
 
 
 admin.site.register(City, CityAdmin)

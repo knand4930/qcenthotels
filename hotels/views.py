@@ -52,7 +52,7 @@ def hotelgallery(request, slug):
 
 def hotellocation(request, slug):
     hotels = get_object_or_404(Hotel, slug=slug)
-    loc = Location.objects.last()
+    loc = Location.objects.filter(hotel=hotels)[:1]
     state = State.objects.all()
     cat = VenuCategory.objects.all()[:1]
     return render(request, 'hotellocation.html', {'hotels': hotels, 'loc': loc, 'state': state, 'cat': cat})
@@ -70,7 +70,7 @@ def hotelcontact(request, slug):
     hotels = get_object_or_404(Hotel, slug=slug)
     state = State.objects.all()
     cat = VenuCategory.objects.all()[:1]
-    address = HotelContact.objects.last()
+    address = HotelContact.objects.filter(hotel=hotels)[:1]
     return render(request, 'hotelcontact.html', {'hotels': hotels, 'state': state, 'cat': cat, 'address':address})
 
 
