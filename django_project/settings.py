@@ -164,15 +164,15 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 AUTH_USER_MODEL = 'account.User'
 
-# CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = True
 #
-# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
 #
 # # CORS_ALLOW_CREDENTIALS = True
 #
-# CSRF_TRUSTED_ORIGINS = ['https://qcenthotels.com']
-#
-# CSRF_COOKIE_DOMAIN = 'qcenthotels.com'
+CSRF_TRUSTED_ORIGINS = ['https://qcenthotels.com']
+
+CSRF_COOKIE_DOMAIN = 'qcenthotels.com'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
